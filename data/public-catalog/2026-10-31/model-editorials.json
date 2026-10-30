@@ -1,0 +1,148 @@
+{
+  "kind": "public_verified_model_editorials",
+  "snapshot_date": "2026-10-31",
+  "count": 4,
+  "items": [
+    {
+      "brand": "Nokia",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nokia_3100_blue_front.jpg?width=600",
+      "model_name": "3100",
+      "photo_credit": "Episteme / Wikimedia Commons",
+      "published_at": "2026-10-30T21:27:32.260436+00:00",
+      "release_year": 2003,
+      "photo_license": "Public domain",
+      "announced_year": 2003,
+      "description_en": "Announced by Nokia on 16 June 2003, the Nokia 3100 was a lightweight feature phone designed for younger users. Its distinctive features included colorful interchangeable Xpress-on covers, some of which glowed in the dark, and a 128 × 128-pixel display capable of showing 4,096 colors. The device supported Java games, SMS, MMS and GPRS on tri-band GSM networks but had no built-in camera.",
+      "description_hy": "2003 թվականի հունիսի 16-ին Nokia-ն ներկայացրեց Nokia 3100-ը՝ երիտասարդ օգտատերերի համար նախատեսված թեթև և գունավոր կոճակային հեռախոս։ Այն ուներ 128 × 128 պիքսել լուծաչափով 4096 գույն ցուցադրող էկրան, փոխարինվող և մթության մեջ լուսարձակող պատյաններ, ինչպես նաև Java խաղերի, SMS և MMS հաղորդագրությունների աջակցություն։ Հեռախոսն աշխատում էր GSM 900/1800/1900 ցանցերում, իսկ ներկառուցված տեսախցիկ չուներ։",
+      "description_ru": "Nokia 3100 — лёгкий мобильный телефон, представленный Nokia 16 июня 2003 года. Модель ориентировалась на молодёжь и выделялась сменными полупрозрачными панелями Xpress-on, некоторые из которых светились в темноте. Телефон имел цветной экран 128 × 128 пикселей с 4096 цветами, поддерживал Java, SMS, MMS и GPRS, а также трёхдиапазонную GSM-связь. Встроенной камеры не было.",
+      "phone_model_id": 68,
+      "research_run_id": 43,
+      "verified_sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2003/06/16/1846778/0/en/Nokia-3100-Sheds-Light-on-Mobile-Personal-Expression.html",
+          "kind": "official",
+          "title": "Nokia Oyj: Nokia 3100 Sheds Light on Mobile Personal Expression"
+        },
+        {
+          "url": "https://www.mobilephonemuseum.com/phone-detail/nokia-3100",
+          "kind": "museum",
+          "title": "Mobile Phone Museum: Nokia 3100"
+        }
+      ],
+      "approved_batch_id": null,
+      "publication_method": "autonomous_source_verified"
+    },
+    {
+      "brand": "Nokia",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nokia_2610._004.jpg?width=600",
+      "model_name": "2610",
+      "photo_credit": "Bastet78 / Wikimedia Commons",
+      "published_at": "2026-10-27T21:40:46.645969+00:00",
+      "release_year": 2006,
+      "photo_license": "Public domain",
+      "announced_year": 2006,
+      "description_en": "Nokia presented the entry-level 2610 in Chongqing, China, on 30 March 2006 together with the 1112 and 2310. Built for users in growing mobile markets, it combined SMS and MMS with email, basic WAP Internet access and short voice messages through Nokia Xpress Audio Messaging. Distinctive equipment included a rubberized body, color display, MP3 ringtones, a voice recorder, hands-free speaker and storage for about 300 contacts. GSM band support differed across regional variants, so a physical handset should be identified from its own label. Nokia initially expected shipments during the second quarter of 2006; its official annual report confirms that first shipments of the 2610 occurred in 2006. The phone had no built-in camera. Bastet78 placed the relevant image on Wikimedia Commons under a public-domain dedication. This research article does not indicate that an example is currently for sale.",
+      "description_hy": "Nokia 2610-ը մատչելի կոճակային հեռախոս է, որը ներկայացվել է 2006 թվականի մարտի 30-ին Չինաստանի Չունցին քաղաքում՝ Nokia 1112 և Nokia 2310 մոդելների հետ։ Այն նախատեսված էր զարգացող շուկաների օգտատերերի համար և աջակցում էր SMS ու MMS հաղորդագրություններին, էլեկտրոնային փոստին, WAP շարժական ինտերնետին և Xpress Audio Messaging կարճ ձայնային հաղորդագրություններին։ Հեռախոսն ուներ ռետինապատ կորպուս, գունավոր էկրան, MP3 զանգեր, ձայնագրիչ, բարձրախոսով խոսելու հնարավորություն և մոտ 300 կոնտակտի հիշողություն։ GSM հաճախականությունները տարբերակվում էին ըստ շուկայի. հավաքածուի առանձին սարքը պետք է ստուգել նշագրումով։ Nokia-ն մատակարարումները նախատեսում էր 2006-ի երկրորդ եռամսյակում, իսկ պաշտոնական տարեկան հաշվետվությունը հաստատում է այդ տարում մատակարարումների սկիզբը։ Ներկառուցված տեսախցիկ չկար։ Bastet78-ի լուսանկարը Wikimedia Commons-ում հանրային սեփականություն է։ Վաճառքում առկայությունը հաստատված չէ։",
+      "description_ru": "Nokia 2610 — доступный кнопочный телефон, анонсированный 30 марта 2006 года в Чунцине (Китай) одновременно с Nokia 1112 и 2310. Для покупателей развивающихся рынков аппарат предлагал SMS, MMS, электронную почту, простой мобильный Интернет через WAP и короткие голосовые сообщения Xpress Audio Messaging. В числе характерных деталей были прорезиненный корпус, цветной экран, MP3-мелодии, диктофон, громкая связь и телефонная книга примерно на 300 контактов. Конкретные поддерживаемые частоты GSM различались по региону; при проверке коллекционного экземпляра необходимо сверять наклейку и аппаратную версию. Nokia планировала поставки на II квартал 2006 года, и официальный годовой отчёт подтверждает, что модель начала поставляться в течение 2006 года. Встроенной камеры Nokia 2610 не имела. Фотография Bastet78 размещена на Wikimedia Commons как общественное достояние. Наличие телефона в продаже не подтверждено.",
+      "phone_model_id": 80,
+      "research_run_id": 52,
+      "verified_sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2006/03/30/1847542/0/en/Performance-quality-and-ease-of-use-the-hallmarks-of-Nokia-s-newest-range-of-iconic-affordable-phones.html",
+          "kind": "official",
+          "title": "Access Denied"
+        },
+        {
+          "url": "https://www.nokia.com/system/files/files/form20-f-06-pdf.pdf",
+          "kind": "official",
+          "title": "Nokia 2006 Form 20-F annual report"
+        },
+        {
+          "url": "https://www.mobilephonemuseum.com/phone-detail/nokia-2610",
+          "kind": "museum",
+          "title": "Mobile Phone Museum: Nokia 2610"
+        }
+      ],
+      "approved_batch_id": null,
+      "publication_method": "autonomous_source_verified"
+    },
+    {
+      "brand": "Nokia",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nokia2600.jpg?width=600",
+      "model_name": "2600",
+      "photo_credit": "Jorge Barrios / Wikimedia Commons",
+      "published_at": "2026-10-27T21:40:46.645969+00:00",
+      "release_year": 2004,
+      "photo_license": "Public domain",
+      "announced_year": 2004,
+      "description_en": "The original Nokia 2600 was announced on 14 June 2004 alongside the Nokia 2650. This affordable candybar phone combined a color screen and polyphonic tones with a calendar, reminders and exchange of contacts by SMS. A distinctive Spreadsheet function allowed users to keep simple expense records on the handset. Designed for price-conscious buyers, it came in regional GSM 900/1800 and 850/1900 configurations. Nokia quoted a weight of 94.5 grams, up to 3.5 hours of talk time and up to 250 hours of standby on a new battery. Initial shipments were projected for the third quarter, and company reports confirm that commercial shipments began during 2004. The original Nokia 2600 must not be confused with the later Nokia 2600 classic; they have different designs and specifications. Jorge Barrios released the Wikimedia Commons photograph into the public domain. This historical record does not confirm a unit in stock.",
+      "description_hy": "Nokia 2600-ը 2004 թվականի հունիսի 14-ին ներկայացված մատչելի դասի կոճակային հեռախոս է։ Այն ուներ գունավոր էկրան, բազմաձայն զանգեր, օրացույց և հիշեցումներ։ Կոնտակտները կարելի էր փոխանցել SMS-ով, իսկ ներկառուցված Spreadsheet գործիքն օգնում էր պարզ աղյուսակով հաշվարկել առօրյա ծախսերը։ Հեռախոսը նախատեսված էր մատչելի շարժական կապի շուկաների համար։ GSM 900/1800 և 850/1900 տարբերակները կախված էին տարածաշրջանից։ Nokia-ի պաշտոնական տվյալներով քաշը մոտ 94,5 գրամ էր, նոր մարտկոցով խոսելու առավելագույն ժամանակը՝ 3,5 ժամ, սպասման ժամանակը՝ 250 ժամ։ Նախատեսված մատակարարումները սկսվում էին 2004 թվականի երրորդ եռամսյակից, իսկ տարեկան հաշվետվությունները հաստատում են առևտրային առաքումները նույն տարում։ 2004 թվականի Nokia 2600-ը չպետք է շփոթել ավելի ուշ թողարկված Nokia 2600 classic-ի հետ. դրանք տարբեր մոդելներ են։ Jorge Barrios-ի լուսանկարը Wikimedia Commons-ում հանրային սեփականություն է։ Վաճառքում առկայությունը հաստատված չէ։",
+      "description_ru": "Nokia 2600 — оригинальный бюджетный моноблок 2004 года, представленный Nokia 14 июня вместе с раскладушкой 2650. В нём сочетались цветной экран, полифонические мелодии, календарь, напоминания и возможность отправлять контакты по SMS. Необычная для простого телефона функция Spreadsheet позволяла вести небольшой учёт расходов прямо с клавиатуры. Модель предназначалась для покупателей доступной мобильной связи, а частоты GSM зависели от региональной версии: 900/1800 либо 850/1900. В официальном анонсе Nokia указывала массу 94,5 г, до 3,5 часов разговоров и до 250 часов ожидания с новым аккумулятором. Компания планировала поставки с III квартала, а годовые отчёты подтверждают начало коммерческих поставок в 2004 году. Важно не смешивать оригинальную Nokia 2600 с более поздней Nokia 2600 classic: это разные модели. Фото Jorge Barrios в Wikimedia Commons выпущено в общественное достояние. Продажное наличие не подтверждено.",
+      "phone_model_id": 81,
+      "research_run_id": 51,
+      "verified_sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2004/06/14/1846229/0/en/Nokia-expands-entry-level-portfolio-with-the-launch-of-Nokia-2650-phone-and-Nokia-2600-phone.html",
+          "kind": "official",
+          "title": "Access Denied"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2004/06/14/1846209/0/en/High-Five-Nokia-Bolsters-its-Mobile-Phone-Product-Portfolio.html",
+          "kind": "official",
+          "title": "Nokia Oyj — High Five (2004) confirms 2600 color screen"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/924613/000110465905003072/a05-2458_16k.htm",
+          "kind": "official",
+          "title": "Nokia 2004 annual report filed with SEC"
+        },
+        {
+          "url": "https://www.mobilephonemuseum.com/phone-detail/nokia-2600",
+          "kind": "museum",
+          "title": "Mobile Phone Museum: Nokia 2600"
+        }
+      ],
+      "approved_batch_id": null,
+      "publication_method": "autonomous_source_verified"
+    },
+    {
+      "brand": "Nokia",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nokia_2300.jpg?width=600",
+      "model_name": "2300",
+      "photo_credit": "Santeri Viinamäki / Wikimedia Commons",
+      "published_at": "2026-10-27T21:40:46.645969+00:00",
+      "release_year": 2004,
+      "photo_license": "CC BY 4.0",
+      "announced_year": 2003,
+      "description_en": "Nokia announced its entry-level Nokia 2300 on 27 August 2003 at events in Moscow and New Delhi. Targeting first-time mobile subscribers, the handset offered a monochrome display, a distinctive keypad with four-way Navi control, interchangeable Xpress-on covers and polyphonic ringtones. Its GSM 900/1800 features included SMS chat, an SMS counter and unwanted-message filtering, together with three games, FM radio and hands-free calling. The launch statement forecast sales in Asia-Pacific in late 2003, but Nokia's first-quarter 2004 financial announcement confirms that shipments actually began during that quarter. Consequently, 2003 should be recorded as the announcement year and 2004 as the confirmed shipment year. The original photo by Santeri Viinamäki is provided on Wikimedia Commons under CC BY 4.0. Stock availability has not been established.",
+      "description_hy": "Nokia 2300-ը մատչելի կոճակային հեռախոս է, որը ներկայացվել է 2003 թվականի օգոստոսի 27-ին Մոսկվայում և Նյու Դելիում։ Բջջային կապի նոր օգտատերերի համար այն ուներ միագույն էկրան, յուրօրինակ ստեղնաշար՝ քառուղղությամբ Navi կառավարմամբ, փոխարինվող Xpress-on պատյաններ և բազմաձայն զանգեր։ Հիմնական գործառույթներից էին GSM 900/1800 կապը, SMS զրույցը, հաղորդագրությունների հաշվիչը, անցանկալի SMS-ների զտումը, երեք խաղերը, FM ռադիոն և բարձրախոսը։ Սկզբնական հայտարարությամբ Nokia-ն Ասիայում վաճառքը նախատեսում էր 2003-ի վերջին, սակայն 2004 թվականի առաջին եռամսյակի պաշտոնական հաշվետվությունն է հաստատում մատակարարումների սկիզբը։ Այսպիսով՝ 2003-ը ներկայացման, իսկ 2004-ը հաստատված առևտրային թողարկման տարին է։ Santeri Viinamäki-ի լուսանկարը Wikimedia Commons-ում ունի CC BY 4.0 արտոնագիր։ Վաճառքում կոնկրետ սարքի առկայությունը հաստատված չէ։",
+      "description_ru": "Nokia 2300 — доступный кнопочный телефон, анонсированный 27 августа 2003 года на презентациях в Москве и Нью-Дели. Для новой аудитории мобильной связи Nokia предложила монохромный экран, необычную клавиатуру с четырёхсторонней Navi-навигацией, сменные панели Xpress-on и полифонические мелодии. GSM 900/1800, SMS-чат, счётчик текстовых сообщений, фильтр нежелательных SMS, три игры, FM-радио и громкая связь составляли его основные функции. В анонсе Nokia прогнозировала продажи в Азии в IV квартале 2003 года, но отчёт производителя за I квартал 2004 года впервые подтверждает поставки аппарата. Поэтому 2003 год относится к анонсу, а подтверждённое начало поставок — к 2004 году. Основное фото предоставлено Santeri Viinamäki на Wikimedia Commons по лицензии CC BY 4.0. Наличие конкретного экземпляра в продаже не подтверждено.",
+      "phone_model_id": 84,
+      "research_run_id": 50,
+      "verified_sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2003/08/27/1847114/0/en/Nokia-2300-adds-fun-and-style-to-mobile-entry-communication.html",
+          "kind": "official",
+          "title": "Nokia Oyj — официальный анонс Nokia 2300 от 27.08.2003"
+        },
+        {
+          "url": "https://www.nokia.com/system/files/files/q3-2003-earnings-release-pdf.pdf",
+          "kind": "official",
+          "title": "Nokia — результаты III квартала 2003 (Nokia 2300)"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2004/04/16/1846550/0/en/Nokia-first-quarter-2004-net-sales-decline-2-to-EUR-6-6-billion-with-continued-good-profitability-and-reported-EPS-diluted-EUR-0-17.html",
+          "kind": "official",
+          "title": "Nokia Q1 2004 results"
+        },
+        {
+          "url": "https://mobilephonemuseum.com/phone-detail/2300",
+          "kind": "museum",
+          "title": "Mobile Phone Museum: Nokia 2300"
+        }
+      ],
+      "approved_batch_id": null,
+      "publication_method": "autonomous_source_verified"
+    }
+  ]
+}
