@@ -1,0 +1,30 @@
+name: Public catalog snapshot integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/public-catalog/**"
+      - "scripts/verify_public_snapshot.py"
+      - ".github/workflows/catalog-snapshot.yml"
+  pull_request:
+    paths:
+      - "data/public-catalog/**"
+      - "scripts/verify_public_snapshot.py"
+      - ".github/workflows/catalog-snapshot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-public-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify public content and image metadata
+        run: python3 scripts/verify_public_snapshot.py
