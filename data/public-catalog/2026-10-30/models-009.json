@@ -1,0 +1,2860 @@
+{
+  "kind": "published_public_phone_models",
+  "snapshot_date": "2026-10-30",
+  "offset": 800,
+  "count": 70,
+  "items": [
+    {
+      "id": 801,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Fisio 625",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Fisio 625 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Graphics. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2002,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Fisio 625 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Graphics. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Class 10",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Graphics; 101 x 80 пикселей, 8 lines",
+            "weight": "85 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2002",
+            "bluetooth": "No",
+            "phonebook": "300 entries, Photo call",
+            "dimensions": "104 x 46 x 20 мм, 73 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Fisio 625"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Class 10",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Graphics; 101 x 80 пикселей, 8 lines",
+        "weight": "85 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2002",
+        "bluetooth": "No",
+        "phonebook": "300 entries, Photo call",
+        "dimensions": "104 x 46 x 20 мм, 73 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Fisio 625"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 802,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Fisio 620",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Fisio 620 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2002,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Fisio 620 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Class 10",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 101 x 80 пикселей, 8 lines",
+            "weight": "85 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2002",
+            "bluetooth": "No",
+            "phonebook": "300",
+            "dimensions": "104 x 46 x 20 мм, 73 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Fisio 620"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Class 10",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 101 x 80 пикселей, 8 lines",
+        "weight": "85 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2002",
+        "bluetooth": "No",
+        "phonebook": "300",
+        "dimensions": "104 x 46 x 20 мм, 73 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Fisio 620"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 803,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Fisio 610",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Fisio 610 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Fisio 610 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Class 4",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 5 lines",
+            "weight": "90 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001",
+            "bluetooth": "No",
+            "dimensions": "110 x 45 x 18 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Fisio 610"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Class 4",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 5 lines",
+        "weight": "90 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001",
+        "bluetooth": "No",
+        "dimensions": "110 x 45 x 18 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Fisio 610"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 804,
+      "brand": "Philips",
+      "year_type": "unverified",
+      "model_name": "Fisio 316",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 805,
+      "brand": "Philips",
+      "year_type": "unverified",
+      "model_name": "Fisio 312",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 806,
+      "brand": "Philips",
+      "year_type": "unverified",
+      "model_name": "Fisio 311",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 807,
+      "brand": "Philips",
+      "year_type": "unverified",
+      "model_name": "Fisio 310",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 808,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Fisio 121",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Fisio 121 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2002,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Fisio 121 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 4 lines",
+            "weight": "95 г",
+            "battery": "Съёмный NiMh 750 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2002",
+            "bluetooth": "No",
+            "phonebook": "SIM only",
+            "dimensions": "106 x 49 x 22 мм, 79 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Fisio 121"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 4 lines",
+        "weight": "95 г",
+        "battery": "Съёмный NiMh 750 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2002",
+        "bluetooth": "No",
+        "phonebook": "SIM only",
+        "dimensions": "106 x 49 x 22 мм, 79 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Fisio 121"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 809,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Fisio 120",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Fisio 120 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2002,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Fisio 120 был анонсирован в 2002 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 4 lines",
+            "weight": "95 г",
+            "battery": "Съёмный NiMh 750 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2002",
+            "bluetooth": "No",
+            "phonebook": "SIM only",
+            "dimensions": "106 x 49 x 22 мм, 79 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Fisio 120"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 4 lines",
+        "weight": "95 г",
+        "battery": "Съёмный NiMh 750 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2002",
+        "bluetooth": "No",
+        "phonebook": "SIM only",
+        "dimensions": "106 x 49 x 22 мм, 79 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Fisio 120"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 810,
+      "brand": "Philips",
+      "year_type": "announced",
+      "model_name": "Diga",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Philips Diga был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1997,
+      "image_credit": "putnik / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Philips Diga был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 1 x 12 chars",
+            "weight": "179 г",
+            "battery": "Съёмный NiMH 600 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1997",
+            "bluetooth": "No",
+            "phonebook": "SIM only",
+            "dimensions": "147 x 56 x 19 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "Diga"
+          }
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philips_Diga.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 1 x 12 chars",
+        "weight": "179 г",
+        "battery": "Съёмный NiMH 600 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1997",
+        "bluetooth": "No",
+        "phonebook": "SIM only",
+        "dimensions": "147 x 56 x 19 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "Diga"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Philips_Diga.jpg"
+    },
+    {
+      "id": 811,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T68",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T68 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, CSTN, 256 colors. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "The original uploader was 阿貴 at Chinese Wikipedia . / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T68 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, CSTN, 256 colors. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Yes",
+            "bands": "GSM 900 / 1800 / 1900",
+            "radio": "No",
+            "screen": "CSTN, 256 colors; 101 x 80 пикселей",
+            "weight": "84 г",
+            "battery": "Съёмный Li-Ion аккумулятор (BST-14)",
+            "network": "GSM • GSM 900 / 1800 / 1900",
+            "announced": "2001, Q4",
+            "bluetooth": "1.0b",
+            "phonebook": "500 x 8 fields",
+            "dimensions": "101 x 48 x 19.5 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T68"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 3.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/ERICSSON_T68.JPG?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Yes",
+        "bands": "GSM 900 / 1800 / 1900",
+        "radio": "No",
+        "screen": "CSTN, 256 colors; 101 x 80 пикселей",
+        "weight": "84 г",
+        "battery": "Съёмный Li-Ion аккумулятор (BST-14)",
+        "network": "GSM • GSM 900 / 1800 / 1900",
+        "announced": "2001, Q4",
+        "bluetooth": "1.0b",
+        "phonebook": "500 x 8 fields",
+        "dimensions": "101 x 48 x 19.5 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T68"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:ERICSSON_T68.JPG"
+    },
+    {
+      "id": 812,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T66",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T66 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "Insider51 / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T66 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800 / 1900",
+            "radio": "No",
+            "screen": "Monochrome graphic; 5 lines",
+            "weight": "59 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800 / 1900",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "dimensions": "92 x 41 x 17.5 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T66"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 3.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T66.JPG?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800 / 1900",
+        "radio": "No",
+        "screen": "Monochrome graphic; 5 lines",
+        "weight": "59 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800 / 1900",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "dimensions": "92 x 41 x 17.5 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T66"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T66.JPG"
+    },
+    {
+      "id": 813,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T65",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T65 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T65 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Yes",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic; 6 lines, 101 x 67 пикселей",
+            "weight": "94 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "phonebook": "300 x 11 fields",
+            "dimensions": "105 x 49 x 21 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T65"
+          }
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T65_001-01.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Yes",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic; 6 lines, 101 x 67 пикселей",
+        "weight": "94 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "phonebook": "300 x 11 fields",
+        "dimensions": "105 x 49 x 21 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T65"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T65_001-01.jpg"
+    },
+    {
+      "id": 814,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T60d",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 815,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T39m",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T39m_001-02.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T39m_001-02.jpg"
+    },
+    {
+      "id": 816,
+      "brand": "Ericsson",
+      "year_type": "released",
+      "model_name": "T39",
+      "source_url": "https://www.gsmarena.com/ericsson_t39-252.php",
+      "description": "Ericsson T39 продолжила концепцию компактных бизнес-телефонов с крышкой клавиатуры и обменом данными через GPRS.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": 2001,
+      "translations": {
+        "ru": {
+          "description": "Ericsson T39 продолжила концепцию компактных бизнес-телефонов с крышкой клавиатуры и обменом данными через GPRS.",
+          "specifications": {
+            "body": "Моноблок с откидной крышкой клавиатуры",
+            "screen": "Монохромный 101 × 54",
+            "weight": "86 г",
+            "battery": "Li-Ion 500 мА·ч",
+            "network": "GSM 900/1800/1900",
+            "dimensions": "96 × 50 × 18 мм"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "body": "Моноблок с откидной крышкой клавиатуры",
+        "screen": "Монохромный 101 × 54",
+        "weight": "86 г",
+        "battery": "Li-Ion 500 мА·ч",
+        "network": "GSM 900/1800/1900",
+        "dimensions": "96 × 50 × 18 мм"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 817,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T29s",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T29s был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T29s был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic; 101 x 33 пикселей, 3 x 12 chars",
+            "weight": "95 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, February",
+            "bluetooth": "No",
+            "phonebook": "200",
+            "dimensions": "101 x 49 x 20 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T29s"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T29s_001-01.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic; 101 x 33 пикселей, 3 x 12 chars",
+        "weight": "95 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, February",
+        "bluetooth": "No",
+        "phonebook": "200",
+        "dimensions": "101 x 49 x 20 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T29s"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T29s_001-01.jpg"
+    },
+    {
+      "id": 818,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T29",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 819,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T28s",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T28s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1999,
+      "image_credit": "Holger.Ellgaard / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T28s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+            "weight": "83 г",
+            "battery": "Съёмный Li-Po 500 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "1999",
+            "bluetooth": "No",
+            "phonebook": "250",
+            "dimensions": "97 x 50 x 15 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T28s"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T28s.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+        "weight": "83 г",
+        "battery": "Съёмный Li-Po 500 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "1999",
+        "bluetooth": "No",
+        "phonebook": "250",
+        "dimensions": "97 x 50 x 15 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T28s"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T28s.jpg"
+    },
+    {
+      "id": 820,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T28",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Luen",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY-SA 3.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T28_01.jpg?width=700",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T28_01.jpg"
+    },
+    {
+      "id": 821,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T20e",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T20e был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "Äppelmos / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T20e был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+            "weight": "128 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001",
+            "bluetooth": "No",
+            "dimensions": "101 x 54 x 28 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T20e"
+          }
+        }
+      },
+      "image_license": "Public domain",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T20e.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+        "weight": "128 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001",
+        "bluetooth": "No",
+        "dimensions": "101 x 54 x 28 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T20e"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T20e.jpg"
+    },
+    {
+      "id": 822,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T20",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 823,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "T18s",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson T18s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1999,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson T18s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+            "weight": "146 г",
+            "battery": "Съёмный NiMH 750 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "1999",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "105 x 49 x 24 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "T18s"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_T18s_001-01.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 101 x 33 пикселей, 3 x 12 chars",
+        "weight": "146 г",
+        "battery": "Съёмный NiMH 750 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "1999",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "105 x 49 x 24 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "T18s"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_T18s_001-01.jpg"
+    },
+    {
+      "id": 824,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T18",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 825,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T10",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 826,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "SH888",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson SH888 был анонсирован в 1998 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1998,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson SH888 был анонсирован в 1998 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "195 г",
+            "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "1998",
+            "bluetooth": "No",
+            "phonebook": "100",
+            "dimensions": "130 x 49 x 22 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: SH 888. Региональные модификации могут отличаться.",
+            "archiveModel": "SH 888"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_SH888_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "195 г",
+        "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "1998",
+        "bluetooth": "No",
+        "phonebook": "100",
+        "dimensions": "130 x 49 x 22 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: SH 888. Региональные модификации могут отличаться.",
+        "archiveModel": "SH 888"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_SH888_001.jpg"
+    },
+    {
+      "id": 827,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "S868",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson S868 был анонсирован в 1998 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1998,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson S868 был анонсирован в 1998 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "172 г",
+            "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "1998",
+            "bluetooth": "No",
+            "phonebook": "100",
+            "dimensions": "130 x 49 x 21 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: S 868. Региональные модификации могут отличаться.",
+            "archiveModel": "S 868"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_S868_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "172 г",
+        "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "1998",
+        "bluetooth": "No",
+        "phonebook": "100",
+        "dimensions": "130 x 49 x 21 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: S 868. Региональные модификации могут отличаться.",
+        "archiveModel": "S 868"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_S868_001.jpg"
+    },
+    {
+      "id": 828,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "R600",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson R600 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson R600 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Yes",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic; 5 lines",
+            "weight": "82 г",
+            "battery": "Съёмный Li-Ion (BST-20)",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "phonebook": "200",
+            "dimensions": "105 x 45 x 20 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "R600"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_R600_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Yes",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic; 5 lines",
+        "weight": "82 г",
+        "battery": "Съёмный Li-Ion (BST-20)",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "phonebook": "200",
+        "dimensions": "105 x 45 x 20 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "R600"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_R600_001.jpg"
+    },
+    {
+      "id": 829,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "R520m",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson R520m был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson R520m был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "Yes",
+            "bands": "GSM 900 / 1800 / 1900",
+            "radio": "No",
+            "screen": "Monochrome graphic; 5 lines",
+            "weight": "105 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800 / 1900",
+            "announced": "Q2 2001 ?",
+            "bluetooth": "1.0b",
+            "phonebook": "500+",
+            "dimensions": "130 x 50 x 16 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "R520m"
+          }
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_R520m_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "Yes",
+        "bands": "GSM 900 / 1800 / 1900",
+        "radio": "No",
+        "screen": "Monochrome graphic; 5 lines",
+        "weight": "105 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800 / 1900",
+        "announced": "Q2 2001 ?",
+        "bluetooth": "1.0b",
+        "phonebook": "500+",
+        "dimensions": "130 x 50 x 16 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "R520m"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_R520m_001.jpg"
+    },
+    {
+      "id": 830,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R520",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 831,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R380s",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_R380s_001-01.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_R380s_001-01.jpg"
+    },
+    {
+      "id": 832,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "R380",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson R380 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome resistive touchscreen. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson R380 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome resistive touchscreen. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome resistive touchscreen; Big",
+            "weight": "164 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "130 x 50 x 26 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "R380"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome resistive touchscreen; Big",
+        "weight": "164 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "130 x 50 x 26 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "R380"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 833,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R320s",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 834,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "R320",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson R320 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson R320 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 5 lines",
+            "weight": "99 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "130 x 51 x 15 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "R320"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_R320_002.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 5 lines",
+        "weight": "99 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "130 x 51 x 15 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "R320"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_R320_002.jpg"
+    },
+    {
+      "id": 835,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "R310s",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson R310s был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson R310s был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 5 lines",
+            "weight": "173 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "131 x 53 x 25 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "R310s"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 5 lines",
+        "weight": "173 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "131 x 53 x 25 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "R310s"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 836,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R310",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_R310_001-03.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_R310_001-03.jpg"
+    },
+    {
+      "id": 837,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R250s",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 838,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "R250",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 839,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GH388",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GH388 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1995,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GH388 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "170 г",
+            "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1995",
+            "bluetooth": "No",
+            "phonebook": "100",
+            "dimensions": "130 x 49 x 23 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GH 388. Региональные модификации могут отличаться.",
+            "archiveModel": "GH 388"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GH388_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "170 г",
+        "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1995",
+        "bluetooth": "No",
+        "phonebook": "100",
+        "dimensions": "130 x 49 x 23 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GH 388. Региональные модификации могут отличаться.",
+        "archiveModel": "GH 388"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GH388_001.jpg"
+    },
+    {
+      "id": 840,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GH337",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GH337 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1995,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GH337 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "193 г",
+            "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1995",
+            "bluetooth": "No",
+            "phonebook": "No",
+            "dimensions": "130 x 49 x 24 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GH 337. Региональные модификации могут отличаться.",
+            "archiveModel": "GH 337"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GH337_002.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "193 г",
+        "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1995",
+        "bluetooth": "No",
+        "phonebook": "No",
+        "dimensions": "130 x 49 x 24 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GH 337. Региональные модификации могут отличаться.",
+        "archiveModel": "GH 337"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GH337_002.jpg"
+    },
+    {
+      "id": 841,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "GH198",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Bohdan Bazooka / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GH198.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GH198.jpg"
+    },
+    {
+      "id": 842,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "GH174",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "Peter Häll / Swedish National Museum of Science and Technology / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GH174_001-01.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GH174_001-01.jpg"
+    },
+    {
+      "id": 843,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "GH172",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 844,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GF788",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GF788 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1997,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GF788 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 1 x 10 chars",
+            "weight": "135 г",
+            "battery": "Съёмный NiMH 550 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1997",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "105 x 49 x 24 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GF 788. Региональные модификации могут отличаться.",
+            "archiveModel": "GF 788"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 1 x 10 chars",
+        "weight": "135 г",
+        "battery": "Съёмный NiMH 550 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1997",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "105 x 49 x 24 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GF 788. Региональные модификации могут отличаться.",
+        "archiveModel": "GF 788"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 845,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GF768",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GF768 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1997,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GF768 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 1 x 10 chars",
+            "weight": "135 г",
+            "battery": "Съёмный NiMH 550 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1997",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "105 x 49 x 23 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GF 768. Региональные модификации могут отличаться.",
+            "archiveModel": "GF 768"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GF768_001-01.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 1 x 10 chars",
+        "weight": "135 г",
+        "battery": "Съёмный NiMH 550 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1997",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "105 x 49 x 23 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GF 768. Региональные модификации могут отличаться.",
+        "archiveModel": "GF 768"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GF768_001-01.jpg"
+    },
+    {
+      "id": 846,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GF388",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GF388 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1995,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GF388 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "170 г",
+            "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1995",
+            "bluetooth": "No",
+            "phonebook": "100",
+            "dimensions": "130 x 49 x 23 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GF 388. Региональные модификации могут отличаться.",
+            "archiveModel": "GF 388"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_GF388_001.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "170 г",
+        "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1995",
+        "bluetooth": "No",
+        "phonebook": "100",
+        "dimensions": "130 x 49 x 23 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GF 388. Региональные модификации могут отличаться.",
+        "archiveModel": "GF 388"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_GF388_001.jpg"
+    },
+    {
+      "id": 847,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "GF337",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson GF337 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1995,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson GF337 был анонсирован в 1995 году. Согласно архивной спецификации: GSM, Alphanumeric. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Alphanumeric; 3 x 12 chars",
+            "weight": "193 г",
+            "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1995",
+            "bluetooth": "No",
+            "phonebook": "No",
+            "dimensions": "130 x 49 x 24 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: GF 337. Региональные модификации могут отличаться.",
+            "archiveModel": "GF 337"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Alphanumeric; 3 x 12 chars",
+        "weight": "193 г",
+        "battery": "Съёмный NiMH 915 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1995",
+        "bluetooth": "No",
+        "phonebook": "No",
+        "dimensions": "130 x 49 x 24 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: GF 337. Региональные модификации могут отличаться.",
+        "archiveModel": "GF 337"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 848,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "A3618",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson A3618 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson A3618 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 4 lines",
+            "weight": "86 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q3",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "111 x 47 x 22 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "A3618"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 4 lines",
+        "weight": "86 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q3",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "111 x 47 x 22 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "A3618"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 849,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "A2628s",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_A2628s_001.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_A2628s_001.jpg"
+    },
+    {
+      "id": 850,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "A2628",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson A2628 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson A2628 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 4 lines",
+            "weight": "140 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "131 x 51 x 25 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "A2628"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 4 lines",
+        "weight": "140 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "131 x 51 x 25 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "A2628"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 851,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "A2618s",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_A2618s_001.jpg?width=500",
+      "specifications": {},
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_A2618s_001.jpg"
+    },
+    {
+      "id": 852,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "A2618",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson A2618 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson A2618 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 4 lines",
+            "weight": "140 г",
+            "battery": "Съёмный NiMH аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "99",
+            "dimensions": "131 x 51 x 25 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "A2618"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 4 lines",
+        "weight": "140 г",
+        "battery": "Съёмный NiMH аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "99",
+        "dimensions": "131 x 51 x 25 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "A2618"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 853,
+      "brand": "Ericsson",
+      "year_type": "announced",
+      "model_name": "A1018s",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Ericsson A1018s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1999,
+      "image_credit": "The Norwegian Telecom Museum / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Ericsson A1018s был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 3 x 12 chars",
+            "weight": "163 г",
+            "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "1999",
+            "bluetooth": "No",
+            "phonebook": "No",
+            "dimensions": "130 x 49 x 27 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "archiveModel": "A1018s"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ericsson_A1018s_003.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 3 x 12 chars",
+        "weight": "163 г",
+        "battery": "Съёмный NiMH 800 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "1999",
+        "bluetooth": "No",
+        "phonebook": "No",
+        "dimensions": "130 x 49 x 27 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "archiveModel": "A1018s"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ericsson_A1018s_003.jpg"
+    },
+    {
+      "id": 854,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "A1018",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 855,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "A388",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 856,
+      "brand": "Ericsson",
+      "year_type": "unverified",
+      "model_name": "T68m",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 857,
+      "brand": "Sony",
+      "year_type": "unverified",
+      "model_name": "CMD-Z28",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 858,
+      "brand": "Sony",
+      "year_type": "unverified",
+      "model_name": "CMD-Z18",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 859,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-Z7",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-Z7 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-Z7 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+            "weight": "95 г",
+            "battery": "Съёмный Li-Po аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "91 x 50 x 25 мм, 90 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD Z7. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD Z7"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+        "weight": "95 г",
+        "battery": "Съёмный Li-Po аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "91 x 50 x 25 мм, 90 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD Z7. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD Z7"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 860,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-Z5",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-Z5 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-Z5 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96x72 пикселей, 5 lines",
+            "weight": "82 г",
+            "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "88 x 49 x 21 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD Z5. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD Z5"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96x72 пикселей, 5 lines",
+        "weight": "82 г",
+        "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "88 x 49 x 21 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD Z5. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD Z5"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 861,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-Z1",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-Z1 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1997,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-Z1 был анонсирован в 1997 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Monochrome graphic; 97 x 32 пикселей, 5 lines",
+            "weight": "220 г",
+            "battery": "Съёмный Li-Ion 730 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1997",
+            "bluetooth": "No",
+            "phonebook": "SIM only",
+            "dimensions": "99 x 64 x 24 мм, 120 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD Z1. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD Z1"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Monochrome graphic; 97 x 32 пикселей, 5 lines",
+        "weight": "220 г",
+        "battery": "Съёмный Li-Ion 730 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1997",
+        "bluetooth": "No",
+        "phonebook": "SIM only",
+        "dimensions": "99 x 64 x 24 мм, 120 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD Z1. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD Z1"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 862,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-MZ5",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-MZ5 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-MZ5 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96 x 72 пикселей, 5 lines, 4:3 ratio",
+            "weight": "110 г",
+            "battery": "Съёмный Li-Ion 620 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "May 2001",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "90 x 49 x 30 мм, 100 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD MZ5. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD MZ5"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96 x 72 пикселей, 5 lines, 4:3 ratio",
+        "weight": "110 г",
+        "battery": "Съёмный Li-Ion 620 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "May 2001",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "90 x 49 x 30 мм, 100 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD MZ5. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD MZ5"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 863,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-J70",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-J70 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-J70 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+            "weight": "92 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "113 x 44 x 21 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD J70. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD J70"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+        "weight": "92 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "113 x 44 x 21 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD J70. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD J70"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 864,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-J7",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-J7 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-J7 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+            "weight": "92 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001, Q4",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "113 x 44 x 21 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD J7. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD J7"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+        "weight": "92 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001, Q4",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "113 x 44 x 21 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD J7. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD J7"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 865,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-J6",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-J6 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2001,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-J6 был анонсирован в 2001 году. Согласно архивной спецификации: GSM, Grayscale graphic, 4 shades. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+            "weight": "82 г",
+            "battery": "Съёмный Li-Ion аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2001",
+            "bluetooth": "No",
+            "phonebook": "500",
+            "dimensions": "123 x 43 x 20 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD J6. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD J6"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Grayscale graphic, 4 shades; 96 x 92 пикселей, 6 lines, 1:1 ratio",
+        "weight": "82 г",
+        "battery": "Съёмный Li-Ion аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2001",
+        "bluetooth": "No",
+        "phonebook": "500",
+        "dimensions": "123 x 43 x 20 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD J6. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD J6"
+      },
+      "image_source_url": null
+    },
+    {
+      "id": 866,
+      "brand": "Sony",
+      "year_type": "released",
+      "model_name": "CMD-J5",
+      "source_url": "https://ru.wikipedia.org/wiki/Sony_CMD-J5",
+      "description": "Sony CMD-J5 — компактный телефон среднего класса, выпущенный в 2000 году. Выделялся экраном с несколькими градациями серого.",
+      "display_year": 2000,
+      "image_credit": "Beamish4 / Wikimedia Commons",
+      "release_year": 2000,
+      "translations": {
+        "ru": {
+          "description": "Sony CMD-J5 — компактный телефон среднего класса, выпущенный в 2000 году. Выделялся экраном с несколькими градациями серого.",
+          "specifications": {
+            "body": "Моноблок",
+            "screen": "Монохромный, 96 × 92, 4 градации серого",
+            "weight": "85 г",
+            "battery": "Съёмный Li-Ion",
+            "network": "GSM 900/1800",
+            "dimensions": "123 × 45 × 20 мм"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sony_CMD-J5_-_Bottom.jpg?width=500",
+      "specifications": {
+        "body": "Моноблок",
+        "screen": "Монохромный, 96 × 92, 4 градации серого",
+        "weight": "85 г",
+        "battery": "Съёмный Li-Ion",
+        "network": "GSM 900/1800",
+        "dimensions": "123 × 45 × 20 мм"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sony_CMD-J5_-_Bottom.jpg"
+    },
+    {
+      "id": 867,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-CD5",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-CD5 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 2000,
+      "image_credit": "Beamish4 / Wikimedia Commons",
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-CD5 был анонсирован в 2000 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900 / 1800",
+            "radio": "No",
+            "screen": "Monochrome graphic; 97 x 32 пикселей, 4 lines",
+            "weight": "139 г",
+            "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+            "network": "GSM • GSM 900 / 1800",
+            "announced": "2000",
+            "bluetooth": "No",
+            "phonebook": "100",
+            "dimensions": "139 x 45 x 26 мм, 120 cc",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD CD5. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD CD5"
+          }
+        }
+      },
+      "image_license": "CC BY-SA 4.0",
+      "hero_image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sony_CMD-CD5_-_Front.jpg?width=500",
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900 / 1800",
+        "radio": "No",
+        "screen": "Monochrome graphic; 97 x 32 пикселей, 4 lines",
+        "weight": "139 г",
+        "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+        "network": "GSM • GSM 900 / 1800",
+        "announced": "2000",
+        "bluetooth": "No",
+        "phonebook": "100",
+        "dimensions": "139 x 45 x 26 мм, 120 cc",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD CD5. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD CD5"
+      },
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sony_CMD-CD5_-_Front.jpg"
+    },
+    {
+      "id": 868,
+      "brand": "Sony",
+      "year_type": "unverified",
+      "model_name": "CMD-C8",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 869,
+      "brand": "Sony",
+      "year_type": "unverified",
+      "model_name": "CMD-C5",
+      "source_url": null,
+      "description": null,
+      "display_year": null,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": null,
+          "specifications": {}
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {},
+      "image_source_url": null
+    },
+    {
+      "id": 870,
+      "brand": "Sony",
+      "year_type": "announced",
+      "model_name": "CMD-C1",
+      "source_url": "https://github.com/foykes/gsm-arena-dataset/blob/main/gsm_arena_full_dataset.csv",
+      "description": "Телефон Sony CMD-C1 был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+      "display_year": 1999,
+      "image_credit": null,
+      "release_year": null,
+      "translations": {
+        "ru": {
+          "description": "Телефон Sony CMD-C1 был анонсирован в 1999 году. Согласно архивной спецификации: GSM, Monochrome graphic. Дата начала продаж и отдельные характеристики могут различаться по региону.",
+          "specifications": {
+            "sim": "Mini-SIM",
+            "edge": "No",
+            "gprs": "No",
+            "bands": "GSM 900",
+            "radio": "No",
+            "screen": "Monochrome graphic; 97 x 32 пикселей, 4 lines",
+            "weight": "107 г",
+            "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+            "network": "GSM • GSM 900",
+            "announced": "1999",
+            "bluetooth": "No",
+            "phonebook": "80",
+            "dimensions": "139 x 45 x 26 мм",
+            "memoryCard": "No",
+            "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+            "variantNote": "В архивной базе обозначение: CMD C1. Региональные модификации могут отличаться.",
+            "archiveModel": "CMD C1"
+          }
+        }
+      },
+      "image_license": null,
+      "hero_image_url": null,
+      "specifications": {
+        "sim": "Mini-SIM",
+        "edge": "No",
+        "gprs": "No",
+        "bands": "GSM 900",
+        "radio": "No",
+        "screen": "Monochrome graphic; 97 x 32 пикселей, 4 lines",
+        "weight": "107 г",
+        "battery": "Съёмный Li-Ion 500 мА·ч аккумулятор",
+        "network": "GSM • GSM 900",
+        "announced": "1999",
+        "bluetooth": "No",
+        "phonebook": "80",
+        "dimensions": "139 x 45 x 26 мм",
+        "memoryCard": "No",
+        "sourceNote": "Архив технических данных GSMArena, выгрузка 2021 года",
+        "variantNote": "В архивной базе обозначение: CMD C1. Региональные модификации могут отличаться.",
+        "archiveModel": "CMD C1"
+      },
+      "image_source_url": null
+    }
+  ]
+}
