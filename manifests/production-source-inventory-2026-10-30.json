@@ -1,0 +1,186 @@
+{
+  "audit_date": "2026-10-30",
+  "note": "Read-only deployment file inventory. File hashes/UIDs are not full source backups. No secrets or environment values included.",
+  "targets": [
+    {
+      "kind": "website",
+      "project": "prj_96IA3u5O1x2pufZFLO2gilYpDCbz",
+      "deployment": "dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu",
+      "source_files": [
+        {
+          "path": "src/admin/index.html",
+          "uid": "707428dd7a2eb4e33fcb68d285bab41603e9f015"
+        },
+        {
+          "path": "src/api/ixbt-news.js",
+          "uid": "eb1e68144e047e1c691f0db4dbb11ea6ec9cbaa6"
+        },
+        {
+          "path": "src/api/news-image.js",
+          "uid": "5910f7f6626f747feeef09c66e43d2fe2675084e"
+        },
+        {
+          "path": "src/api/retro-commons.js",
+          "uid": "87fd187a7aa282480264ee4096ebf3fc3af6b0fd"
+        },
+        {
+          "path": "src/api/retro-news.js",
+          "uid": "7fee257b48673b6840e9180ea075400dc8daf7ef"
+        },
+        {
+          "path": "src/assets/retrophone-logo.avif",
+          "uid": "b74bf9d570a227ff24afa953c8d70c8653c585ab"
+        },
+        {
+          "path": "src/index.html",
+          "uid": "315ccbd8986586ae562e253d4e9a7ca6e602341b"
+        },
+        {
+          "path": "src/news/archive/index.html",
+          "uid": "04b97709d5dc47f96fb3283d6ba272690a459d4a"
+        },
+        {
+          "path": "src/news/index.html",
+          "uid": "e09bdf68040b32e0865f897bff617f5e2118b7f1"
+        },
+        {
+          "path": "src/nokia-101.html",
+          "uid": "197f86e422ea6fc7c2207c3d661501c0d13b5bd9"
+        },
+        {
+          "path": "src/nokia-1110.html",
+          "uid": "70c383e5bfcbb602f5966830407758bed02801c4"
+        },
+        {
+          "path": "src/nokia-1200.html",
+          "uid": "fdd9b00a513df3dfe21d41144ba741daac39b33f"
+        },
+        {
+          "path": "src/nokia-1600.html",
+          "uid": "8f59d115a56816b86de90f814008f30676434569"
+        },
+        {
+          "path": "src/nokia-1610.html",
+          "uid": "5ca2ac092b93f0336bda8f0d0b6094f7bb117fc6"
+        },
+        {
+          "path": "src/nokia-2010.html",
+          "uid": "259d018a7f637fbce435d46fd6a4964c2edf0ca8"
+        },
+        {
+          "path": "src/nokia-2100.html",
+          "uid": "8ca7ac122f2205ed9655b5ef2662ab285383edab"
+        },
+        {
+          "path": "src/nokia-2110.html",
+          "uid": "95e8f542652141b977c2f31eac7886d9fe43c50c"
+        },
+        {
+          "path": "src/nokia-2110i.html",
+          "uid": "6a53646792796ae0dc2683f508587450c9053b79"
+        },
+        {
+          "path": "src/nokia-2140.html",
+          "uid": "c177df510ed077e216ba603df984a24bacf7a853"
+        },
+        {
+          "path": "src/nokia-2300.html",
+          "uid": "bfdf32744e487a5c341f23bea6c3d1bb80d7a954"
+        },
+        {
+          "path": "src/nokia-2323-classic.html",
+          "uid": "88c65afc52a705532f6f08f347729ee1ef6bdef3"
+        },
+        {
+          "path": "src/nokia-2330-classic.html",
+          "uid": "e14a1980b7f4839668cd0e623a81d753d342ffe4"
+        },
+        {
+          "path": "src/nokia-2600.html",
+          "uid": "adfac24114d83f08eddb43e4a6acd1e956939bc5"
+        },
+        {
+          "path": "src/nokia-2610.html",
+          "uid": "f7bea9f9e56140fc1e1fd879b7096c14542c6deb"
+        },
+        {
+          "path": "src/robots.txt",
+          "uid": "dbb69706059d7569baf04f04a3d4ab51f2bb92bb"
+        },
+        {
+          "path": "src/sitemap.xml",
+          "uid": "389b7cdb1c5a8e40a76ee26890ff4f9d0d5f7287"
+        },
+        {
+          "path": "src/sitemap/index.html",
+          "uid": "c756938cf556c0a53ffd670e114bdd48115548b5"
+        }
+      ],
+      "source_file_count": 27
+    },
+    {
+      "kind": "research-agent",
+      "project": "prj_GNpj0eYO4ksk2XdN0Kht9VLUYtqW",
+      "deployment": "dpl_DrZdvQj1E9f7ADKDiidrc5NXGDTw",
+      "source_files": [
+        {
+          "path": "src/api/archives.js",
+          "uid": "8d0c90464e9869ef1726e83ee6de86ea56212ccf"
+        },
+        {
+          "path": "src/api/cron.js",
+          "uid": "fa5cdbf6b13f1eed2db35dc2b4fa3032d10a35c7"
+        },
+        {
+          "path": "src/api/handoff.js",
+          "uid": "62c94d721f75a1fcf7677bb7824b388bdf2dab9c"
+        },
+        {
+          "path": "src/api/manage.js",
+          "uid": "5241869a0d0b0e8168b35663868071d732a09b22"
+        },
+        {
+          "path": "src/api/operations.js",
+          "uid": "a7cfe45fb5e8c03ec16d5381b47957d26d1f37ad"
+        },
+        {
+          "path": "src/api/publication.js",
+          "uid": "e8eccf33eb89a6a935d8e2b02ba9c24d54ad7195"
+        },
+        {
+          "path": "src/api/research-v2.js",
+          "uid": "c2238a2b2ad1413709eafb63f89f7c8a3fcc7276"
+        },
+        {
+          "path": "src/api/research-v3.js",
+          "uid": "4a07abbc07beace21d8c0daab124fb076044c676"
+        },
+        {
+          "path": "src/api/research.js",
+          "uid": "3ad5472bf0b98d0a69ada9c8a199cd5723cae5af"
+        },
+        {
+          "path": "src/index.html",
+          "uid": "0f71d43f6655f70d55c9637b0c9e7db1281582db"
+        },
+        {
+          "path": "src/operations.html",
+          "uid": "9bae82b53830bd057acc4326d7e52074269f00dd"
+        },
+        {
+          "path": "src/package.json",
+          "uid": "f8cc763ce7e9549310da25f1c52bcc931ad8e9e8"
+        },
+        {
+          "path": "src/publication.html",
+          "uid": "f0d0923e23206972f0789afe56344e49915c8a6c"
+        },
+        {
+          "path": "src/vercel.json",
+          "uid": "5db913591c1d6a30f36e4bd20e63e97ca572222b"
+        }
+      ],
+      "source_file_count": 14
+    }
+  ]
+}
