@@ -1,0 +1,28 @@
+# Never publish credentials or local deployment state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.secret
+service-role*
+service_role*
+credentials.json
+secrets.json
+.vercel/
+node_modules/
+dist/
+.cache/
+*.log
+
+# Keep database exports and personal data in private encrypted storage, not a public repository
+*.dump
+*.backup
+*.bak
+*.sqlite
+*.db
+private-backups/
+backups/
+exports/
