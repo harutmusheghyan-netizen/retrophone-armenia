@@ -68,6 +68,11 @@ Deno.serve(async req=>{
    p_source_id:job.source_id,p_outcome:checked.outcome,p_http_status:checked.status,
    p_page_title:checked.title,p_excerpt:checked.excerpt,p_error:checked.error
   });
+  if(!fe&&result?.outcome==="verified") {
+    const {error:qualityError}=await db.rpc("agent_refresh_quality_gate",{p_model_id:job.model_id});
+    if(qualityError) results.push({source_id:job.source_id,model:job.brand+" "+job.model_name,
+      quality_refresh_error:qualityError.code||"unknown"});
+  }
   results.push({source_id:job.source_id,model:job.brand+" "+job.model_name,
    outcome:fe?"save_failed":result?.outcome||"unknown",
    details:fe?.code||checked.error||"checked",http:checked.status});
