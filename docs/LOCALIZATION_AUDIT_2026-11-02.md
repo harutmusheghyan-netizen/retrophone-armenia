@@ -35,3 +35,9 @@ The 3 entries with all three snapshot descriptions are Nokia 2610, Nokia 2600, a
 3. Check each model's RU/HY/EN source fields for completeness and script mismatches; keep proper names and units intact.
 4. Test Nokia 101 and other models in a real browser across RU/HY/EN, including URL reload, navigation, mobile layout, and absence of untranslated Russian paragraphs.
 5. Only after preview acceptance, consider a production deployment. Preserve rollback and the approved visual design.
+
+## 2026-11-02 13:39 Asia/Yerevan — translation preparation
+
+- Added `data/localization-drafts/nokia-101.json` on this **draft PR branch** with independently written RU/HY/EN historical descriptions (608/664/615 characters), localized specification values, and UI labels for Nokia 101.
+- Cross-checked the announcement date and historical feature claims against Mobile Phone Museum (https://www.mobilephonemuseum.com/phone-detail/nokia-101-%281992%29). The analog network values come from the 2026-10-30 catalog snapshot and remain variant-dependent.
+- This file is a **review draft**, not wired into the public catalog or live Supabase data. No production deployment or full-page language test has been completed. It must not be treated as a completed Nokia 101 fix.
