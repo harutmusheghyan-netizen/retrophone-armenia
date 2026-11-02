@@ -41,3 +41,11 @@ The 3 entries with all three snapshot descriptions are Nokia 2610, Nokia 2600, a
 - Added `data/localization-drafts/nokia-101.json` on this **draft PR branch** with independently written RU/HY/EN historical descriptions (608/664/615 characters), localized specification values, and UI labels for Nokia 101.
 - Cross-checked the announcement date and historical feature claims against Mobile Phone Museum (https://www.mobilephonemuseum.com/phone-detail/nokia-101-%281992%29). The analog network values come from the 2026-10-30 catalog snapshot and remain variant-dependent.
 - This file is a **review draft**, not wired into the public catalog or live Supabase data. No production deployment or full-page language test has been completed. It must not be treated as a completed Nokia 101 fix.
+
+## 2026-11-02 15:40 Asia/Yerevan — deployment/source and CI check
+
+- The current production deployment for Vercel project `retrophone-armenia` is `dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu`, created 2026-10-28 01:34 Asia/Yerevan. It has **not** been updated by this localization branch.
+- Vercel's deployment-file listing exposes `src/index.html`, `src/nokia-101.html`, 14 other standalone Nokia HTML pages, `src/news/`, `src/admin/`, and API sources. The file-content endpoint truncated the HTML response; these files have **not** been fully recovered or copied to GitHub. The separate 870-model upstream catalog is still missing from the repository.
+- Added `.github/workflows/localization-validation.yml` on this draft PR branch to run `scripts/validate_localization_drafts.py` on localization-related pull requests and pushes to main. GitHub confirmed the workflow file and commit; no successful Actions run was confirmed at this check.
+- Independently checked the Nokia 101 JSON draft in the GitHub branch: RU/HY/EN descriptions contain 608/664/615 characters, all 7 required specification/label values are present in each language, and no Cyrillic characters were detected in HY/EN fields. This is a **draft data validation**, not proof of browser rendering or live publication.
+- Acceptance remains blocked by missing complete live catalog sources/data mapping and by absent end-to-end preview/browser testing. Do not merge this PR as a complete localization fix.
