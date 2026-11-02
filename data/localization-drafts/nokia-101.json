@@ -1,0 +1,54 @@
+{
+  "status": "draft_not_published",
+  "brand": "Nokia",
+  "model_name": "101",
+  "catalog_snapshot_id": 95,
+  "year": 1992,
+  "scope": "Localization draft for the 1992 Nokia 101 catalog record. Does not overwrite live owner-edited content.",
+  "source_url": "https://www.mobilephonemuseum.com/phone-detail/nokia-101-%281992%29",
+  "translations": {
+    "ru": {
+      "description": "Nokia 101 была представлена 9 января 1992 года и стала одной из ранних моделей Nokia с узнаваемым моноблочным корпусом. Её оформление разрабатывалось с акцентом на удобство: чётко разделённые клавиши, отдельные кнопки приёма и завершения вызова, а также подсветка клавиатуры. По данным Mobile Phone Museum, телефон позволял сохранять до 50 имён и номеров, использовать быстрый набор и видеть индикаторы сигнала и заряда. Это историческая справка о модели, а не подтверждение наличия конкретного экземпляра в продаже. Характеристики аналоговой связи могут отличаться в зависимости от регионального исполнения.",
+      "specifications": {
+        "body": "Моноблок с внешней антенной",
+        "screen": "Монохромный ЖК-экран",
+        "network": "Аналоговая мобильная связь 1G; NMT/ETACS в зависимости от версии"
+      },
+      "labels": {
+        "body": "Корпус",
+        "screen": "Экран",
+        "network": "Сеть",
+        "availability": "Наличие в продаже уточняется отдельно."
+      }
+    },
+    "hy": {
+      "description": "Nokia 101-ը ներկայացվել է 1992 թվականի հունվարի 9-ին և դարձել Nokia-ի վաղ շրջանի ճանաչելի մոդելներից մեկը՝ միաձույլ կորպուսով։ Դիզայնի հիմնական նպատակը հարմարավետ օգտագործումն էր․ հեռախոսն ուներ հստակ առանձնացված ստեղներ, զանգին պատասխանելու և այն ավարտելու առանձին կոճակներ, ինչպես նաև ստեղնաշարի լուսավորություն։ Mobile Phone Museum-ի տվյալներով՝ սարքը կարող էր պահպանել մինչև 50 անուն և հեռախոսահամար, ապահովում էր արագ հավաքում և ցուցադրում էր ազդանշանի ու մարտկոցի լիցքի մակարդակները։ Սա մոդելի պատմական նկարագրություն է և չի հաստատում, որ կոնկրետ օրինակն առկա է վաճառքում։ Անալոգային կապի բնութագրերը կարող են տարբեր լինել՝ կախված տարածաշրջանային տարբերակից։",
+      "specifications": {
+        "body": "Միաձույլ կորպուս՝ արտաքին ալեհավաքով",
+        "screen": "Միագույն հեղուկաբյուրեղային էկրան",
+        "network": "Անալոգային 1G բջջային կապ․ NMT/ETACS՝ կախված տարբերակից"
+      },
+      "labels": {
+        "body": "Կորպուս",
+        "screen": "Էկրան",
+        "network": "Ցանց",
+        "availability": "Վաճառքում առկայությունը ճշտվում է առանձին։"
+      }
+    },
+    "en": {
+      "description": "The Nokia 101 was announced on 9 January 1992 and became one of Nokia's recognizable early handsets with a candybar-style body. Its design emphasized ease of use, with clearly separated keys, dedicated buttons to answer and end calls, and a backlit keypad. According to the Mobile Phone Museum, the handset could store up to 50 names and telephone numbers, offered speed dialing, and displayed signal-strength and battery-level indicators. This is a historical description of the model, not confirmation that a particular unit is available for sale. Analog network specifications may vary between regional versions.",
+      "specifications": {
+        "body": "Candybar body with external antenna",
+        "screen": "Monochrome LCD",
+        "network": "Analog 1G mobile service; NMT/ETACS depending on variant"
+      },
+      "labels": {
+        "body": "Body",
+        "screen": "Display",
+        "network": "Network",
+        "availability": "Stock availability is confirmed separately."
+      }
+    }
+  },
+  "validation_note": "Texts translated from a newly written Russian summary, cross-checked against the historical museum source and the repository snapshot. No live publication or browser validation performed."
+}
