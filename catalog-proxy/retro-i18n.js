@@ -151,9 +151,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
  const photoFields='brand,model_name,file_page_url,image_url,author,license,verified_at';
  const safeURL=s=>{try{const u=new URL(String(s));return u.protocol==='https:'?u.href:null}catch(e){return null}};
  const labels={
-  ru:{archive:'Архивная техническая справка',archiveSource:'Открыть архивный источник',heading:'Проверенная история модели',media:'Фотография модели',photo:'Автор и лицензия',sources:'Исторические источники',date:'Проверенный год выпуска',stock:'Наличие телефона в продаже уточняется отдельно.',caption:'Фотография из лицензированного архива Wikimedia Commons'},
-  hy:{archive:'Արխիվային տեխնիկական ամփոփում',archiveSource:'Բացել արխիվային աղբյուրը',heading:'Մոդելի ստուգված պատմությունը',media:'Մոդելի լուսանկարը',photo:'Հեղինակ և արտոնագիր',sources:'Պատմական աղբյուրներ',date:'Հաստատված թողարկման տարեթիվ',stock:'Վաճառքում առկայությունը ստուգվում է առանձին։',caption:'Լուսանկար Wikimedia Commons-ի ազատ արտոնագրով արխիվից'},
-  en:{archive:'Archival technical summary',archiveSource:'Open archive source',heading:'Verified model history',media:'Model photograph',photo:'Credit and license',sources:'Historical sources',date:'Verified release year',stock:'Stock availability is checked separately.',caption:'Photo from the Wikimedia Commons freely licensed archive'}
+  ru:{archive:'Архивная техническая справка',archiveSource:'Открыть архивный источник',heading:'Проверенная история модели',media:'Фотография модели',photo:'Автор и лицензия',sources:'Исторические источники',date:'Проверенный год выпуска',stock:'Наличие телефона в продаже уточняется отдельно.',pending:'Полный перевод этого материала пока не подготовлен.',caption:'Фотография из лицензированного архива Wikimedia Commons'},
+  hy:{archive:'Արխիվային տեխնիկական ամփոփում',archiveSource:'Բացել արխիվային աղբյուրը',heading:'Մոդելի ստուգված պատմությունը',media:'Մոդելի լուսանկարը',photo:'Հեղինակ և արտոնագիր',sources:'Պատմական աղբյուրներ',date:'Հաստատված թողարկման տարեթիվ',stock:'Վաճառքում առկայությունը ստուգվում է առանձին։',pending:'Այս նյութի ամբողջական թարգմանությունը դեռ պատրաստ չէ։',caption:'Լուսանկար Wikimedia Commons-ի ազատ արտոնագրով արխիվից'},
+  en:{archive:'Archival technical summary',archiveSource:'Open archive source',heading:'Verified model history',media:'Model photograph',photo:'Credit and license',sources:'Historical sources',date:'Verified release year',stock:'Stock availability is checked separately.',pending:'The full translation of this material is not yet available.',caption:'Photo from the Wikimedia Commons freely licensed archive'}
  };
  const create=(tag,content,className)=>{
    const node=document.createElement(tag);
@@ -176,6 +176,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if(!box){box=create('section',undefined,'rp-agent-enrichment');box.id='rp-agent-enrichment';root.appendChild(box)}
   box.replaceChildren();
   const l=getLanguage(),w=labels[l];
+  const localizedEditorial=editorial&&typeof editorial['description_'+l]==='string'&&editorial['description_'+l].trim().length>=120?editorial['description_'+l]:null;
+  const localizedArchive=archival&&typeof archival['summary_'+l]==='string'&&archival['summary_'+l].trim().length>=120?archival['summary_'+l]:null;
   const photoUrl=safeURL(editorial?.photo_url||media?.image_url);
   const gallery=document.querySelector('#app .rp-gallery #rp-photo');
   if(photoUrl&&gallery&&!gallery.querySelector('img[src]')){
@@ -203,7 +205,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if(editorial){
    box.append(create('h2',w.heading));
    if(editorial.release_year)box.append(create('p',w.date+': '+editorial.release_year));
-   box.append(create('p',editorial['description_'+l]||editorial.description_ru||''));
+   if(localizedEditorial)box.append(create('p',localizedEditorial));
+   else box.append(create('p',w.pending,'rp-agent-hint'));
    const evidence=Array.isArray(editorial.verified_sources)?editorial.verified_sources:[];
    if(evidence.length){
      const details=create('details'),summary=create('summary',w.sources),ul=create('ul');
@@ -217,7 +220,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   }
   if(!editorial&&archival){
    box.append(create('h2',w.archive));
-   box.append(create('p',archival['summary_'+l]||archival.summary_ru||''));
+   if(localizedArchive)box.append(create('p',localizedArchive));
+   else box.append(create('p',w.pending,'rp-agent-hint'));
    const url=safeURL(archival.source_url);
    if(url){const a=create('a',w.archiveSource);a.href=url;a.target='_blank';a.rel='noopener noreferrer';box.append(a)}
   }
