@@ -1,0 +1,31 @@
+/* RetroPhone Armenia — RU/HY/EN layout hardening. Opt-in only.
+   Include AFTER existing site CSS; does not alter palette, imagery, or desktop layout.
+   This file does NOT translate content. Set <html lang="ru|hy|en"> in the app. */
+html:lang(ru),html:lang(en){font-synthesis:none}
+html:lang(hy){font-synthesis:none}
+html:lang(hy) body,
+html:lang(hy) button,
+html:lang(hy) input,
+html:lang(hy) select,
+html:lang(hy) textarea{
+  font-family:"Noto Sans Armenian","DejaVu Sans","Arial Unicode MS",Arial,sans-serif;
+}
+html:lang(ru) body,html:lang(en) body{overflow-wrap:break-word}
+:where(.mobile-top,.mobile-controls,.mobile-menu,.about-wrap,.about-story-grid,.about-values,.brand-grid,.tile,.info-footer){min-width:0}
+:where(.mobile-menu a,.tile span,.about-title,.about-lead,.about-story p,.about-values p,.info-footer){
+  overflow-wrap:anywhere;
+}
+:where(button,a,input,select,textarea){min-width:0}
+:where(.mobile-top strong,.mobile-hero h1,.mobile-brands h2,.about-title,.about-story-title){
+  hyphens:auto;
+}
+:where(.mobile-controls button,.mobile-menu a){white-space:normal}
+:where(.mobile-menu a){line-height:1.4}
+:where(.about-story-grid,.about-values,.brand-grid)>*{min-width:0}
+@media(max-width:600px){
+  .mobile-top{flex-wrap:wrap}
+  .mobile-controls{flex-wrap:wrap;justify-content:flex-end}
+  .mobile-menu.open{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-story-grid,.about-values{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:360px){.mobile-menu.open{grid-template-columns:minmax(0,1fr)}}
