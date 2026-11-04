@@ -1,4 +1,4 @@
-document.addEventListener('click',function(e){const b=e.target.closest&&e.target.closest('#rp-languages button[data-lang]');if(!b||!document.documentElement.hasAttribute('data-rp-verified'))return;const l=b.dataset.lang;if(!['ru','hy','en'].includes(l))return;e.preventDefault();e.stopImmediatePropagation();const u=new URL(location.href);u.searchParams.set('lang',l);location.assign(u.toString())},true);
+document.addEventListener('click',function(e){const b=e.target.closest&&e.target.closest('#rp-languages button[data-lang]');if(!b||!(document.documentElement.hasAttribute('data-rp-verified')||document.documentElement.hasAttribute('data-rp-serverlocalized')))return;const l=b.dataset.lang;if(!['ru','hy','en'].includes(l))return;e.preventDefault();e.stopImmediatePropagation();const u=new URL(location.href);u.searchParams.set('lang',l);location.assign(u.toString())},true);
 (function(){
 "use strict";
 const ru="ru", codes=["ru","hy","en"];
