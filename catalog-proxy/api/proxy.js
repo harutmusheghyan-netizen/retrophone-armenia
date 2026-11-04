@@ -26,6 +26,38 @@ async function getEditorial(brand,model){
     &&a.brand.toLowerCase()===brand.toLowerCase()?a:null;
  }catch{return null}
 }
+// Published catalog translations are read directly from the database on each request.
+async function getLiveModel(brand,slug,lang){
+ try{
+  const q=new URL("https://aikxbgixitaaatkmcols.supabase.co/rest/v1/rpc/retrophone_live_phone");
+  q.searchParams.set("p_brand",brand);
+  q.searchParams.set("p_model_slug",slug);
+  q.searchParams.set("p_language",lang);
+  const r=await fetch(q,{headers:{apikey:KEY,Accept:"application/json"},cache:"no-store",signal:AbortSignal.timeout(7500)});
+  if(!r.ok)return null;
+  const data=await r.json();
+  return data&&Number.isInteger(data.id)&&typeof data.description==="string"&&data.description.trim()?data:null;
+ }catch{return null}
+}
+const overview={
+ ru:{heading:"Описание модели",year:"Год выпуска",source:"Источник"},
+ hy:{heading:"Մոդելի նկարագրությունը",year:"Թողարկման տարեթիվը",source:"Աղբյուր"},
+ en:{heading:"Model overview",year:"Release year",source:"Source"}
+};
+function localizedPublished(html,data,lang){
+ const text=data.description.trim(),L=overview[lang];
+ if(text.length<25)return html;
+ const old=/<section><h2>История модели<\\/h2>[\\s\\S]*?<\\/section>/i;
+ if(!old.test(html))return html;
+ let source="";
+ try{const u=new URL(data.source_url);if(u.protocol==="https:")source='<p class="muted"><a href="'+esc(u.href)+'" rel="noopener noreferrer" target="_blank">'+esc(L.source)+'</a></p>';}catch{}
+ const year=Number(data.release_year);
+ const section='<section data-rp-live-history="true"><h2>'+esc(L.heading)+'</h2><p style="white-space:pre-line">'+esc(text)+'</p>'
+  +(year>=1970&&year<=2026?'<p class="muted">'+esc(L.year)+': '+year+'</p>':"")+source+'</section>';
+ html=html.replace(old,section).replace(/<html\\b([^>]*)>/i,(_,x)=>'<html'+x.replace(/\\s+lang=["'][^"']*["']/i,"")+' lang="'+lang+'" data-rp-serverlocalized="true">');
+ return html;
+}
+
 function localized(html,data,l){
  const text=data["description_"+l],L=labels[l];
  if(typeof text!=="string"||text.trim().length<160)return html;
@@ -68,17 +100,23 @@ export default async function handler(req,res){
    redirect:"follow",signal:AbortSignal.timeout(15000)});
   const type=upstream.headers.get("content-type")||"application/octet-stream";
   res.status(upstream.status).setHeader("Content-Type",type);
-  res.setHeader("Cache-Control",type.includes("text/html")?"public, max-age=30":"public, max-age=300");
+  res.setHeader("Cache-Control",type.includes("text/html")?"no-store, max-age=0":"public, max-age=300");
   if(req.method==="HEAD")return res.end();
   if(!type.includes("text/html"))return res.end(Buffer.from(await upstream.arrayBuffer()));
   let html=await upstream.text();
   const match=upstream.ok&&path.match(/^phones\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/i);
   if(match){
+   const lang=labels[incoming.searchParams.get("lang")]?incoming.searchParams.get("lang"):"ru";
    const data=await getEditorial(match[1],match[2].replace(/-/g," "));
-   if(data)html=localized(html,data,labels[incoming.searchParams.get("lang")]?incoming.searchParams.get("lang"):"ru");
+   if(data)html=localized(html,data,lang);
+   else{
+    const published=await getLiveModel(match[1],match[2],lang);
+    if(published)html=localizedPublished(html,published,lang);
+   }
   }
-  const inject='<script src="/retro-i18n.js" defer></script>';
+  const inject='<script src="/retro-i18n.js" defer></script><script src="/retro-live.js" defer></script>';
   if(!html.includes('src="/retro-i18n.js"'))html=html.includes("</head>")?html.replace("</head>",inject+"</head>"):html+inject;
+  else if(!html.includes('src="/retro-live.js"'))html=html.replace("</head>",'<script src="/retro-live.js" defer></script></head>');
   return res.end(html);
  }catch{res.status(502).end("Catalog upstream unavailable")}
 }
