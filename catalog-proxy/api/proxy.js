@@ -36,7 +36,7 @@ async function getLiveModel(brand,slug,lang){
   const r=await fetch(q,{headers:{apikey:KEY,Accept:"application/json"},cache:"no-store",signal:AbortSignal.timeout(7500)});
   if(!r.ok)return null;
   const data=await r.json();
-  return data&&Number.isInteger(data.id)&&typeof data.description==="string"&&data.description.trim()?data:null;
+  return data&&Number.isInteger(data.id)?data:null;
  }catch{return null}
 }
 const overview={
@@ -45,7 +45,7 @@ const overview={
  en:{heading:"Model overview",year:"Release year",source:"Source"}
 };
 function localizedPublished(html,data,lang){
- const text=data.description.trim(),L=overview[lang];
+ const text=typeof data.description==="string"?data.description.trim():"",L=overview[lang];
  if(text.length<25)return html;
  const old=/<section><h2>История модели<\/h2>[\s\S]*?<\/section>/i;
  if(!old.test(html))return html;
@@ -55,7 +55,28 @@ function localizedPublished(html,data,lang){
  const section='<section data-rp-live-history="true"><h2>'+esc(L.heading)+'</h2><p style="white-space:pre-line">'+esc(text)+'</p>'
   +(year>=1970&&year<=2026?'<p class="muted">'+esc(L.year)+': '+year+'</p>':"")+source+'</section>';
  html=html.replace(old,section).replace(/<html\b([^>]*)>/i,(_,x)=>'<html'+x.replace(/\s+lang=["'][^"']*["']/i,"")+' lang="'+lang+'" data-rp-serverlocalized="true">');
+ const title=esc(data.brand+" "+data.model+" — "+L.heading+" | RetroPhone Armenia");
+ const excerpt=esc(text.slice(0,155));
+ html=html.replace(/<title>[^<]*<\/title>/i,"<title>"+title+"</title>")
+  .replace(/<meta name="description" content="[^"]*">/i,'<meta name="description" content="'+excerpt+'">')
+  .replace(/<meta property="og:title" content="[^"]*">/i,'<meta property="og:title" content="'+title+'">')
+  .replace(/<meta property="og:description" content="[^"]*">/i,'<meta property="og:description" content="'+excerpt+'">')
+  .replace(/"inLanguage":"ru"/g,'"inLanguage":"'+lang+'"');
  return html;
+}
+function localizedPhoto(html,data){
+ if(!data||typeof data.photo_credit!=="string"||!data.photo_credit.trim()
+   ||typeof data.photo_license!=="string"||!data.photo_license.trim())return html;
+ try{
+  const img=new URL(data.photo_url),src=new URL(data.photo_source_url);
+  if(img.protocol!=="https:"||src.protocol!=="https:")return html;
+  const section=/<div class="photo(?: placeholder)?">[\s\S]*?<\/div>(?:<p class="muted"><a href="[^"]+"[^>]*>[^<]*<\/a>:[\s\S]*?<\/p>)?/i;
+  if(!section.test(html))return html;
+  const newContent='<div class="photo"><img alt="'+esc(data.brand+" "+data.model)+'" src="'+esc(img.href)+'"></div>'
+   +'<p class="muted"><a href="'+esc(src.href)+'" rel="noopener noreferrer" target="_blank">Источник фото / Photo source</a>: '
+   +esc(data.photo_credit)+', '+esc(data.photo_license)+'</p>';
+  return html.replace(section,newContent);
+ }catch{return html;}
 }
 
 function localized(html,data,l){
@@ -107,12 +128,13 @@ export default async function handler(req,res){
   const match=upstream.ok&&path.match(/^phones\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/i);
   if(match){
    const lang=labels[incoming.searchParams.get("lang")]?incoming.searchParams.get("lang"):"ru";
-   const data=await getEditorial(match[1],match[2].replace(/-/g," "));
+   const [data,published]=await Promise.all([
+    getEditorial(match[1],match[2].replace(/-/g," ")),
+    getLiveModel(match[1],match[2],lang)
+   ]);
    if(data)html=localized(html,data,lang);
-   else{
-    const published=await getLiveModel(match[1],match[2],lang);
-    if(published)html=localizedPublished(html,published,lang);
-   }
+   else if(published)html=localizedPublished(html,published,lang);
+   if(published)html=localizedPhoto(html,published);
   }
   const inject='<script src="/retro-i18n.js" defer></script><script src="/retro-live.js" defer></script>';
   if(!html.includes('src="/retro-i18n.js"'))html=html.includes("</head>")?html.replace("</head>",inject+"</head>"):html+inject;
