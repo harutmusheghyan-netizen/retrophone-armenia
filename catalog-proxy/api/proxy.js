@@ -47,14 +47,14 @@ const overview={
 function localizedPublished(html,data,lang){
  const text=data.description.trim(),L=overview[lang];
  if(text.length<25)return html;
- const old=/<section><h2>История модели<\\/h2>[\\s\\S]*?<\\/section>/i;
+ const old=/<section><h2>История модели<\/h2>[\s\S]*?<\/section>/i;
  if(!old.test(html))return html;
  let source="";
  try{const u=new URL(data.source_url);if(u.protocol==="https:")source='<p class="muted"><a href="'+esc(u.href)+'" rel="noopener noreferrer" target="_blank">'+esc(L.source)+'</a></p>';}catch{}
  const year=Number(data.release_year);
  const section='<section data-rp-live-history="true"><h2>'+esc(L.heading)+'</h2><p style="white-space:pre-line">'+esc(text)+'</p>'
   +(year>=1970&&year<=2026?'<p class="muted">'+esc(L.year)+': '+year+'</p>':"")+source+'</section>';
- html=html.replace(old,section).replace(/<html\\b([^>]*)>/i,(_,x)=>'<html'+x.replace(/\\s+lang=["'][^"']*["']/i,"")+' lang="'+lang+'" data-rp-serverlocalized="true">');
+ html=html.replace(old,section).replace(/<html\b([^>]*)>/i,(_,x)=>'<html'+x.replace(/\s+lang=["'][^"']*["']/i,"")+' lang="'+lang+'" data-rp-serverlocalized="true">');
  return html;
 }
 
