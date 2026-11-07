@@ -1,0 +1,21 @@
+name: Diagnose main RetroPhone homepage availability
+on:
+  push:
+    branches:
+      - diagnostic/main-site-unavailable-20261108
+    paths:
+      - 'scripts/diagnose-main-site-20261108.mjs'
+      - '.github/workflows/diagnose-main-site-20261108.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check current and previous production addresses (read only)
+        run: node scripts/diagnose-main-site-20261108.mjs
