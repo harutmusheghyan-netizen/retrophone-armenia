@@ -117,7 +117,7 @@ BEGIN
  ) SELECT p_model_id,v.brand,v.model_name,m.display_year,v.release_year,
    v_ru,v_hy,v_en,
    m.hero_image_url,m.image_credit,m.image_license,v_sources,
-   NULL,'verified_source_pilot_20261107',v.run_id
+   NULL,'autonomous_source_verified',v.run_id
  FROM public.phone_models m WHERE m.id=p_model_id
  ON CONFLICT (phone_model_id) DO NOTHING
  RETURNING phone_model_id INTO v_inserted;
