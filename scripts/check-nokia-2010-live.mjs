@@ -22,7 +22,7 @@ for (const [lang, heading] of Object.entries(expected)) {
     const checks={
       status_200:res.status===200,
       html:/(?:<!doctype\s+html|<html\b)/i.test(body),
-      correct_lang:(body.match(/<html\\b[^>]*>/i)||[''])[0].includes('lang="'+lang+'"') || (body.match(/<html\\b[^>]*>/i)||[''])[0].includes("lang='"+lang+"'"),
+      correct_lang:(body.match(/<html\b[^>]*>/i)||[''])[0].includes('lang="'+lang+'"') || (body.match(/<html\b[^>]*>/i)||[''])[0].includes("lang='"+lang+"'"),
       verified_section:body.includes('data-rp-verified-history="true"'),
       localized_heading:body.includes(heading),
       model_identity:/Nokia\s+2010/i.test(body),
