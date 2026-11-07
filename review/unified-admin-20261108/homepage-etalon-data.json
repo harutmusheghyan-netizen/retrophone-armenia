@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "source": {
+    "deployment_id": "dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu",
+    "home_git_blob": "39291523ce7d6c219e57b160e57601d040b11ef3",
+    "authority": "Approved public website, exact T and ABOUT_I18N strings"
+  },
+  "mapping": {
+    "hero": {
+      "origin": "T.heading + T.tag (hero heading and subtitle)",
+      "certainty": "direct"
+    },
+    "about_excerpt": {
+      "origin": "ABOUT_I18N.lead (existing About section lead)",
+      "certainty": "direct"
+    },
+    "catalog_heading": {
+      "origin": "T.brands (visible Popular brands heading)",
+      "certainty": "direct"
+    },
+    "news_heading": {
+      "origin": "T.itnews (existing news navigation label, not a separate news-card block heading)",
+      "certainty": "navigation_label_only"
+    },
+    "footer_note": {
+      "origin": "ABOUT_I18N.footerProject (visible footer project line)",
+      "certainty": "direct"
+    }
+  },
+  "blocks": {
+    "hero": {
+      "text_ru": "Коллекция легендарных телефонов",
+      "subtitle_ru": "История мобильной связи в каждой модели",
+      "text_hy": "Լեգենդար հեռախոսների հավաքածու",
+      "subtitle_hy": "Բջջային կապի պատմությունը յուրաքանչյուր մոդելում",
+      "text_en": "Collection of legendary phones",
+      "subtitle_en": "The history of mobile communication in every model"
+    },
+    "about_excerpt": {
+      "text_ru": "Иногда большая история начинается с одного старого телефона. Так появилось увлечение, которое спустя годы превратилось в RetroPhone Armenia.",
+      "text_hy": "Երբեմն մեծ պատմությունը սկսվում է մեկ հին հեռախոսից։ Այդպես ծնվեց մի հետաքրքրություն, որը տարիների ընթացքում վերածվեց RetroPhone Armenia նախագծի։",
+      "text_en": "Sometimes a remarkable story begins with a single old phone. What started as a personal interest grew, over the years, into RetroPhone Armenia."
+    },
+    "catalog_heading": {
+      "text_ru": "Популярные бренды",
+      "text_hy": "Հայտնի ապրանքանիշեր",
+      "text_en": "Popular brands"
+    },
+    "news_heading": {
+      "text_ru": "IT-новости",
+      "text_hy": "ՏՏ նորություններ",
+      "text_en": "IT News"
+    },
+    "footer_note": {
+      "text_ru": "RETROPHONE ARMENIA · Исторический каталог, 870 моделей.",
+      "text_hy": "RETROPHONE ARMENIA · 870 մոդելի պատմական կատալոգ։",
+      "text_en": "RETROPHONE ARMENIA · Historical catalog, 870 models."
+    }
+  },
+  "existing_context": {
+    "nav": {
+      "ru": {
+        "home": "Главная",
+        "catalog": "Каталог",
+        "history": "История брендов",
+        "about": "О сайте",
+        "sale": "Продажа",
+        "cta": "Смотреть каталог"
+      },
+      "hy": {
+        "home": "Գլխավոր",
+        "catalog": "Կատալոգ",
+        "history": "Ապրանքանիշերի պատմություն",
+        "about": "Կայքի մասին",
+        "sale": "Վաճառք",
+        "cta": "Դիտել կատալոգը"
+      },
+      "en": {
+        "home": "Home",
+        "catalog": "Catalog",
+        "history": "Brand history",
+        "about": "About",
+        "sale": "For sale",
+        "cta": "Browse catalog"
+      }
+    }
+  }
+}

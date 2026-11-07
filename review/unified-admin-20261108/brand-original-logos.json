@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "logos": {
+    "1": {
+      "id": "1",
+      "name": "Nokia",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Nokia_wordmark.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Nokia.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "2": {
+      "id": "2",
+      "name": "Samsung",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Samsung_old_logo_before_year_2015.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Samsung_old_logo_before_year_2015.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Samsung.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "3": {
+      "id": "3",
+      "name": "Sony Ericsson",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Sony_Ericsson_wordmark.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sony_Ericsson_wordmark.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Sony%20Ericsson.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "4": {
+      "id": "4",
+      "name": "Motorola",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Motorola-Logo.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Motorola-Logo.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Motorola.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "5": {
+      "id": "5",
+      "name": "LG",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Logo_of_the_LG_Corporation_(1995-2014).svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Logo_of_the_LG_Corporation_(1995-2014).svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/LG.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "6": {
+      "id": "6",
+      "name": "Siemens",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Siemens_Mobile_Logo.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Siemens_Mobile_Logo.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Siemens.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "7": {
+      "id": "7",
+      "name": "Alcatel",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_Alcatel_(1987).svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Logo_of_Alcatel_(1987).svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Alcatel.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "8": {
+      "id": "8",
+      "name": "Philips",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Philips_logo.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Philips_logo.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Philips.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "9": {
+      "id": "9",
+      "name": "Ericsson",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Ericsson_logo.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ericsson_logo.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Ericsson.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    },
+    "10": {
+      "id": "10",
+      "name": "Sony",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sony_logo.svg",
+      "origin_url": "https://retrophone-armenia-history.vercel.app/Sony.html?lang=ru",
+      "logo_original": true,
+      "mode": "read-only"
+    }
+  }
+}

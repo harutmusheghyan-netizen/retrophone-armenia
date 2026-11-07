@@ -152,6 +152,16 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 .cms-about-subsection textarea{font-size:16px;min-height:118px}
 @media(max-width:850px){.cms-about-lang>summary{font-size:16px;padding:14px 12px}.cms-about-subsection{padding:12px 11px}}
 .cms-about-original-photo{display:block;width:156px;max-width:100%;max-height:210px;object-fit:contain;border:1px solid #79613e;border-radius:9px;margin:12px 14px;background:#0e1d2a}
+
+/* Show existing content safely, without turning source photos into editable fields. */
+.cms-original-data{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px;margin:12px 0;border:1px solid #806d4e;border-radius:10px;background:#112738;color:#ebdbba;font-size:13px}
+.cms-original-data.hidden{display:none}
+.cms-original-data strong{font-size:14px;color:#f3d49d}
+.cms-original-data a{font-size:13px;text-decoration:underline;color:#f3d49d;overflow-wrap:anywhere}
+.cms-original-data p{margin:3px 0 6px;line-height:1.55}
+.cms-original-image{width:160px;max-width:100%;max-height:210px;object-fit:contain;border:1px solid #8c7857;border-radius:8px;background:#0d1b29;padding:6px}
+.cms-original-data details{max-width:100%;width:100%}
+.cms-original-specifications{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;color:#e3d4bb;font:12px/1.5 monospace}
 </style></head><body>
 <header><a href="/" class="logo"><img src="/assets/retrophone-logo.avif" alt="">RETROPHONE<small>ARMENIA</small></a><div><a href="/news/">Читать новости</a>　<button type="button" class="btn ghost hidden" id="logout">Выйти</button></div></header>
 <main class="wrap"><section id="login" class="panel auth"><h1>Вход администратора</h1><p class="muted">Используйте свою существующую учётную запись RetroPhone Armenia.</p>
@@ -226,7 +236,8 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
    <div id="cmsWarning" class="cms-hint"></div>
    <form id="cmsForm" onsubmit="return false">
     <div id="cmsFields" class="cms-fields"></div>
-    <div id="cmsInventoryBox" class="hidden">
+    <aside id="cmsOriginalBox" class="cms-original-data hidden" aria-label="Уже опубликованное содержимое"></aside>
+   <div id="cmsInventoryBox" class="hidden">
       <hr>
       <label><input id="cmsChangeInventory" type="checkbox"> Изменить цену, состояние и наличие (только по вашим данным)</label>
       <div id="cmsInventoryFields" class="cms-fields hidden">

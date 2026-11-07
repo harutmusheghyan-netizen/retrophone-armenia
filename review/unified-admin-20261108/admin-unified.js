@@ -59,7 +59,7 @@
     homepage: {
       title: 'Главная страница — только текст',
       intro: 'Редактируются только разрешённые текстовые блоки. CSS, HTML, расположение элементов и навигация защищены от изменения.',
-      warning: 'Эта панель пока готовит содержимое в редакционной базе. Главная страница остаётся неизменной, пока не будет подключён проверенный адаптер.',
+      warning: 'Исходный текст берётся из утверждённой главной страницы на трёх языках. Публикация сохраняет редакционные данные, но сама статическая страница изменится только после отдельного безопасного подключения.',
       fields: [
         ['text_ru','Текст блока (Русский)','long'],
         ['text_hy','Բլոկի տեքստ (Հայերեն)','long'],
@@ -282,6 +282,74 @@
     return doc;
   }
 
+
+  // Read-only baselines recovered from the exact previously published site.
+  // Never use a blank CMS table as evidence that historical content is empty.
+  let brandHistoryParts={};
+  let brandLogoBaseline=null;
+  let homepageBaseline=null;
+  async function readSourceAsset(filename,label) {
+    const r=await fetch('/'+filename,{cache:'no-store'});
+    if(!r.ok)throw new Error('Не удалось восстановить исходные данные '+label+' (HTTP '+r.status+'). Редактирование заблокировано.');
+    return await r.json();
+  }
+  async function loadOriginalBrand(item) {
+    const part=Number(item.key)<=5?1:2;
+    if(!brandHistoryParts[part])
+      brandHistoryParts[part]=await readSourceAsset('brand-etalon-part-'+part+'.json','истории бренда');
+    const root=brandHistoryParts[part];
+    const brand=root?.brands?.[item.key];
+    if(root?.schema_version!==1 || String(brand?.id)!==item.key ||
+       ['ru','hy','en'].some(lang=>
+          typeof brand.languages?.[lang]?.text!=='string' ||
+          brand.languages[lang].text.length<800 ||
+          !brand.languages[lang].url.startsWith('https://retrophone-armenia-history.vercel.app/')))
+      throw new Error('Исходная трёхъязычная история '+item.label+' недоступна. Сохранение заблокировано.');
+    if(!brandLogoBaseline)
+      brandLogoBaseline=await readSourceAsset('brand-original-logos.json','логотипов брендов');
+    const logo=brandLogoBaseline?.logos?.[item.key];
+    current.originalMedia=logo?{
+      url:logo.logo_url,source:logo.source_page,credit:'Исходный логотип бренда; источник: Wikimedia Commons',
+      kind:'logo'
+    }:null;
+    current.sourceLinks=['ru','hy','en'].map(lang=>({
+      label:'Полная история '+lang.toUpperCase(),url:brand.languages[lang].url
+    }));
+    current.sourceNote='Загружены оригинальные полные истории бренда: русский, армянский и английский.';
+    return {
+      history_ru:brand.languages.ru.text,
+      history_hy:brand.languages.hy.text,
+      history_en:brand.languages.en.text
+    };
+  }
+  async function loadOriginalHome(item) {
+    if(!homepageBaseline)
+      homepageBaseline=await readSourceAsset('homepage-etalon-data.json','главной страницы');
+    const root=homepageBaseline;
+    const baseline=root?.blocks?.[item.key];
+    if(root.schema_version!==1 ||
+       root.source?.deployment_id!=='dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu' ||
+       !baseline || ['ru','hy','en'].some(lang=>typeof baseline['text_'+lang]!=='string'))
+      throw new Error('Исходный текст блока главной не найден. Не сохраняйте пустую форму.');
+    const kind=root.mapping?.[item.key];
+    current.sourceNote='Изначальный текст: '+(kind?.origin||'эталонный сайт')+
+      (kind?.certainty==='navigation_label_only'
+        ? '. Внимание: это подпись пункта меню, а не подтверждённый самостоятельный заголовок блока новостей.'
+        : '. Дизайн и HTML главной остаются неизменными.');
+    current.sourceLinks=[{label:'Проверить действующую главную',url:'https://retrophone-armenia.vercel.app/'}];
+    return {...baseline};
+  }
+  const heroExtraFields=[
+    ['subtitle_ru','Подзаголовок главной — Русский','text'],
+    ['subtitle_hy','Գլխավոր ենթավերնագիր — Հայերեն','text'],
+    ['subtitle_en','Hero subtitle — English','text']
+  ];
+  function editableFields(){
+    return section==='homepage' && current?.key==='hero'
+       ? panels.homepage.fields.concat(heroExtraFields)
+       : panels[section].fields;
+  }
+
   const blockLabels = [
     {key:'hero',label:'Главный заголовок / приветствие'},
     {key:'about_excerpt',label:'Краткий блок «О нас»'},
@@ -307,10 +375,10 @@
   }
   function setBusy(active) {
     busy=active;
-    $('cmsSave').disabled=active||!current;
-    $('cmsPreview').disabled=active||!current;
-    $('cmsPublish').disabled=active||!current||!current.previewed;
-    $('cmsPublishFromPreview').disabled=active||!current||!current.previewed;
+    $('cmsSave').disabled=active||!current?.ready;
+    $('cmsPreview').disabled=active||!current?.ready;
+    $('cmsPublish').disabled=active||!current?.ready||!current.previewed;
+    $('cmsPublishFromPreview').disabled=active||!current?.ready||!current.previewed;
   }
   async function checkAdmin() {
     const {data,error}=await client.auth.getUser();
@@ -459,7 +527,7 @@
         grid.appendChild(fieldNode(cfg,doc));
       photo.appendChild(grid);fieldsRoot.appendChild(photo);
     }else{
-      for(const cfg of panels[section].fields)fieldsRoot.appendChild(fieldNode(cfg,doc));
+      for(const cfg of editableFields())fieldsRoot.appendChild(fieldNode(cfg,doc));
     }
     $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
     const hasValues=doc.price_amd!==undefined && doc.stock_quantity!==undefined;
@@ -482,7 +550,7 @@
       const id=Number(item.key);
       const [base,trans,products]=await Promise.all([
         client.from('phone_models')
-          .select('id,model_name,release_year,description,hero_image_url,image_source_url,image_credit,image_license')
+          .select('id,model_name,release_year,description,hero_image_url,image_source_url,image_credit,image_license,specifications,source_url,display_year,year_type')
           .eq('id',id).single(),
         client.from('phone_model_translations')
           .select('language_code,description').eq('phone_model_id',id),
@@ -494,10 +562,20 @@
       doc.model_name=base.data.model_name;
       doc.release_year=base.data.release_year||'';
       doc.description_ru=base.data.description||'';
-      for(const translation of trans.data||[])
-        doc['description_'+translation.language_code]=translation.description||'';
+      for(const translation of trans.data||[]) {
+        if(translation.description?.trim())doc['description_'+translation.language_code]=translation.description;
+      }
       current.product=(products.data||[])[0]||null;
       current.previousImage=base.data.hero_image_url||null;
+      current.originalMedia=base.data.hero_image_url?{
+        url:base.data.hero_image_url,
+        source:base.data.image_source_url,
+        credit:[base.data.image_credit,base.data.image_license].filter(Boolean).join(' · '),
+        kind:'photo'
+      }:null;
+      current.originalSpecifications=base.data.specifications||null;
+      current.sourceLinks=base.data.source_url?[{label:'Источник сведений о модели',url:base.data.source_url}]:[];
+      current.sourceNote='Текущие данные каталога: название, год, имеющиеся RU/HY/EN описания. Отсутствующие переводы не заполняются вымышленным текстом.';
       // Media fields stay blank to preserve existing media on normal text edits.
       $('cmsCurrentStock').textContent=current.product?
        'Сейчас в базе: '+(current.product.price_amd??'цена не указана')+
@@ -505,13 +583,16 @@
        '. Изменение возможно только после включения переключателя.':
        'Цена и наличие для этой модели пока не указаны. Ничего не подставляется автоматически.';
     } else if(section==='brand') {
-      doc.history_ru=item.brand.short_history||'';
+      Object.assign(doc,await loadOriginalBrand(item));
       const r=await client.from('cms_published_blocks')
         .select('document').eq('section','brand').eq('record_key',item.key).maybeSingle();
       if(r.error)throw r.error;
       Object.assign(doc,r.data?.document||{});
     } else if(section==='about'||section==='homepage') {
-      if(section==='about')Object.assign(doc,await getOriginalAbout());
+      if(section==='about'){
+        Object.assign(doc,await getOriginalAbout());
+        current.sourceNote='Все ранее утверждённые тексты страницы «О нас» (87 полей на трёх языках).';
+      } else Object.assign(doc,await loadOriginalHome(item));
       const r=await client.from('cms_published_blocks').select('document')
         .eq('section',section).eq('record_key',item.key).maybeSingle();
       if(r.error)throw r.error;
@@ -520,10 +601,78 @@
     }
     return doc;
   }
+
+  function showExistingSource(){
+    const box=$('cmsOriginalBox');
+    box.replaceChildren();
+    if(!current)return;
+    const title=document.createElement('strong');
+    title.textContent='Ранее опубликованная информация — только для просмотра';
+    box.appendChild(title);
+    if(current.originalMedia?.url &&
+        /^https:\/\//i.test(current.originalMedia.url)){
+      const pic=document.createElement('img');
+      pic.className='cms-original-image';
+      pic.loading='lazy';
+      pic.alt='Существующее изображение сохраняется без изменений';
+      pic.src=current.originalMedia.url;
+      box.appendChild(pic);
+      const credit=document.createElement('p');
+      credit.textContent=current.originalMedia.credit||'Изображение с действующего сайта';
+      box.appendChild(credit);
+      if(current.originalMedia.source &&
+          /^https:\/\//i.test(current.originalMedia.source)){
+        const a=document.createElement('a');
+        a.href=current.originalMedia.source;a.target='_blank';a.rel='noopener noreferrer';
+        a.textContent='Проверить источник изображения';
+        box.appendChild(a);
+      }
+    }else if(section==='catalog'){
+      const p=document.createElement('p');p.textContent='У модели пока нет главной фотографии. Новое изображение необязательно.';
+      box.appendChild(p);
+    }
+    if(Array.isArray(current.sourceLinks)){
+      for(const entry of current.sourceLinks){
+        if(!entry?.url || !/^https:\/\//i.test(entry.url))continue;
+        const link=document.createElement('a');
+        link.href=entry.url;link.target='_blank';link.rel='noopener noreferrer';
+        link.textContent=entry.label;
+        box.appendChild(link);
+      }
+    }
+    if(current.originalSpecifications &&
+        Object.keys(current.originalSpecifications).length){
+      const details=document.createElement('details');
+      const label=document.createElement('summary');
+      label.textContent='Сохранённые технические характеристики модели (просмотр)';
+      details.appendChild(label);
+      const pre=document.createElement('pre');
+      pre.className='cms-original-specifications';
+      pre.textContent=JSON.stringify(current.originalSpecifications,null,2).slice(0,5000);
+      details.appendChild(pre);box.appendChild(details);
+    }
+    if(section==='catalog'){
+      const missing=['ru','hy','en'].filter(lang=>
+        !String(document.getElementById('cms_description_'+lang)?.value||'').trim());
+      const desc=document.createElement('p');
+      desc.textContent=missing.length
+       ? 'В базе пока нет перевода: '+missing.map(x=>x.toUpperCase()).join(', ')+'. Это не ошибка отображения; перевод ещё предстоит подготовить.'
+       : 'Описание модели на всех трёх языках загружено.';
+      box.appendChild(desc);
+    }
+    box.classList.remove('hidden');
+  }
+
   async function openTarget(item) {
     if(busy)return;
     await checkAdmin();
-    current={key:item.key,label:item.label,revision:0,previewed:false,product:null,previousImage:null};
+    current={key:item.key,label:item.label,revision:0,previewed:false,ready:false,product:null,previousImage:null,originalMedia:null,sourceLinks:[],sourceNote:''};
+    $('cmsFields').replaceChildren();
+    $('cmsSave').disabled=true;
+    $('cmsPreview').disabled=true;
+    $('cmsPublish').disabled=true;
+    $('cmsOriginalBox').replaceChildren();
+    $('cmsOriginalBox').classList.add('hidden');
     $('cmsRecordTitle').textContent=item.label;
     $('cmsRecordSubtitle').textContent='Загрузка данных...';
     setStatus('');
@@ -537,16 +686,21 @@
       Object.assign(original,r.data.document||{});
     }
     showForm(original);
+    current.ready=true;
+    showExistingSource();
+    $('cmsWarning').textContent=panels[section].warning+(current.sourceNote?' Источник: '+current.sourceNote:'');
     $('cmsRecordSubtitle').textContent=(
       r.data?'Сохранённый черновик':
       section==='about'?'Восстановлено из утверждённой страницы · 3 языка':
+      section==='brand'?'Полная утверждённая история · 3 языка':
+      section==='homepage'?'Исходные тексты главной · 3 языка':
       'Данные действующей базы'
     )+' · редакция '+(current.revision||'новая');
     renderTargets();
   }
   function collectDocument() {
     const doc={};
-    for(const cfg of panels[section].fields){
+    for(const cfg of editableFields()){
       const [key,,kind]=cfg;
       const field=$('cms_'+key);let val=(field.value||'').trim();
       if(!val && ['model_name','release_year','image_url','image_source_url','image_credit','image_license'].includes(key))
@@ -592,7 +746,7 @@
     $('cmsPublishFromPreview').disabled=true;
   }
   async function saveDraft() {
-    if(!current)throw Error('Сначала выберите страницу или модель.');
+    if(!current?.ready)throw Error('Сначала дождитесь загрузки исходных данных страницы или модели.');
     await checkAdmin();
     const payload=collectDocument();
     const r=await client.rpc('cms_save_admin_draft',{
@@ -612,7 +766,7 @@
   function previewDocument(doc) {
     const root=$('cmsPreviewContent');root.replaceChildren();
     const h=document.createElement('h2');h.textContent=current.label;root.appendChild(h);
-    const labels=new Map(panels[section].fields.map(f=>[f[0],f[1]]));
+    const labels=new Map(editableFields().map(f=>[f[0],f[1]]));
     for(const [key,val] of Object.entries(doc)) {
       const heading=document.createElement('h3');
       heading.textContent=labels.get(key)||key;
