@@ -6,6 +6,12 @@ on:
     paths:
       - 'scripts/diagnose-main-site-20261108.mjs'
       - '.github/workflows/diagnose-main-site-20261108.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/diagnose-main-site-20261108.mjs'
+      - '.github/workflows/diagnose-main-site-20261108.yml'
   workflow_dispatch:
 permissions:
   contents: read
