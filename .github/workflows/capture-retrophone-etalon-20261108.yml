@@ -1,0 +1,37 @@
+name: Capture frozen RetroPhone Armenia working reference
+on:
+  push:
+    branches:
+      - backup/retrophone-etalon-20261108
+    paths:
+      - 'scripts/capture-retrophone-etalon-20261108.cjs'
+      - '.github/workflows/capture-retrophone-etalon-20261108.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: retrophone-etalon-20261108
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: true
+      - name: Save public static content from pinned Vercel deployment
+        run: node scripts/capture-retrophone-etalon-20261108.cjs
+      - name: Commit immutable reference snapshot into backup branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add recovery/etalon-2026-11-08
+          if git diff --cached --quiet; then
+            echo 'Snapshot already matches stored reference.'
+          else
+            git commit -m 'backup: freeze approved RetroPhone public site as 2026-11-08 etalon'
+            git push origin HEAD:refs/heads/backup/retrophone-etalon-20261108
+          fi
