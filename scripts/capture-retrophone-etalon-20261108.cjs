@@ -48,7 +48,7 @@ async function fetchRoute(base,route) {
  } finally{clearTimeout(timeout)}
 }
 const fileEntries=[],warnings=[],checklist=[];
-let mainSourceHash=null;
+let mainSourceHash=null,adminSourceHash=null;
 for(const [route,file,kind,required] of pages){
  let reply;
  try {reply=await fetchRoute(PINNED,route)} catch(e) {
@@ -73,6 +73,7 @@ for(const [route,file,kind,required] of pages){
  const entry={route,file,bytes:reply.body.length,sha256:hash(reply.body),content_type:reply.content_type};
  fileEntries.push(entry);
  if(route==='/')mainSourceHash=entry.sha256;
+  if(route==='/admin/')adminSourceHash=entry.sha256;
  console.log('SAVED '+route+' '+entry.bytes+' bytes SHA256='+entry.sha256.slice(0,14));
 }
 if(!mainSourceHash)throw Error('fatal_reference_homepage_missing');
@@ -81,7 +82,10 @@ for(const route of ['/','/news/','/admin/','/robots.txt','/api/retro-news?limit=
  const probe={url:PRODUCTION+route,http_status:r.status,content_type:r.content_type,bytes:r.body.length};
  if(route==='/admin/'){
   const body=r.body.toString('utf8');
-  probe.admin_editor_loaded=/(?:<html\\b|<!doctype\\s+html)/i.test(body)&&/retrophone/i.test(body)&&/noindex/i.test(body);
+  probe.admin_editor_loaded=/(?:<html\b|<!doctype\s+html)/i.test(body)&&/retrophone/i.test(body)&&/noindex/i.test(body);
+   probe.matches_pinned_admin=hash(r.body)===adminSourceHash;
+   console.log('ADMIN_PROBE '+JSON.stringify(probe));
+   if(!probe.matches_pinned_admin)throw Error('production_admin_differs_from_pinned_etalon');
   if(!probe.admin_editor_loaded)throw Error('admin_editor_not_detected');
  }
  if(route==='/') {
