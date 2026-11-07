@@ -3,11 +3,14 @@
 -- Original SQL backed up at recovery/2026-11-08/agent-autopublish-v1-backup.sql.
 -- Preserve the existing function signature and current cron (every 10 min).
 -- Never interpret "auto_publish=true" as permission to skip quality gates.
+-- Security definer is required here because service_role intentionally lacks
+-- USAGE on the private retrophone_internal schema; keep the existing owner
+-- and the EXECUTE grants restricted to service_role. No public entry point.
 CREATE OR REPLACE FUNCTION public.agent_autopublish_verified_research(
   p_limit integer DEFAULT 6
 ) RETURNS jsonb
 LANGUAGE plpgsql
-SECURITY INVOKER
+SECURITY DEFINER
 SET search_path TO 'public', 'retrophone_internal', 'pg_temp'
 AS $publication$
 DECLARE
