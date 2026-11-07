@@ -1,0 +1,27 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/retro-commons",
+      "destination": "https://retrophone-armenia.vercel.app/api/retro-commons"
+    },
+    {
+      "source": "/assets/retrophone-logo.avif",
+      "destination": "https://retrophone-armenia.vercel.app/assets/retrophone-logo.avif"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ]
+}
