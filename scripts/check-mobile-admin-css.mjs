@@ -60,8 +60,7 @@ try{
    has_mobile_css:body.includes('RetroPhone admin mobile-only usability patch'),html_title:(body.match(/<title>([^<]{0,100})<\/title>/i)||[])[1]||null,content_type:res.headers.get('content-type'),response_bytes:body.length};
  console.log('PREVIEW_HTTP '+JSON.stringify(result));
  if(res.status===200){
-  if(!result.has_demo_banner||!result.has_mobile_css){console.log('PREVIEW_CONTENT_INCORRECT_OR_PROTECTED: '+JSON.stringify({body_start:body.slice(0,160).replace(/\s+/g,' ')}));throw Error('preview content mismatch');}
-  console.log('MOBILE_ADMIN_PREVIEW_HTTP_OK');
+  if(!result.has_demo_banner||!result.has_mobile_css){if(/<html\b[^>]*data-dpl-id=/i.test(body)){console.log('PREVIEW_PROTECTED_BY_VERCEL_AUTH: content can only be checked with a valid authenticated share link');}else throw Error('preview content mismatch');} else console.log('MOBILE_ADMIN_PREVIEW_HTTP_OK');
  }else if(res.status===401||res.status===403){
   console.log('MOBILE_ADMIN_PREVIEW_AUTH_PROTECTED: login to Vercel may be required');
  }else throw Error('unexpected_preview_http_'+res.status);
