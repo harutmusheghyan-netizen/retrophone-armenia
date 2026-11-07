@@ -25,8 +25,8 @@ await run('/news/', async (response, body) => {
 });
 await run('/api/retro-news?limit=100', async (response, body) => {
   const payload = JSON.parse(body);
-  const posts = Array.isArray(payload) ? payload : Array.isArray(payload.posts) ? payload.posts : Array.isArray(payload.data) ? payload.data : null;
-  if (!posts) throw new Error('unexpected API JSON shape');
+  const posts = Array.isArray(payload) ? payload : Array.isArray(payload.posts) ? payload.posts : Array.isArray(payload.data) ? payload.data : Array.isArray(payload.items) ? payload.items : Array.isArray(payload.results) ? payload.results : null;
+  if (!posts) throw new Error('unexpected API JSON shape; top-level keys: ' + (payload && typeof payload === 'object' ? Object.keys(payload).join(',') : typeof payload) + '; error: ' + String(payload?.error || payload?.message || 'none'));
   const post = posts.find(p => p.slug === slug);
   if (!post) throw new Error('expected published slug absent from public API: ' + slug);
   for (const key of ['title_ru', 'title_hy', 'title_en', 'body_ru', 'body_hy', 'body_en']) {
