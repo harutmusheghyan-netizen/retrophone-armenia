@@ -6,6 +6,12 @@ on:
     paths:
       - 'scripts/check-nokia-2010-live.mjs'
       - '.github/workflows/catalog-pilot-live-smoke.yml'
+  pull_request:
+    branches:
+      - recovery/vercel-agent-source-20261107
+    paths:
+      - 'scripts/check-nokia-2010-live.mjs'
+      - '.github/workflows/catalog-pilot-live-smoke.yml'
   workflow_dispatch:
 permissions:
   contents: read
