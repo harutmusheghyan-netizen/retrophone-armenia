@@ -39,7 +39,13 @@ begin
  end if;
  if not public.retro_news_gallery_valid(d.extra_images) then raise exception 'invalid_photo_gallery'; end if;
  if d.video_url is not null and (
-   d.video_url !~ '^https://(www[.]youtube[.]com/watch[?]v=|youtu[.]be/|www[.]youtube[.]com/embed/)[A-Za-z0-9_-]{11}([&?][A-Za-z0-9_=&-]+)?   insert into public.retro_news_posts(slug,title_ru,title_hy,title_en,excerpt_ru,excerpt_hy,excerpt_en,body_ru,body_hy,body_en,
+   d.video_url !~ '^https://(www[.]youtube[.]com/watch[?]v=|youtu[.]be/|www[.]youtube[.]com/embed/)[A-Za-z0-9_-]{11}([&?][A-Za-z0-9_=&-]+)?$'
+   or length(btrim(coalesce(d.video_caption_ru,'')))<5
+   or length(btrim(coalesce(d.video_caption_hy,'')))<5
+   or length(btrim(coalesce(d.video_caption_en,'')))<5
+ ) then raise exception 'cms_video_url_and_three_captions_required'; end if;
+ if d.post_id is null then
+   insert into public.retro_news_posts(slug,title_ru,title_hy,title_en,excerpt_ru,excerpt_hy,excerpt_en,body_ru,body_hy,body_en,
       category,source_url,source_name,source_published_at,image_url,image_source_url,image_author,image_license,
       image_license_url,image_caption_ru,image_caption_hy,image_caption_en,extra_images,video_url,video_caption_ru,video_caption_hy,video_caption_en,status,published_at,verified_at)
    values(d.slug,d.title_ru,d.title_hy,d.title_en,d.excerpt_ru,d.excerpt_hy,d.excerpt_en,d.body_ru,d.body_hy,d.body_en,
@@ -60,34 +66,6 @@ begin
  delete from public.retro_news_edit_drafts where id=d.id;
  return jsonb_build_object('ok',true,'published_id',new_id,'slug',d.slug,'edited_existing',d.post_id is not null);
 end;
-$function$
-
-   or length(btrim(coalesce(d.video_caption_ru,'')))<5
-   or length(btrim(coalesce(d.video_caption_hy,'')))<5
-   or length(btrim(coalesce(d.video_caption_en,'')))<5
- ) then raise exception 'cms_video_url_and_three_captions_required'; end if;
- if d.post_id is null then
-   insert into public.retro_news_posts(slug,title_ru,title_hy,title_en,excerpt_ru,excerpt_hy,excerpt_en,body_ru,body_hy,body_en,
-      category,source_url,source_name,source_published_at,image_url,image_source_url,image_author,image_license,
-      image_license_url,image_caption_ru,image_caption_hy,image_caption_en,extra_images,status,published_at,verified_at)
-   values(d.slug,d.title_ru,d.title_hy,d.title_en,d.excerpt_ru,d.excerpt_hy,d.excerpt_en,d.body_ru,d.body_hy,d.body_en,
-      d.category,d.source_url,d.source_name,d.source_published_at,d.image_url,d.image_source_url,d.image_author,
-      d.image_license,d.image_license_url,d.image_caption_ru,d.image_caption_hy,d.image_caption_en,d.extra_images,'published',clock_timestamp(),clock_timestamp())
-   returning id into new_id;
- else
-   update public.retro_news_posts set slug=d.slug,title_ru=d.title_ru,title_hy=d.title_hy,title_en=d.title_en,
-     excerpt_ru=d.excerpt_ru,excerpt_hy=d.excerpt_hy,excerpt_en=d.excerpt_en,body_ru=d.body_ru,body_hy=d.body_hy,body_en=d.body_en,
-     category=d.category,source_url=d.source_url,source_name=d.source_name,source_published_at=d.source_published_at,
-     image_url=d.image_url,image_source_url=d.image_source_url,image_author=d.image_author,
-     image_license=d.image_license,image_license_url=d.image_license_url,image_caption_ru=d.image_caption_ru,image_caption_hy=d.image_caption_hy,image_caption_en=d.image_caption_en,extra_images=d.extra_images,
-     status='published',updated_at=clock_timestamp()
-   where id=d.post_id returning id into new_id;
-   if new_id is null then raise exception 'original_post_not_found'; end if;
- end if;
- delete from public.retro_news_edit_drafts where id=d.id;
- return jsonb_build_object('ok',true,'published_id',new_id,'slug',d.slug,'edited_existing',d.post_id is not null);
-end;
-$function$
-;
+$function$;
 REVOKE ALL ON FUNCTION public.retro_news_publish_draft_v2(bigint,integer) FROM PUBLIC,anon,authenticated;
 GRANT EXECUTE ON FUNCTION public.retro_news_publish_draft_v2(bigint,integer) TO authenticated;
