@@ -1,0 +1,25 @@
+name: Test RetroPhone mobile-only admin CSS
+on:
+  push:
+    branches:
+      - fix/admin-mobile-only-20261108
+    paths:
+      - 'review/mobile-admin-20261108/**'
+      - 'scripts/check-mobile-admin-css.mjs'
+      - '.github/workflows/admin-mobile-layout-smoke.yml'
+  pull_request:
+    branches:
+      - backup/retrophone-etalon-20261108
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Compare original editor and patched mobile CSS; test Chrome layout
+        run: node scripts/check-mobile-admin-css.mjs
