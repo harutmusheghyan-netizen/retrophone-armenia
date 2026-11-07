@@ -1,0 +1,28 @@
+name: RetroPhone About existing-text prefill QA
+on:
+  push:
+    branches:
+      - fix/admin-about-prefill-20261108
+    paths:
+      - 'review/unified-admin-20261108/**'
+      - 'scripts/check-about-original-prefill.mjs'
+      - '.github/workflows/admin-about-prefill-qa.yml'
+  pull_request:
+    branches:
+      - backup/admin-panel-etalon-20261108
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-editor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify original About text and browser rendering
+        run: |
+          node --check review/unified-admin-20261108/admin-unified.js
+          node scripts/check-about-original-prefill.mjs
+          node scripts/check-unified-admin.mjs
