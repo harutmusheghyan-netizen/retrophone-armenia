@@ -235,7 +235,7 @@ BEGIN
      v_stock:=(doc->>'stock_quantity')::integer;
      IF length(coalesce(doc->>'condition',''))>180
      THEN RAISE EXCEPTION 'cms_condition_too_long'; END IF;
-     SELECT b.name INTO v_brand FROM public.brands b WHERE b.id=m.brand_id;
+     SELECT brand_row.name INTO v_brand FROM public.brands AS brand_row WHERE brand_row.id=m.brand_id;
      SELECT id INTO v_product FROM public.products WHERE phone_model_id=m.id
      ORDER BY id LIMIT 1 FOR UPDATE;
      IF v_product IS NOT NULL THEN
