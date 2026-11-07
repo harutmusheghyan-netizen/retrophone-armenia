@@ -42,7 +42,7 @@
     about: {
       title: 'О нас',
       intro: 'Переводы, текст и иллюстрация страницы «О нас». Оформление главной страницы не изменяется.',
-      warning: 'Сохранение публикации в редакционной базе не меняет действующую статическую страницу. Показ на сайте подключается после отдельного теста.',
+      warning: 'Тексты и фото загружены из утверждённой страницы «О нас». Редактирование сохраняется в редакционную базу; изменения появятся на действующем сайте только после безопасного подключения. Исходное фото без выбора нового не заменяется.',
       fields: [
         ['title_ru','Заголовок (Русский)','text'],
         ['title_hy','Վերնագիր (Հայերեն)','text'],
@@ -444,6 +444,16 @@
       photoInfo.className='cms-hint';
       photoInfo.textContent='В утверждённой странице уже установлена фотография основателя. Если здесь не указывать новую, исходная фотография остаётся на сайте.';
       photo.appendChild(photoInfo);
+      const inheritedPhoto=cachedAboutBaseline?.founder_photo?.data_url;
+      if(typeof inheritedPhoto==='string' && inheritedPhoto.length<200000 &&
+         /^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(inheritedPhoto)){
+        const existing=document.createElement('img');
+        existing.className='cms-about-original-photo';
+        existing.alt='Фото основателя из утверждённой страницы — просмотр, без замены';
+        existing.src=inheritedPhoto;
+        existing.loading='lazy';
+        photo.appendChild(existing);
+      }
       const grid=document.createElement('div');grid.className='cms-fields';
       for(const cfg of panels.about.fields.filter(([key])=>key.startsWith('image_')))
         grid.appendChild(fieldNode(cfg,doc));
@@ -527,8 +537,11 @@
       Object.assign(original,r.data.document||{});
     }
     showForm(original);
-    $('cmsRecordSubtitle').textContent=(r.data?'Сохранённый черновик':'Данные действующей базы')+
-      ' · редакция '+(current.revision||'новая');
+    $('cmsRecordSubtitle').textContent=(
+      r.data?'Сохранённый черновик':
+      section==='about'?'Восстановлено из утверждённой страницы · 3 языка':
+      'Данные действующей базы'
+    )+' · редакция '+(current.revision||'новая');
     renderTargets();
   }
   function collectDocument() {
