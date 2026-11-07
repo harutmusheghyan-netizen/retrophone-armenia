@@ -5,7 +5,10 @@ const targets=[
   ['MAIN /news/','https://retrophone-armenia.vercel.app/news/'],
   ['MAIN /robots.txt','https://retrophone-armenia.vercel.app/robots.txt'],
   ['MAIN /api/retro-news?limit=1','https://retrophone-armenia.vercel.app/api/retro-news?limit=1'],
-  ['OLDER PRODUCTION /','https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app/']
+  ['OLDER PRODUCTION /','https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app/'],
+  ['OLDER PRODUCTION /news/','https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app/news/'],
+  ['OLDER PRODUCTION /robots.txt','https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app/robots.txt'],
+  ['OLDER PRODUCTION /api/retro-news?limit=1','https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app/api/retro-news?limit=1']
 ];
 let failures=0;
 for(const [label,url] of targets){
