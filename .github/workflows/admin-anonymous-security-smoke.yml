@@ -1,0 +1,27 @@
+name: RetroPhone admin anonymous security smoke
+on:
+  push:
+    branches:
+      - test/retrophone-admin-security-20261108
+    paths:
+      - 'scripts/check-admin-anonymous-security.mjs'
+      - '.github/workflows/admin-anonymous-security-smoke.yml'
+  pull_request:
+    branches:
+      - backup/retrophone-etalon-20261108
+    paths:
+      - 'scripts/check-admin-anonymous-security.mjs'
+      - '.github/workflows/admin-anonymous-security-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-anonymous-denial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify live administrative page and denied anonymous RPCs
+        run: node scripts/check-admin-anonymous-security.mjs
