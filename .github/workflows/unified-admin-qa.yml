@@ -8,6 +8,7 @@ on:
       - 'review/unified-admin-20261108/**'
       - 'scripts/check-unified-admin.mjs'
       - 'scripts/check-unified-admin-anonymous.mjs'
+      - 'scripts/check-admin-etalon-live.mjs'
       - '.github/workflows/unified-admin-qa.yml'
   pull_request:
     branches:
@@ -29,3 +30,4 @@ jobs:
           node --check review/unified-admin-20261108/admin-unified.js
           node scripts/check-unified-admin.mjs
           node scripts/check-unified-admin-anonymous.mjs
+          node scripts/check-admin-etalon-live.mjs
