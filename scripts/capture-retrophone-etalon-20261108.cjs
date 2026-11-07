@@ -1,4 +1,5 @@
 'use strict';
+(async()=>{
 /**
  * Backup PUBLIC files from the exact, known-good Vercel deployment.
  * This is a rendered static reference, NOT an export of private environment
@@ -129,3 +130,5 @@ await fs.writeFile(path.join(OUT,'README.md'),[
  ''
 ].join('\n'));
 console.log('REFERENCE_SNAPSHOT_OK files='+fileEntries.length+' warnings='+warnings.length);
+ 
+})().catch(err=>{ console.error('REFERENCE_SNAPSHOT_FAILED',err?.message||err); process.exitCode=1; });
