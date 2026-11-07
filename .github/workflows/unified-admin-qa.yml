@@ -1,0 +1,27 @@
+name: RetroPhone Unified Admin v1 QA
+on:
+  push:
+    branches:
+      - feature/unified-admin-20261108
+    paths:
+      - 'review/unified-admin-20261108/**'
+      - 'scripts/check-unified-admin.mjs'
+      - '.github/workflows/unified-admin-qa.yml'
+  pull_request:
+    branches:
+      - backup/mobile-1-20261108
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static-and-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify unified admin scripts and responsive layout
+        run: |
+          node --check review/unified-admin-20261108/admin-unified.js
+          node scripts/check-unified-admin.mjs
