@@ -7,6 +7,9 @@ on:
       - 'review/unified-admin-20261108/**'
       - 'scripts/check-about-original-prefill.mjs'
       - '.github/workflows/admin-about-prefill-qa.yml'
+  pull_request:
+    branches:
+      - backup/admin-panel-etalon-20261108
   workflow_dispatch:
 permissions:
   contents: read
