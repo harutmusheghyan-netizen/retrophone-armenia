@@ -1,5 +1,6 @@
 'use strict';
 // Read-only external availability check: no credentials, no writes.
+// Retest production hostname after the verified deployment rollback.
 const targets=[
   ['MAIN /','https://retrophone-armenia.vercel.app/'],
   ['MAIN /news/','https://retrophone-armenia.vercel.app/news/'],
