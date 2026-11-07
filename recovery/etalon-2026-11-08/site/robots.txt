@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://retrophone-armenia.vercel.app/sitemap.xml
