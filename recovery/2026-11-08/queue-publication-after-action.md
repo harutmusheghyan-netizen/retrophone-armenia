@@ -43,3 +43,7 @@
 ## Existing unrelated security warnings
 
 Supabase advisor still reports pre-existing `SECURITY DEFINER` grants on some admin/statistics functions and disabled leaked password protection. This update did **not** widen those grants; they need a separate audit before broader release.
+
+## Additional CI verification
+
+GitHub Actions [run #42413622841](https://github.com/harutmusheghyan-netizen/retrophone-armenia/actions/runs/42413622841) completed successfully with both: `node --check recovery/2026-11-08/agent/src/api/handoff.js` and all three HTTP smoke tests. This confirms the recovered handoff file parses as JavaScript; it does not verify the two Vercel files whose source responses were truncated.
