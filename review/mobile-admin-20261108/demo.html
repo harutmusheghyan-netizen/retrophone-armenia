@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07121d">
+<title>Редактор новостей — RetroPhone Armenia</title>
+<style>
+:root{--bg:#07111b;--panel:#111e2b;--line:#82683f77;--gold:#f2c889;--text:#f9eee0;--sub:#bcb0a2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 system-ui,-apple-system,Arial,sans-serif}
+a{color:var(--gold)}button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:14px 25px}
+header img{width:50px;height:50px;object-fit:contain}header .logo{display:flex;align-items:center;gap:11px;color:var(--gold);font:700 20px Georgia;text-decoration:none;letter-spacing:.05em}
+header small{display:block;font:10px system-ui;letter-spacing:.28em}
+.wrap{max-width:1360px;margin:auto;padding:27px 22px 60px}
+h1,h2{font-family:Georgia,serif;font-weight:400;color:var(--gold);line-height:1.2}h1{font-size:clamp(31px,5vw,48px);margin:10px 0}h2{font-size:25px;margin:0 0 12px}
+.muted{color:var(--sub);font-size:12px}.intro{margin-bottom:25px}
+.panels{display:grid;grid-template-columns:295px 1fr;gap:20px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.left{max-height:85vh;overflow:auto;position:sticky;top:15px}.item{display:block;width:100%;text-align:left;background:#1b2d40;color:var(--text);padding:11px;margin:7px 0;border:1px solid #5460715e;border-radius:9px}
+.item.selected,.item:hover{border-color:var(--gold)}.item small{display:block;color:var(--gold);font-size:11px;margin-top:5px}
+label{font-weight:650;color:#e4cca0;font-size:12px;display:block;margin:12px 0 5px}
+input[type=text],input[type=email],input[type=password],input[type=url],input[type=date],textarea,select{width:100%;background:#081522;border:1px solid #816c4d;border-radius:8px;padding:10px;color:var(--text);outline:none}
+input:focus,textarea:focus{border-color:var(--gold)}textarea{min-height:95px;resize:vertical}
+textarea.long{min-height:260px}fieldset{border:1px solid var(--line);border-radius:12px;padding:15px;margin:15px 0}legend{padding:0 8px;color:var(--gold);font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:17px 0}
+.btn{background:var(--gold);color:#271c11;border:1px solid var(--gold);padding:10px 14px;border-radius:8px;font-weight:750}
+.btn.secondary{background:#22364a;color:var(--gold)}.btn.ghost{background:transparent;border-color:#8a785d;color:#f2d4a1}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn:hover:not(:disabled){filter:brightness(1.1)}
+.sticky{position:sticky;bottom:0;background:#0d1a26f5;border-top:1px solid var(--line);padding:12px;margin:15px -20px -20px;border-radius:0 0 14px 14px;z-index:3}
+.status{margin:15px 0;background:#1e3441;border:1px solid var(--line);padding:12px;border-radius:9px;color:#ffdc9f}
+.status.err{color:#ffb7ac;background:#382221}.status.ok{color:#ccf5d2;background:#16332b;border-color:#6b9583}
+.photo-chooser{display:grid;grid-template-columns:180px 1fr;gap:14px}.photo-preview{width:100%;max-height:210px;object-fit:contain;background:#202f3e;border-radius:10px}
+.photo-row{display:grid;grid-template-columns:90px minmax(0,1fr);gap:13px;align-items:start;border:1px solid var(--line);padding:10px;border-radius:11px;margin-top:10px;background:#182737}
+.photo-row img{width:90px;height:85px;object-fit:cover;border-radius:7px}.photo-row input{margin:2px 0}
+.modal{position:fixed;inset:0;background:#000d;z-index:90;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:22px}
+.modal>div{background:#101e2d;border:1px solid #f1cb8c;width:min(900px,100%);border-radius:16px;padding:24px;margin:auto}
+.preview-title{font:400 clamp(30px,5vw,52px) Georgia;color:var(--gold);line-height:1.15}
+.preview-img{max-width:100%;max-height:390px;object-fit:contain;background:#283847;border-radius:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.preview-grid img{width:100%;max-height:270px;object-fit:contain}
+.hidden{display:none!important}.auth{max-width:450px;margin:42px auto}.role{font-size:12px;color:#d8c18d}
+hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+@media(max-width:850px){.panels{grid-template-columns:1fr}.left{position:static;max-height:290px}}
+@media(max-width:530px){.wrap{padding:15px 12px 50px}.panel{padding:14px}.grid2,.photo-chooser{grid-template-columns:1fr}.sticky{margin:14px -14px -14px}.preview-grid{grid-template-columns:1fr}}
+
+/* RetroPhone admin mobile-only usability patch (2026-11-08).
+   The public homepage, navigation and all production data remain unchanged.
+   Coarse-pointer fallback catches Android browsers requesting desktop sites. */
+@media (max-width:1100px), (hover:none) and (pointer:coarse) {
+  .panels {grid-template-columns:minmax(0,1fr);gap:16px;}
+  .panels > .panel {min-width:0;width:100%;}
+  .left {position:static;top:auto;max-height:min(34vh,280px);overflow-y:auto;overscroll-behavior:contain;}
+  .left .actions {justify-content:space-between;}
+  .grid2,.photo-chooser {grid-template-columns:minmax(0,1fr);}
+  fieldset,.grid2 > div,.photo-chooser > div {min-width:0;}
+}
+@media (max-width:700px), (hover:none) and (pointer:coarse) {
+  html {-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body {font-size:16px;line-height:1.5;}
+  header {padding:12px 14px;gap:10px;}
+  header img {width:42px;height:42px;}
+  header .logo {font-size:17px;letter-spacing:0.01em;}
+  header small {font-size:9px;letter-spacing:0.08em;}
+  .wrap {max-width:100%;padding:16px 12px 72px;}
+  .intro {font-size:14px;line-height:1.55;margin-bottom:15px;}
+  h1 {font-size:clamp(28px,7vw,37px);margin:5px 0 12px;}
+  h2 {font-size:23px;}
+  .panels {grid-template-columns:minmax(0,1fr);gap:14px;}
+  .panel {padding:14px;border-radius:13px;}
+  .left {max-height:250px;}
+  .left .actions {margin:0 0 12px;}
+  .left .item {font-size:15px;line-height:1.4;padding:12px;}
+  .left .item small {font-size:12px;}
+  .grid2,.photo-chooser,.preview-grid {grid-template-columns:minmax(0,1fr);}
+  fieldset {padding:12px;margin:13px 0;}
+  legend {font-size:14px;}
+  label {font-size:13px;margin-top:13px;}
+  input[type=text],input[type=email],input[type=password],input[type=url],
+  input[type=date],textarea,select {width:100%;font-size:16px;min-height:46px;padding:11px 12px;}
+  textarea {min-height:116px;}
+  textarea.long {min-height:190px;}
+  .btn {font-size:15px;min-height:44px;padding:11px 12px;}
+  .photo-row {grid-template-columns:75px minmax(0,1fr);gap:10px;}
+  .photo-row img {width:75px;height:75px;}
+  .sticky {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:8px;bottom:0;position:sticky;
+    margin:14px -14px -14px;
+    padding:10px 10px max(10px,env(safe-area-inset-bottom));}
+  .sticky .btn {width:100%;min-width:0;font-size:14px;white-space:normal;}
+  .sticky #publish {grid-column:1/-1;}
+  .modal {padding:10px;}
+  .modal > div {padding:14px;width:100%;border-radius:13px;}
+  .preview-title {font-size:clamp(25px,7vw,34px);}
+  .preview-grid {grid-template-columns:minmax(0,1fr);}
+  .auth {margin:25px auto;}
+}
+@media (max-width:380px) {
+  header {padding:10px;}
+  .wrap {padding:12px 9px 72px;}
+  .panel {padding:12px;}
+  fieldset {padding:10px;}
+  .sticky {margin:12px -12px -12px;}
+}
+</style></head><body>
+<header><a href="/" class="logo"><img src="https://retrophone-armenia.vercel.app/assets/retrophone-logo.avif" alt="">RETROPHONE<small>ARMENIA</small></a><div><a href="/news/">Читать новости</a>　<button type="button" class="btn ghost hidden" id="logout">Выйти</button></div></header>
+<main class="wrap"><section id="login" class="panel auth hidden"><h1>Вход администратора</h1><p class="muted">Используйте свою существующую учётную запись RetroPhone Armenia.</p>
+<form id="loginForm"><label for="email">Электронная почта</label><input id="email" type="email" required autocomplete="email">
+<label for="pass">Пароль</label><input id="pass" type="password" required autocomplete="current-password">
+<div class="actions"><button type="submit" class="btn">Войти</button><button type="button" id="recoverPassword" class="btn secondary">Забыли пароль?</button></div></form><p class="muted" style="font-size:12px;margin-top:10px">Для восстановления укажите свой email и нажмите «Забыли пароль?». Ссылка придёт на вашу электронную почту.</p><p id="loginStatus" class="status hidden"></p></section>
+<div id="workspace" class=""><p class="status ok" role="status">Демонстрация мобильного оформления. Сохранение и публикация отключены; изменения не попадают в базу данных.</p><h1>Редактор новостей</h1>
+<p class="intro muted">Автоматические новости публикуются без ожидания одобрения. Редактировать можно все три языка: RU, HY, EN. Заполните полные переводы и подписи к фото. Правки публикуются после предпросмотра.</p>
+<div class="panels"><aside class="panel left"><div class="actions"><h2>Материалы</h2><button type="button" id="new" class="btn">+ Новая</button></div>
+<input id="filter" type="text" placeholder="Найти новость..."><div id="list"></div></aside>
+<section class="panel"><h2 id="editorTitle">Новая статья</h2><p id="revision" class="muted"></p>
+<form id="editorForm" onsubmit="return false">
+<fieldset><legend>Текст публикации</legend>
+<label>Заголовок (RU)</label><input id="title_ru" type="text" maxlength="260" required>
+<label>Краткий анонс (RU)</label><textarea id="excerpt_ru" maxlength="900"></textarea>
+<label>Текст статьи (RU)</label><textarea id="body_ru" class="long" maxlength="12000"></textarea><label>Ամբողջական հոդվածը (Հայերեն) *</label><textarea id="body_hy" class="long" maxlength="12000" placeholder="Ամբողջական հայերեն տեքստը"></textarea><label>Full article (English) *</label><textarea id="body_en" class="long" maxlength="12000" placeholder="Full English translation"></textarea>
+<button id="addParagraph" class="btn secondary" type="button">+ Добавить абзац</button>
+<div class="grid2"><div><label>Заголовок (Հայերեն)</label><input id="title_hy" type="text"></div><div><label>Заголовок (English)</label><input id="title_en" type="text"></div></div>
+<div class="grid2"><div><label>Анонс (Հայերեն)</label><textarea id="excerpt_hy"></textarea></div><div><label>Анонс (English)</label><textarea id="excerpt_en"></textarea></div></div></fieldset>
+<fieldset><legend>Первоначальный источник</legend>
+<div class="grid2"><div><label>Адрес новости (латиницей)</label><input id="slug" type="text" placeholder="example-news-2026"></div>
+<div><label>Тема</label><select id="category"><option value="phones">Телефоны</option><option value="tablets">Планшеты</option><option value="ai">Искусственный интеллект</option><option value="software">Программы</option><option value="history">История телефонов</option><option value="technology">Технологии</option></select></div></div>
+<label>Ссылка на первоисточник</label><input id="source_url" type="url" placeholder="https://...">
+<div class="grid2"><div><label>Название источника</label><input id="source_name" type="text"></div><div><label>Дата оригинального объявления</label><input id="source_date" type="date"></div></div></fieldset>
+<fieldset><legend>Фотографии</legend>
+<div class="photo-chooser"><img id="photoPreview" class="photo-preview hidden" alt="Предпросмотр фото">
+<div><label>Добавить фотографию</label><select id="photoDestination"><option value="primary">Заменить главную фотографию</option><option value="extra">Добавить к статье ещё одну фотографию</option></select>
+<label>Ссылка на файл Wikimedia Commons</label><input id="commonsURL" type="url" placeholder="https://commons.wikimedia.org/wiki/File:...">
+<button id="checkCommons" type="button" class="btn secondary" style="margin-top:8px">Проверить и добавить фото</button>
+<hr><label>Или загрузить свою фотографию (JPG / PNG / WebP, до 5 МБ)</label><input id="upload" type="file" accept="image/jpeg,image/png,image/webp">
+<label><input id="rights" type="checkbox"> Подтверждаю права на публикацию собственной фотографии</label>
+<label>Автор фотографии</label><input id="uploadAuthor" type="text" placeholder="RetroPhone Armenia">
+<button type="button" id="uploadBtn" class="btn secondary" style="margin-top:8px">Загрузить свою фотографию</button>
+</div></div>
+<label>Подпись к главной фотографии (RU)</label><textarea id="image_caption_ru" placeholder="Опишите реальную модель или укажите, что фото иллюстративное"></textarea><label>Լուսանկարի նկարագրությունը (HY)</label><textarea id="image_caption_hy" placeholder="Նկարագրություն հայերեն"></textarea><label>Photo caption (EN)</label><textarea id="image_caption_en" placeholder="Caption in English"></textarea>
+<div id="primaryCredits" class="muted"></div>
+<button type="button" id="removePrimary" class="btn ghost" style="margin-top:10px">Убрать главное фото</button>
+<hr><h2>Дополнительные фото <span id="galleryCount" class="muted"></span></h2>
+<p class="muted">Можно прикрепить до 8 фотографий, поменять порядок и написать подпись к каждой.</p>
+<div id="galleryItems"></div>
+</fieldset>
+<div id="message" class="status hidden" role="status"></div>
+<div class="actions sticky"><button type="button" id="save" class="btn secondary">Сохранить черновик</button><button type="button" id="preview" class="btn secondary">Предпросмотр</button><button type="button" id="publish" class="btn" disabled>Опубликовать изменения</button></div>
+</form></section></div></div></main>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div><div class="actions" style="justify-content:space-between"><strong class="role">Предпросмотр перед публикацией</strong><button id="close" type="button" class="btn ghost">Закрыть ✕</button></div><div id="previewContent"></div><div class="actions"><button id="confirmPublish" type="button" class="btn">Опубликовать эту версию</button><button id="back" type="button" class="btn secondary">Вернуться к редактированию</button></div></div></div>
+
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const items=[
+ {title:'Пример: история Nokia',body:'Текст новости о телефонах. Здесь удобно проверять размеры полей на мобильном экране.'},
+ {title:'Пример: новость об искусственном интеллекте',body:'Демонстрация просмотра и редактирования статьи в адаптивной версии.'},
+ {title:'Пример: коллекция ретро-телефонов',body:'В этой версии ничего не сохраняется и не публикуется.'}
+];
+function showExample(item){
+ $('editorTitle').textContent='Редактирование: '+item.title;
+ $('title_ru').value=item.title;
+ $('body_ru').value=item.body;
+ $('excerpt_ru').value='Это пример текста для проверки мобильного оформления редактора новостей.';
+ $('title_hy').value='Փորձնական նյութ';$('title_en').value='Example article';
+ $('body_hy').value='Փորձնական հոդված';$('body_en').value='Example article text';
+}
+function drawList(){
+ const list=$('list');list.replaceChildren();
+ for(const item of items.filter(i=>i.title.toLowerCase().includes($('filter').value.toLowerCase()))){
+  const b=document.createElement('button');b.type='button';b.className='item';b.textContent=item.title;
+  b.addEventListener('click',()=>showExample(item));list.append(b);
+ }
+}
+$('filter').addEventListener('input',drawList);
+$('new').addEventListener('click',()=>{
+ $('editorForm').reset();$('editorTitle').textContent='Новая статья';
+});
+$('save').addEventListener('click',()=>alert('Это тест внешнего вида. Черновик не сохраняется.'));
+$('preview').addEventListener('click',()=>{
+ $('previewContent').textContent='';
+ const h=document.createElement('h2');h.textContent=$('title_ru').value||'Предпросмотр мобильного оформления';
+ const p=document.createElement('p');p.textContent=$('body_ru').value||'Это тестовая версия без подключения к базе данных.';
+ $('previewContent').append(h,p);
+ $('modal').classList.remove('hidden');
+});
+$('close').addEventListener('click',()=>$('modal').classList.add('hidden'));
+$('back').addEventListener('click',()=>$('modal').classList.add('hidden'));
+$('confirmPublish').disabled=true;
+$('publish').disabled=true;
+$('logout').classList.add('hidden');
+drawList();showExample(items[0]);
+</script></body></html>

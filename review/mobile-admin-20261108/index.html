@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07121d">
+<title>Редактор новостей — RetroPhone Armenia</title>
+<style>
+:root{--bg:#07111b;--panel:#111e2b;--line:#82683f77;--gold:#f2c889;--text:#f9eee0;--sub:#bcb0a2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 system-ui,-apple-system,Arial,sans-serif}
+a{color:var(--gold)}button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:14px 25px}
+header img{width:50px;height:50px;object-fit:contain}header .logo{display:flex;align-items:center;gap:11px;color:var(--gold);font:700 20px Georgia;text-decoration:none;letter-spacing:.05em}
+header small{display:block;font:10px system-ui;letter-spacing:.28em}
+.wrap{max-width:1360px;margin:auto;padding:27px 22px 60px}
+h1,h2{font-family:Georgia,serif;font-weight:400;color:var(--gold);line-height:1.2}h1{font-size:clamp(31px,5vw,48px);margin:10px 0}h2{font-size:25px;margin:0 0 12px}
+.muted{color:var(--sub);font-size:12px}.intro{margin-bottom:25px}
+.panels{display:grid;grid-template-columns:295px 1fr;gap:20px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.left{max-height:85vh;overflow:auto;position:sticky;top:15px}.item{display:block;width:100%;text-align:left;background:#1b2d40;color:var(--text);padding:11px;margin:7px 0;border:1px solid #5460715e;border-radius:9px}
+.item.selected,.item:hover{border-color:var(--gold)}.item small{display:block;color:var(--gold);font-size:11px;margin-top:5px}
+label{font-weight:650;color:#e4cca0;font-size:12px;display:block;margin:12px 0 5px}
+input[type=text],input[type=email],input[type=password],input[type=url],input[type=date],textarea,select{width:100%;background:#081522;border:1px solid #816c4d;border-radius:8px;padding:10px;color:var(--text);outline:none}
+input:focus,textarea:focus{border-color:var(--gold)}textarea{min-height:95px;resize:vertical}
+textarea.long{min-height:260px}fieldset{border:1px solid var(--line);border-radius:12px;padding:15px;margin:15px 0}legend{padding:0 8px;color:var(--gold);font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:17px 0}
+.btn{background:var(--gold);color:#271c11;border:1px solid var(--gold);padding:10px 14px;border-radius:8px;font-weight:750}
+.btn.secondary{background:#22364a;color:var(--gold)}.btn.ghost{background:transparent;border-color:#8a785d;color:#f2d4a1}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn:hover:not(:disabled){filter:brightness(1.1)}
+.sticky{position:sticky;bottom:0;background:#0d1a26f5;border-top:1px solid var(--line);padding:12px;margin:15px -20px -20px;border-radius:0 0 14px 14px;z-index:3}
+.status{margin:15px 0;background:#1e3441;border:1px solid var(--line);padding:12px;border-radius:9px;color:#ffdc9f}
+.status.err{color:#ffb7ac;background:#382221}.status.ok{color:#ccf5d2;background:#16332b;border-color:#6b9583}
+.photo-chooser{display:grid;grid-template-columns:180px 1fr;gap:14px}.photo-preview{width:100%;max-height:210px;object-fit:contain;background:#202f3e;border-radius:10px}
+.photo-row{display:grid;grid-template-columns:90px minmax(0,1fr);gap:13px;align-items:start;border:1px solid var(--line);padding:10px;border-radius:11px;margin-top:10px;background:#182737}
+.photo-row img{width:90px;height:85px;object-fit:cover;border-radius:7px}.photo-row input{margin:2px 0}
+.modal{position:fixed;inset:0;background:#000d;z-index:90;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:22px}
+.modal>div{background:#101e2d;border:1px solid #f1cb8c;width:min(900px,100%);border-radius:16px;padding:24px;margin:auto}
+.preview-title{font:400 clamp(30px,5vw,52px) Georgia;color:var(--gold);line-height:1.15}
+.preview-img{max-width:100%;max-height:390px;object-fit:contain;background:#283847;border-radius:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.preview-grid img{width:100%;max-height:270px;object-fit:contain}
+.hidden{display:none!important}.auth{max-width:450px;margin:42px auto}.role{font-size:12px;color:#d8c18d}
+hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+@media(max-width:850px){.panels{grid-template-columns:1fr}.left{position:static;max-height:290px}}
+@media(max-width:530px){.wrap{padding:15px 12px 50px}.panel{padding:14px}.grid2,.photo-chooser{grid-template-columns:1fr}.sticky{margin:14px -14px -14px}.preview-grid{grid-template-columns:1fr}}
+
+/* RetroPhone admin mobile-only usability patch (2026-11-08).
+   The public homepage, navigation and all production data remain unchanged.
+   Coarse-pointer fallback catches Android browsers requesting desktop sites. */
+@media (max-width:1100px), (hover:none) and (pointer:coarse) {
+  .panels {grid-template-columns:minmax(0,1fr);gap:16px;}
+  .panels > .panel {min-width:0;width:100%;}
+  .left {position:static;top:auto;max-height:min(34vh,280px);overflow-y:auto;overscroll-behavior:contain;}
+  .left .actions {justify-content:space-between;}
+  .grid2,.photo-chooser {grid-template-columns:minmax(0,1fr);}
+  fieldset,.grid2 > div,.photo-chooser > div {min-width:0;}
+}
+@media (max-width:700px), (hover:none) and (pointer:coarse) {
+  html {-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body {font-size:16px;line-height:1.5;}
+  header {padding:12px 14px;gap:10px;}
+  header img {width:42px;height:42px;}
+  header .logo {font-size:17px;letter-spacing:0.01em;}
+  header small {font-size:9px;letter-spacing:0.08em;}
+  .wrap {max-width:100%;padding:16px 12px 72px;}
+  .intro {font-size:14px;line-height:1.55;margin-bottom:15px;}
+  h1 {font-size:clamp(28px,7vw,37px);margin:5px 0 12px;}
+  h2 {font-size:23px;}
+  .panels {grid-template-columns:minmax(0,1fr);gap:14px;}
+  .panel {padding:14px;border-radius:13px;}
+  .left {max-height:250px;}
+  .left .actions {margin:0 0 12px;}
+  .left .item {font-size:15px;line-height:1.4;padding:12px;}
+  .left .item small {font-size:12px;}
+  .grid2,.photo-chooser,.preview-grid {grid-template-columns:minmax(0,1fr);}
+  fieldset {padding:12px;margin:13px 0;}
+  legend {font-size:14px;}
+  label {font-size:13px;margin-top:13px;}
+  input[type=text],input[type=email],input[type=password],input[type=url],
+  input[type=date],textarea,select {width:100%;font-size:16px;min-height:46px;padding:11px 12px;}
+  textarea {min-height:116px;}
+  textarea.long {min-height:190px;}
+  .btn {font-size:15px;min-height:44px;padding:11px 12px;}
+  .photo-row {grid-template-columns:75px minmax(0,1fr);gap:10px;}
+  .photo-row img {width:75px;height:75px;}
+  .sticky {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:8px;bottom:0;position:sticky;
+    margin:14px -14px -14px;
+    padding:10px 10px max(10px,env(safe-area-inset-bottom));}
+  .sticky .btn {width:100%;min-width:0;font-size:14px;white-space:normal;}
+  .sticky #publish {grid-column:1/-1;}
+  .modal {padding:10px;}
+  .modal > div {padding:14px;width:100%;border-radius:13px;}
+  .preview-title {font-size:clamp(25px,7vw,34px);}
+  .preview-grid {grid-template-columns:minmax(0,1fr);}
+  .auth {margin:25px auto;}
+}
+@media (max-width:380px) {
+  header {padding:10px;}
+  .wrap {padding:12px 9px 72px;}
+  .panel {padding:12px;}
+  fieldset {padding:10px;}
+  .sticky {margin:12px -12px -12px;}
+}
+</style></head><body>
+<header><a href="/" class="logo"><img src="/assets/retrophone-logo.avif" alt="">RETROPHONE<small>ARMENIA</small></a><div><a href="/news/">Читать новости</a>　<button type="button" class="btn ghost hidden" id="logout">Выйти</button></div></header>
+<main class="wrap"><section id="login" class="panel auth"><h1>Вход администратора</h1><p class="muted">Используйте свою существующую учётную запись RetroPhone Armenia.</p>
+<form id="loginForm"><label for="email">Электронная почта</label><input id="email" type="email" required autocomplete="email">
+<label for="pass">Пароль</label><input id="pass" type="password" required autocomplete="current-password">
+<div class="actions"><button type="submit" class="btn">Войти</button><button type="button" id="recoverPassword" class="btn secondary">Забыли пароль?</button></div></form><p class="muted" style="font-size:12px;margin-top:10px">Для восстановления укажите свой email и нажмите «Забыли пароль?». Ссылка придёт на вашу электронную почту.</p><p id="loginStatus" class="status hidden"></p></section>
+<div id="workspace" class="hidden"><h1>Редактор новостей</h1>
+<p class="intro muted">Автоматические новости публикуются без ожидания одобрения. Редактировать можно все три языка: RU, HY, EN. Заполните полные переводы и подписи к фото. Правки публикуются после предпросмотра.</p>
+<div class="panels"><aside class="panel left"><div class="actions"><h2>Материалы</h2><button type="button" id="new" class="btn">+ Новая</button></div>
+<input id="filter" type="text" placeholder="Найти новость..."><div id="list"></div></aside>
+<section class="panel"><h2 id="editorTitle">Новая статья</h2><p id="revision" class="muted"></p>
+<form id="editorForm" onsubmit="return false">
+<fieldset><legend>Текст публикации</legend>
+<label>Заголовок (RU)</label><input id="title_ru" type="text" maxlength="260" required>
+<label>Краткий анонс (RU)</label><textarea id="excerpt_ru" maxlength="900"></textarea>
+<label>Текст статьи (RU)</label><textarea id="body_ru" class="long" maxlength="12000"></textarea><label>Ամբողջական հոդվածը (Հայերեն) *</label><textarea id="body_hy" class="long" maxlength="12000" placeholder="Ամբողջական հայերեն տեքստը"></textarea><label>Full article (English) *</label><textarea id="body_en" class="long" maxlength="12000" placeholder="Full English translation"></textarea>
+<button id="addParagraph" class="btn secondary" type="button">+ Добавить абзац</button>
+<div class="grid2"><div><label>Заголовок (Հայերեն)</label><input id="title_hy" type="text"></div><div><label>Заголовок (English)</label><input id="title_en" type="text"></div></div>
+<div class="grid2"><div><label>Анонс (Հայերեն)</label><textarea id="excerpt_hy"></textarea></div><div><label>Анонс (English)</label><textarea id="excerpt_en"></textarea></div></div></fieldset>
+<fieldset><legend>Первоначальный источник</legend>
+<div class="grid2"><div><label>Адрес новости (латиницей)</label><input id="slug" type="text" placeholder="example-news-2026"></div>
+<div><label>Тема</label><select id="category"><option value="phones">Телефоны</option><option value="tablets">Планшеты</option><option value="ai">Искусственный интеллект</option><option value="software">Программы</option><option value="history">История телефонов</option><option value="technology">Технологии</option></select></div></div>
+<label>Ссылка на первоисточник</label><input id="source_url" type="url" placeholder="https://...">
+<div class="grid2"><div><label>Название источника</label><input id="source_name" type="text"></div><div><label>Дата оригинального объявления</label><input id="source_date" type="date"></div></div></fieldset>
+<fieldset><legend>Фотографии</legend>
+<div class="photo-chooser"><img id="photoPreview" class="photo-preview hidden" alt="Предпросмотр фото">
+<div><label>Добавить фотографию</label><select id="photoDestination"><option value="primary">Заменить главную фотографию</option><option value="extra">Добавить к статье ещё одну фотографию</option></select>
+<label>Ссылка на файл Wikimedia Commons</label><input id="commonsURL" type="url" placeholder="https://commons.wikimedia.org/wiki/File:...">
+<button id="checkCommons" type="button" class="btn secondary" style="margin-top:8px">Проверить и добавить фото</button>
+<hr><label>Или загрузить свою фотографию (JPG / PNG / WebP, до 5 МБ)</label><input id="upload" type="file" accept="image/jpeg,image/png,image/webp">
+<label><input id="rights" type="checkbox"> Подтверждаю права на публикацию собственной фотографии</label>
+<label>Автор фотографии</label><input id="uploadAuthor" type="text" placeholder="RetroPhone Armenia">
+<button type="button" id="uploadBtn" class="btn secondary" style="margin-top:8px">Загрузить свою фотографию</button>
+</div></div>
+<label>Подпись к главной фотографии (RU)</label><textarea id="image_caption_ru" placeholder="Опишите реальную модель или укажите, что фото иллюстративное"></textarea><label>Լուսանկարի նկարագրությունը (HY)</label><textarea id="image_caption_hy" placeholder="Նկարագրություն հայերեն"></textarea><label>Photo caption (EN)</label><textarea id="image_caption_en" placeholder="Caption in English"></textarea>
+<div id="primaryCredits" class="muted"></div>
+<button type="button" id="removePrimary" class="btn ghost" style="margin-top:10px">Убрать главное фото</button>
+<hr><h2>Дополнительные фото <span id="galleryCount" class="muted"></span></h2>
+<p class="muted">Можно прикрепить до 8 фотографий, поменять порядок и написать подпись к каждой.</p>
+<div id="galleryItems"></div>
+</fieldset>
+<div id="message" class="status hidden" role="status"></div>
+<div class="actions sticky"><button type="button" id="save" class="btn secondary">Сохранить черновик</button><button type="button" id="preview" class="btn secondary">Предпросмотр</button><button type="button" id="publish" class="btn" disabled>Опубликовать изменения</button></div>
+</form></section></div></div></main>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div><div class="actions" style="justify-content:space-between"><strong class="role">Предпросмотр перед публикацией</strong><button id="close" type="button" class="btn ghost">Закрыть ✕</button></div><div id="previewContent"></div><div class="actions"><button id="confirmPublish" type="button" class="btn">Опубликовать эту версию</button><button id="back" type="button" class="btn secondary">Вернуться к редактированию</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(async()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!window.supabase?.createClient){$('loginStatus').textContent='Не загрузился модуль авторизации. Обновите страницу.';$('loginStatus').classList.remove('hidden');return}
+const client=window.supabase.createClient('https://aikxbgixitaaatkmcols.supabase.co',"sb_publishable_PvxphKmdiZKPMGD0BbPBuw_nS2cKRJt",{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const fields=['slug','title_ru','title_hy','title_en','excerpt_ru','excerpt_hy','excerpt_en','body_ru','body_hy','body_en','category','source_url','source_name','image_caption_ru','image_caption_hy','image_caption_en'];
+let me=null,posts=[],drafts=[],current=null,mainPhoto=null,gallery=[],previewed=false,working=false;
+function message(msg,error=false){const e=$('message');e.className='status'+(error?' err':' ok');e.textContent=msg;e.classList.remove('hidden')}
+function fail(e){message(e?.message||String(e),true);console.error('News admin:',e)}
+function busy(value){working=value;for(const id of ['save','preview','checkCommons','uploadBtn','new'])$(id).disabled=value;$('publish').disabled=value||!previewed;$('confirmPublish').disabled=value||!previewed}
+function invalidate(){previewed=false;$('publish').disabled=true;$('confirmPublish').disabled=true}
+function emptyPhoto(){return {image_url:null,image_source_url:null,image_author:null,image_license:null,image_license_url:null}}
+function drawPhoto(){const image=$('photoPreview');image.classList.toggle('hidden',!mainPhoto?.image_url);if(mainPhoto?.image_url)image.src=mainPhoto.image_url;
+ $('primaryCredits').textContent=mainPhoto?.image_url?('Фото: '+mainPhoto.image_author+' · '+mainPhoto.image_license):'Главная фотография отсутствует.'}
+function drawGallery(){
+ const box=$('galleryItems');box.replaceChildren();$('galleryCount').textContent='('+gallery.length+'/8)';
+ gallery.forEach((p,i)=>{
+  const row=document.createElement('div');row.className='photo-row';
+  const img=document.createElement('img');img.src=p.image_url;img.alt='Дополнительное фото '+(i+1);
+  const info=document.createElement('div');const label=document.createElement('small');label.textContent=(i+1)+'. '+(p.image_author||'')+' · '+(p.image_license||'');
+  info.append(label);const caption=document.createElement('input');caption.type='text';caption.value=p.caption_ru||'';caption.placeholder='Подпись к фотографии';
+  caption.addEventListener('input',()=>{p.caption_ru=caption.value;invalidate()});info.append(caption);
+  const actions=document.createElement('div');actions.className='actions';
+  const make=(text,fn)=>{const b=document.createElement('button');b.type='button';b.className='btn ghost';b.textContent=text;b.addEventListener('click',fn);actions.append(b)};
+  make('↑',()=>{if(i){[gallery[i-1],gallery[i]]=[gallery[i],gallery[i-1]];drawGallery();invalidate()}});
+  make('↓',()=>{if(i<gallery.length-1){[gallery[i+1],gallery[i]]=[gallery[i],gallery[i+1]];drawGallery();invalidate()}});
+  make('Главная',()=>{const prior=mainPhoto;mainPhoto={...p};delete mainPhoto.caption_ru;gallery.splice(i,1);if(prior?.image_url)gallery.unshift({...prior,caption_ru:$('image_caption_ru').value});$('image_caption_ru').value=p.caption_ru||'';drawPhoto();drawGallery();invalidate()});
+  make('Удалить',()=>{gallery.splice(i,1);drawGallery();invalidate()});
+  info.append(actions);row.append(img,info);box.append(row)
+ });
+}
+function show(item){
+ current=item?{...item}:null;
+ for(const name of fields)$(name).value=item?.[name]||(name==='category'?'technology':'');
+ $('source_date').value=String(item?.source_published_at||'').slice(0,10);
+ mainPhoto=item?.image_url?{image_url:item.image_url,image_source_url:item.image_source_url,image_author:item.image_author,image_license:item.image_license,image_license_url:item.image_license_url}:emptyPhoto();
+ gallery=Array.isArray(item?.extra_images)?item.extra_images.map(x=>({...x})):[];
+ $('commonsURL').value='';$('upload').value='';$('rights').checked=false;$('uploadAuthor').value='';
+ $('editorTitle').textContent=current?.post_id?'Правка опубликованной статьи':current?.id?'Редактирование черновика':'Новая публикация';
+ $('revision').textContent=current?.revision?'Редакция '+current.revision:'';
+ $('message').classList.add('hidden');drawPhoto();drawGallery();invalidate();drawList();
+}
+function drawList(){
+ const list=$('list');list.replaceChildren();const q=$('filter').value.toLowerCase().trim();
+ function append(title,desc,item,active){if(q&&!title.toLowerCase().includes(q))return;const b=document.createElement('button');b.type='button';b.className='item'+(active?' selected':'');b.textContent=title;const s=document.createElement('small');s.textContent=desc;b.append(s);b.addEventListener('click',()=>show(item));list.append(b)}
+ for(const d of drafts.filter(x=>!x.post_id))append(d.title_ru||'Без названия','Черновик',d,current?.id===d.id);
+ for(const post of posts){const draft=drafts.find(x=>x.post_id===post.id);const item=draft||{...post,post_id:post.id,id:null};
+ append(post.title_ru,draft?'Черновик правок':'Опубликовано',item,current?.post_id===post.id)}
+}
+async function reload(){
+ const [a,b]=await Promise.all([
+  client.from('retro_news_posts').select('*').eq('status','published').order('published_at',{ascending:false}).limit(180),
+  client.from('retro_news_edit_drafts').select('*').order('updated_at',{ascending:false}).limit(180)]);
+ if(a.error||b.error)throw a.error||b.error;posts=a.data||[];drafts=b.data||[];drawList()
+}
+$('new').addEventListener('click',()=>show(null));$('filter').addEventListener('input',drawList);
+$('addParagraph').addEventListener('click',()=>{const b=$('body_ru');b.value+=(b.value.trim()?'\n\n':'');b.focus();invalidate()});
+$('editorForm').addEventListener('input',invalidate);
+function takeValues(){
+ const data={};for(const f of fields)data[f]=String($(f).value||'').trim()||(f==='category'?'technology':null);
+ data.slug=String(data.slug||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ if(!data.slug)throw Error('Введите короткий адрес статьи латинскими буквами');
+ if(!data.title_ru||!data.excerpt_ru||!data.body_ru)throw Error('Нужно заполнить заголовок, анонс и текст');
+ data.source_published_at=$('source_date').value?$('source_date').value+'T12:00:00Z':null;
+ Object.assign(data,mainPhoto||emptyPhoto());data.extra_images=gallery.map(x=>({...x,caption_ru:String(x.caption_ru||'').trim()}));
+ if(data.extra_images.length>8)throw Error('Не больше 8 дополнительных фотографий');
+ return data
+}
+async function save(){
+ if(working)throw Error('Операция ещё выполняется');
+ const data=takeValues();busy(true);
+ try{
+  const q=current?.id?
+    await client.from('retro_news_edit_drafts').update({...data,updated_by:me.id}).eq('id',current.id).select().single():
+    await client.from('retro_news_edit_drafts').insert({...data,post_id:current?.post_id||null,updated_by:me.id}).select().single();
+  if(q.error)throw q.error;
+  current=q.data;drafts=drafts.filter(x=>x.id!==current.id && !(current.post_id&&x.post_id===current.post_id));drafts.unshift(current);$('revision').textContent='Редакция '+current.revision;
+  drawList();message('Черновик сохранён. Посетители пока видят старую версию статьи.');
+  return current
+ }finally{busy(false)}
+}
+$('save').addEventListener('click',async()=>{try{await save()}catch(e){fail(e)}});
+function addCaption(parent,txt){const p=document.createElement('p');p.className='muted';p.textContent=txt;parent.append(p)}
+async function preview(){
+ const d=await save();busy(true);
+ try{
+  const a=await client.rpc('retro_news_preview_draft',{p_draft_id:d.id,p_expected_revision:d.revision});
+  if(a.error||!a.data?.ok)throw a.error||Error('Предпросмотр не зарегистрирован');
+  previewed=true;const root=$('previewContent');root.replaceChildren();
+  const h=document.createElement('h1');h.className='preview-title';h.textContent=d.title_ru;root.append(h);
+  const excerpt=document.createElement('p');excerpt.textContent=d.excerpt_ru;root.append(excerpt);
+  addCaption(root,d.source_name+' · '+String(d.source_published_at).slice(0,10));
+  if(d.image_url){const img=document.createElement('img');img.src=d.image_url;img.className='preview-img';img.alt='Главное фото';root.append(img);addCaption(root,(d.image_caption_ru||'Иллюстрация')+' / '+(d.image_caption_hy||'')+' / '+(d.image_caption_en||'')+' · '+d.image_author+' · '+d.image_license)}
+  for(const [label,field] of [['Русский','body_ru'],['Հայերեն','body_hy'],['English','body_en']]){const h=document.createElement('h2');h.textContent=label;root.append(h);String(d[field]||'').split(/\n\s*\n/).forEach(t=>{const p=document.createElement('p');p.textContent=t;root.append(p)})}
+  if(d.extra_images?.length){const title=document.createElement('h2');title.textContent='Другие фотографии';root.append(title);const box=document.createElement('div');box.className='preview-grid';
+   for(const photo of d.extra_images){const figure=document.createElement('figure'),img=document.createElement('img');img.src=photo.image_url;img.alt=photo.caption_ru||'Фото';figure.append(img);addCaption(figure,(photo.caption_ru||'Иллюстрация')+' · '+photo.image_author+' · '+photo.image_license);box.append(figure)}root.append(box)}
+  addCaption(root,'Источник: '+d.source_url);$('modal').classList.remove('hidden');$('publish').disabled=false;$('confirmPublish').disabled=false;
+ }finally{busy(false)}
+}
+$('preview').addEventListener('click',async()=>{try{await preview()}catch(e){fail(e)}});
+function close(){$('modal').classList.add('hidden')}
+$('close').addEventListener('click',close);$('back').addEventListener('click',close);
+async function publish(){
+ if(!previewed||!current?.id)throw Error('Сначала откройте предпросмотр текущей версии');
+ if(!confirm('Опубликовать исправленную новость прямо сейчас?'))return;
+ busy(true);try{
+  const r=await client.rpc('retro_news_publish_draft',{p_draft_id:current.id,p_expected_revision:current.revision});
+  if(r.error||!r.data?.ok)throw r.error||Error('Публикация не удалась');
+  close();invalidate();await reload();message('Статья опубликована. Ссылка: /news/?post='+r.data.slug);
+  const p=posts.find(x=>x.id===r.data.published_id);if(p)show({...p,post_id:p.id,id:null});
+  const link=document.createElement('a');link.href='/news/?post='+r.data.slug;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Посмотреть публикацию';
+  $('message').append(document.createTextNode(' · '),link);
+ }finally{busy(false)}
+}
+$('publish').addEventListener('click',async()=>{try{await publish()}catch(e){fail(e)}});
+$('confirmPublish').addEventListener('click',async()=>{try{await publish()}catch(e){fail(e)}});
+function applyPhoto(p){
+ if($('photoDestination').value==='primary'){mainPhoto=p;drawPhoto()}else{
+  if(gallery.length>=8)throw Error('Максимум 8 дополнительных фото');
+  gallery.push({...p,caption_ru:'Тематическая иллюстрация. Уточните, что изображено.'});drawGallery()
+ }
+ invalidate()
+}
+$('removePrimary').addEventListener('click',()=>{mainPhoto=emptyPhoto();drawPhoto();invalidate()});
+$('checkCommons').addEventListener('click',async()=>{
+ const url=$('commonsURL').value.trim();if(!url){message('Добавьте адрес страницы File: в Wikimedia Commons',true);return}
+ busy(true);try{const r=await fetch('/api/retro-commons?file='+encodeURIComponent(url)),j=await r.json();
+ if(!r.ok||!j.ok)throw Error(j.error||'Лицензия фото не подтверждена');
+ applyPhoto({image_url:j.image_url,image_source_url:j.image_source_url,image_author:j.image_author,image_license:j.image_license,image_license_url:j.image_license_url});
+ message('Фото добавлено в черновик. Автор и лицензия проверены.');
+ }catch(e){fail(e)}finally{busy(false)}
+});
+$('uploadBtn').addEventListener('click',async()=>{
+ const file=$('upload').files?.[0];if(!file){message('Выберите файл фотографии',true);return}
+ if(!$('rights').checked){message('Подтвердите право на публикацию фото',true);return}
+ const author=$('uploadAuthor').value.trim();if(author.length<2){message('Укажите автора собственной фотографии',true);return}
+ const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
+ if(!ext||file.size>5*1024*1024){message('Только JPG, PNG, WebP до 5 МБ',true);return}
+ busy(true);try{
+  const path='news/'+Date.now()+'-'+Math.random().toString(36).slice(2,12)+'.'+ext;
+  const r=await client.storage.from('retrophone-news-images').upload(path,file,{contentType:file.type,upsert:false});
+  if(r.error)throw r.error;
+  const {data}=client.storage.from('retrophone-news-images').getPublicUrl(path);
+  if(!data?.publicUrl)throw Error('Не удалось получить ссылку на фото');
+  applyPhoto({image_url:data.publicUrl,image_source_url:data.publicUrl,image_author:author,image_license:'Owned by RetroPhone Armenia',image_license_url:null});
+  message('Фото загружено. Сохраните черновик и посмотрите предпросмотр.');
+ }catch(e){fail(e)}finally{busy(false)}
+});
+$('recoverPassword').addEventListener('click',async()=>{
+ const email=$('email').value.trim();
+ const status=$('loginStatus');status.classList.remove('hidden');
+ if(!email){status.textContent='Сначала укажите электронную почту администратора.';return}
+ const btn=$('recoverPassword');btn.disabled=true;
+ try{
+  const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:'https://retrophone-armenia-admin.vercel.app/'});
+  if(error)throw error;
+  status.textContent='Если этот адрес зарегистрирован, письмо для восстановления отправлено. Проверьте также папку «Спам». После перехода по ссылке задайте новый пароль.';
+ }catch(err){status.textContent='Не удалось отправить письмо: '+(err?.message||'неизвестная ошибка')+'. Для восстановления также доступна старая панель: https://retrophone-armenia-admin.vercel.app/'}
+ finally{btn.disabled=false}
+});
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();const x=await client.auth.signInWithPassword({email:$('email').value,password:$('pass').value});
+ if(x.error){$('loginStatus').textContent=x.error.message;$('loginStatus').classList.remove('hidden');return}
+ $('pass').value='';await init(x.data.session)
+});
+$('logout').addEventListener('click',async()=>{await client.auth.signOut();location.reload()});
+async function init(session){
+ if(!session?.user){$('login').classList.remove('hidden');$('workspace').classList.add('hidden');return}
+ const q=await client.from('admin_users').select('user_id').eq('user_id',session.user.id).maybeSingle();
+ if(q.error||!q.data){await client.auth.signOut();$('loginStatus').textContent='Нет прав администратора';$('loginStatus').classList.remove('hidden');return}
+ me=session.user;$('login').classList.add('hidden');$('workspace').classList.remove('hidden');$('logout').classList.remove('hidden');
+ try{await reload()}catch(e){fail(e)}
+}
+const {data:{session}}=await client.auth.getSession();await init(session);
+})();
+</script></body></html>
