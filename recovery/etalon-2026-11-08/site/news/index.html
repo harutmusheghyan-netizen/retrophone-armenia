@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07101a"><meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="description" content="RetroPhone Armenia — собственные проверенные новости о мобильных телефонах, технологиях, гаджетах и истории связи с указанием первоисточников.">
+<link rel="canonical" href="https://retrophone-armenia.vercel.app/news/">
+<title>Новости технологий и мобильных телефонов — RetroPhone Armenia</title>
+<style>
+:root{--bg:#070e17;--panel:#111c29;--gold:#f1c782;--sub:#b7b3a9;--border:rgba(225,186,115,.22);--white:#fbf5eb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--white);background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;font-size:15px;line-height:1.6}
+body:before{content:"";pointer-events:none;position:absolute;inset:0 0 auto;height:640px;background:radial-gradient(ellipse 60% 65% at 78% 0%,#c3913226,transparent 75%),radial-gradient(ellipse 60% 65% at 4% 0%,#2b4c6935,transparent 75%);z-index:-1}
+a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1220px;margin:auto;padding:0 25px}
+header{border-bottom:1px solid var(--border);background:#08121dc9;backdrop-filter:blur(15px);position:relative;z-index:2}
+.top{display:flex;align-items:center;justify-content:space-between;min-height:92px;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;font-family:Georgia,serif;font-size:21px;letter-spacing:.045em;color:var(--gold);font-weight:bold}
+.brand img{width:61px;height:61px;object-fit:contain}.brand small{display:block;color:#c2a47d;font-size:10px;letter-spacing:.34em;line-height:1.1;font-family:system-ui}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:23px;color:#d7c9b5;font-size:13px}nav a:hover,nav a[aria-current="page"]{color:var(--gold)}
+.topline{border-bottom:1px solid #ffffff10;color:#b9ac92;font-size:11px;letter-spacing:.15em;padding:10px 0}
+.topline .wrap{display:flex;align-items:center;justify-content:space-between;gap:15px}.gold{color:var(--gold)}
+.intro{padding:60px 0 38px;max-width:900px}.eyebrow{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.26em;font-weight:800;margin:0 0 14px}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;line-height:1.13;font-weight:normal}
+h1{font-size:clamp(42px,6.7vw,74px);letter-spacing:-.032em;margin:0 0 19px}h1 em{font-style:normal;color:var(--gold)}
+.lead{color:#c2b8a7;font-size:16px;max-width:690px;line-height:1.85}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 0 16px}
+.section-head h2{font-size:26px;margin:0}.section-head small{color:var(--sub);font-size:12px}
+.hero{display:grid;grid-template-columns:1.06fr 1fr;min-height:455px;border:1px solid #8c713f6a;border-radius:21px;overflow:hidden;background:linear-gradient(125deg,#192636 0%,#0b1725 80%);box-shadow:0 28px 70px #0006}
+.hero-info{padding:clamp(25px,4vw,54px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:13px;position:relative;z-index:1}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #bd995b68;background:#e9bb7830;color:#ffe0a4;border-radius:100px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:10px;padding:7px 12px}
+.hero h2{font-size:clamp(30px,3.4vw,47px);letter-spacing:-.022em;margin:4px 0 1px}
+.hero p{color:#cdc8ba;line-height:1.77;font-size:15px;margin:0}
+.meta{font-size:11px;color:#acb0b3;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.cta{display:inline-flex;justify-content:center;align-items:center;gap:9px;margin-top:8px;background:var(--gold);color:#1d170e;border:1px solid var(--gold);padding:12px 20px;border-radius:10px;font-weight:750;font-size:13px;transition:transform .16s}
+.cta:hover{transform:translateY(-2px);background:#ffe0a4}
+.hero-visual{position:relative;min-height:360px;background:linear-gradient(135deg,#314253,#17242c)}
+.hero-visual img{position:absolute;width:100%;height:100%;inset:0;object-fit:cover}
+.hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,#07121bda)}
+.img-credit{position:absolute;z-index:1;bottom:18px;left:20px;right:20px;font-size:10px;line-height:1.45;color:#f4eddd;text-shadow:0 1px 8px #000}
+.img-credit a{text-decoration:underline;text-underline-offset:2px}
+.filters{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:48px 0 24px}
+.filters .group{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--border);border-radius:100px;padding:9px 15px;color:#c4b7a4;background:#111b25;font-size:12px}
+.filter:hover,.filter.active{color:#231907;background:var(--gold);border-color:var(--gold);font-weight:700}
+.find{border:1px solid #8c713f6a;border-radius:9px;padding:10px 14px;background:#101d2b;color:var(--white);width:min(100%,240px);outline:none}
+.find:focus{border-color:var(--gold)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:54px}
+.card{overflow:hidden;border:1px solid var(--border);border-radius:16px;background:#111a27;display:flex;flex-direction:column;box-shadow:0 9px 30px #0002;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-3px);border-color:#b68a51}
+.card-media{position:relative;aspect-ratio:16/10;background:linear-gradient(125deg,#274150,#30333a)}
+.card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.card-credit{font-size:10px;color:#c6bdb0;padding:8px 16px 0;line-height:1.4}
+.card-credit a{color:#e4bf87;text-decoration:underline}
+.card-body{padding:14px 18px 22px;display:flex;flex-direction:column;flex:1}.card h3{font-size:clamp(21px,2vw,26px);margin:11px 0 10px}
+.card p{font-size:13px;line-height:1.74;color:#bcb6ac;margin:0 0 20px;flex:1}
+.tag{color:#dfba82;font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:800}
+.card .read{font-size:12px;font-weight:800;color:#e9c184;margin-top:6px}
+.card .read:hover{text-decoration:underline}
+.detail{max-width:900px;margin:28px auto 80px}.back{font-size:13px;color:var(--gold);display:inline-block;margin:16px 0 28px}
+.detail h1{font-size:clamp(34px,5.8vw,64px);margin-bottom:19px}.detail-summary{font-size:19px;color:#d8c6b0;line-height:1.65;margin-bottom:25px}
+.detail-image{margin:30px 0 26px;background:#142535;border-radius:18px;overflow:hidden;border:1px solid var(--border)}
+.detail-image img{width:100%;max-height:510px;object-fit:cover;display:block}.detail-image figcaption{padding:11px 18px;font-size:12px;color:var(--sub)}
+.detail-image a{color:var(--gold);text-decoration:underline}.article-body{font-size:17px;line-height:2;color:#e7ded2}.article-body p{margin:0 0 23px}
+.detail-source{margin:35px 0 50px;background:#141f2a;border:1px solid var(--border);border-radius:14px;padding:24px}
+.detail-source a{color:var(--gold);text-decoration:underline}.status{border:1px solid var(--border);background:#111c27;border-radius:14px;padding:25px;color:#e1cda8;margin:20px 0}
+footer{border-top:1px solid var(--border);margin-top:25px;padding:32px 0;color:#a69c8c;font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer a{color:var(--gold)}
+.hidden{display:none!important}
+@media(max-width:920px){.hero{grid-template-columns:1fr 1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h2{font-size:31px}}
+@media(max-width:690px){.wrap{padding:0 18px}.top{min-height:78px;flex-wrap:wrap;padding:10px 0}.brand img{width:48px;height:48px}.brand{font-size:18px}nav{gap:14px;font-size:12px}.intro{padding:38px 0 23px}h1{font-size:46px}.hero{grid-template-columns:1fr}.hero-info{padding:26px;order:2}.hero-visual{order:1;min-height:260px}.hero h2{font-size:34px}.cards{grid-template-columns:1fr}.filters{margin-top:32px}.section-head h2{font-size:24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+
+.gallery-header{margin:40px 0 15px;font-size:26px;color:var(--gold)}
+.photo-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 37px}
+.photo-gallery figure{margin:0;border:1px solid var(--border);background:#121e2c;border-radius:12px;overflow:hidden}
+.photo-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#192837}
+.photo-gallery figcaption{font-size:12px;color:#c2b9a5;line-height:1.5;padding:10px 14px}
+.photo-gallery figcaption a{color:var(--gold);text-decoration:underline}
+@media(max-width:550px){.photo-gallery{grid-template-columns:1fr}}
+.language-picker{display:flex;align-items:center;gap:5px;margin-left:8px}.langbtn{padding:6px 8px;border:1px solid #b6915670;background:#111d2b;border-radius:6px;color:#dcc8a7;font-size:11px;letter-spacing:.04em;cursor:pointer}.langbtn[aria-pressed="true"]{background:var(--gold);color:#18120b;font-weight:800}.archive-link{color:var(--gold);font-weight:700}.archive-prompt{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid #ad83495a;background:#172432;border-radius:13px;padding:18px 22px;margin:-17px 0 50px;flex-wrap:wrap}.archive-prompt a{color:var(--gold);font-weight:750}.archive-prompt p{margin:0;color:#d3c2a9}@media(max-width:690px){.language-picker{margin-left:0}.top{gap:9px}} </style></head><body>
+<div class="topline"><div class="wrap"><span>RETROPHONE ARMENIA <span class="gold">/</span> EDITORIAL</span><span id="issue">Проверенные источники · 2026</span></div></div>
+<header><div class="wrap top"><a class="brand" href="https://retrophone-armenia.vercel.app/" aria-label="RetroPhone Armenia"><img src="/assets/retrophone-logo.avif" alt=""><span>RETROPHONE<small>ARMENIA</small></span></a>
+<nav aria-label="Меню сайта"><a href="/">Главная</a><a href="https://retrophone-armenia-catalog.vercel.app/">Каталог</a><a href="https://retrophone-armenia-history.vercel.app/">История брендов</a><a href="/news/" aria-current="page">Новости</a><a class="archive-link" href="/news/archive/" id="navArchive">Архив</a><span class="language-picker" role="group" aria-label="Язык"><button class="langbtn" type="button" data-lang="ru">RU</button><button class="langbtn" type="button" data-lang="hy">HY</button><button class="langbtn" type="button" data-lang="en">EN</button></span></nav>
+</div></header>
+<main class="wrap"><div id="front">
+<section class="intro"><p class="eyebrow">Истории технологий · Люди · Мобильная связь</p><h1>Технологии меняются.<br><em>Истории остаются.</em></h1>
+<p class="lead">Собственные короткие и понятные новости RetroPhone Armenia о телефонах, гаджетах и инновациях. Только проверенные факты, прямые ссылки на первоисточники и изображения с разрешённым использованием.</p></section>
+<div class="section-head"><h2>Главная новость</h2><small id="fresh">Самая новая публикация</small></div>
+<div id="featured" aria-live="polite"><div class="status">Загружаем проверенные публикации…</div></div>
+<div class="filters"><div class="group" aria-label="Темы"><button type="button" class="filter active" data-cat="all">Все новости</button><button type="button" class="filter" data-cat="phones">Телефоны</button><button type="button" class="filter" data-cat="tablets">Планшеты</button><button type="button" class="filter" data-cat="ai">Искусственный интеллект</button><button type="button" class="filter" data-cat="software">Программы</button></div>
+<input id="search" class="find" placeholder="Поиск по новостям" aria-label="Поиск по новостям"></div>
+<div class="section-head"><h2>Другие публикации</h2><small id="count"></small></div>
+<div id="cards" class="cards"></div><div class="archive-prompt"><p id="archivePrompt">Все опубликованные новости сохраняются в архиве</p><a id="archiveCta" href="/news/archive/">Открыть архив по месяцам →</a></div></div>
+<section id="single" class="detail hidden"></section></main>
+<footer><div class="wrap"><span>© RETROPHONE ARMENIA · Независимая подборка новостей</span><span>Проверяем факты по официальным источникам. <a href="https://retrophone-armenia.vercel.app/">На главную</a></span></div></footer>
+<script>
+(function(){
+'use strict';
+const api='/api/retro-news';
+const strings={"ru":{"home":"Главная","catalog":"Каталог","history":"История брендов","news":"Новости","archive":"Архив","eyebrow":"Истории технологий · Люди · Мобильная связь","hero1":"Технологии меняются.","hero2":"Истории остаются.","intro":"Собственные проверенные новости RetroPhone Armenia о телефонах, гаджетах, искусственном интеллекте и инновациях — на трёх языках.","head":"Главная новость","latest":"Самая новая публикация","all":"Все новости","phones":"Телефоны","tablets":"Планшеты","ai":"Искусственный интеллект","software":"Программы","others":"Другие публикации","search":"Поиск по новостям","read":"Читать материал","details":"Подробнее","last":"Последняя публикация","illustration":"Иллюстрация","author":"Автор","license":"Лицензия","technology":"Технологии","historyCat":"История","photoGallery":"Фотографии к статье","photo":"Дополнительная фотография","source":"Проверенный первоисточник","original":"Исходная публикация","back":"Все новости","backMore":"Смотреть другие новости","notFound":"Материал пока недоступен.","failed":"Не удалось загрузить новости. Обновите страницу.","empty":"По вашему запросу публикаций не найдено.","none":"Остальных публикаций пока нет.","count":"материалов","caption":"Тематическая иллюстрация","archiveLead":"Архив всех опубликованных новостей по месяцам и годам"},"hy":{"home":"Գլխավոր","catalog":"Կատալոգ","history":"Ապրանքանիշերի պատմություն","news":"Նորություններ","archive":"Արխիվ","eyebrow":"Տեխնոլոգիական պատմություններ · Մարդիկ · Բջջային կապ","hero1":"Տեխնոլոգիաները փոխվում են։","hero2":"Պատմությունները մնում են։","intro":"RetroPhone Armenia-ի ստուգված նորությունները հեռախոսների, սարքերի, արհեստական բանականության և նորարարությունների մասին՝ երեք լեզվով։","head":"Գլխավոր նորություն","latest":"Ամենավերջին հրապարակումը","all":"Բոլոր նորությունները","phones":"Հեռախոսներ","tablets":"Պլանշետներ","ai":"Արհեստական բանականություն","software":"Ծրագրեր","others":"Այլ հրապարակումներ","search":"Որոնել նորություններ","read":"Կարդալ հոդվածը","details":"Մանրամասն","last":"Վերջին հրապարակումը","illustration":"Նկարազարդում","author":"Հեղինակ","license":"Լիցենզիա","technology":"Տեխնոլոգիաներ","historyCat":"Պատմություն","photoGallery":"Հոդվածի լուսանկարները","photo":"Լրացուցիչ լուսանկար","source":"Ստուգված սկզբնաղբյուր","original":"Սկզբնական հրապարակումը","back":"Բոլոր նորությունները","backMore":"Տեսնել մյուս նորությունները","notFound":"Այս հոդվածը հասանելի չէ։","failed":"Չհաջողվեց բեռնել նորությունները։ Թարմացրեք էջը։","empty":"Ձեր հարցմամբ հրապարակումներ չկան։","none":"Այլ հրապարակումներ դեռ չկան։","count":"հրապարակում","caption":"Թեմատիկ նկարազարդում","archiveLead":"Բոլոր հրապարակված նորությունների արխիվը՝ ըստ ամիսների և տարիների"},"en":{"home":"Home","catalog":"Catalog","history":"Brand history","news":"News","archive":"Archive","eyebrow":"Technology stories · People · Mobile connections","hero1":"Technology changes.","hero2":"Stories remain.","intro":"RetroPhone Armenia's independently written, verified news about phones, gadgets, artificial intelligence and innovation — in three languages.","head":"Top story","latest":"Most recent publication","all":"All news","phones":"Phones","tablets":"Tablets","ai":"Artificial intelligence","software":"Software","others":"More stories","search":"Search news","read":"Read article","details":"Read more","last":"Latest story","illustration":"Illustration","author":"Author","license":"License","technology":"Technology","historyCat":"History","photoGallery":"Article photo gallery","photo":"Additional photograph","source":"Verified original source","original":"Original publication","back":"All news","backMore":"Explore more news","notFound":"This article is currently unavailable.","failed":"News could not be loaded. Please refresh.","empty":"No articles match your search.","none":"No other stories yet.","count":"articles","caption":"Illustrative photograph","archiveLead":"All published news organized by month and year"}};
+let lang='ru';try{const urlLang=new URLSearchParams(location.search).get('lang');const stored=sessionStorage.getItem('retrophoneLang');lang=['ru','hy','en'].includes(urlLang)?urlLang:['ru','hy','en'].includes(stored)?stored:'ru'}catch(e){}
+const $=id=>document.getElementById(id);
+let items=[],active='all',term='';
+const t=()=>strings[lang];
+const locale=()=>({ru:'ru-RU',hy:'hy-AM',en:'en-US'})[lang];
+const category=key=>({phones:t().phones,tablets:t().tablets,ai:t().ai,software:t().software,history:t().historyCat,technology:t().technology})[key]||t().technology;
+const escapeLang=()=>'?lang='+lang;
+const dateLabel=v=>{const d=new Date(v);return isNaN(d.getTime())?'':d.toLocaleDateString(locale(),{day:'numeric',month:'long',year:'numeric'})};
+const title=p=>String(p['title_'+lang]||p.title_ru||'');
+const excerpt=p=>String(p['excerpt_'+lang]||p.excerpt_ru||'');
+const body=p=>String(p['body_'+lang]||'');
+const caption=p=>String(p['image_caption_'+lang]||p.image_caption_ru||t().caption);
+const el=(name,cls,text)=>{const n=document.createElement(name);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
+const link=(url,txt,cls)=>{const a=el('a',cls,txt);a.href=url;return a};
+const detailURL=p=>'/news/?post='+encodeURIComponent(p.slug)+'&lang='+lang;
+function applyLocale(){
+ document.documentElement.lang=lang;
+ const d=t();
+ const menu=document.querySelectorAll('header nav a');
+ if(menu.length>=5)[d.home,d.catalog,d.history,d.news,d.archive].forEach((v,i)=>menu[i].textContent=v);
+ document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+ const set=(selector,txt)=>{const n=document.querySelector(selector);if(n)n.textContent=txt};
+ set('.intro .eyebrow',d.eyebrow);
+ const h=$('front').querySelector('.intro h1');
+ if(h){h.replaceChildren(document.createTextNode(d.hero1),document.createElement('br'));h.append(el('em','',d.hero2))}
+ set('.intro .lead',d.intro);
+ set('#front > .section-head h2',d.head);set('#fresh',d.latest);
+ const b=document.querySelectorAll('.filters .filter');[d.all,d.phones,d.tablets,d.ai,d.software].forEach((v,i)=>{if(b[i])b[i].textContent=v});
+ $('search').placeholder=d.search;
+ const heads=document.querySelectorAll('#front .section-head h2');if(heads[1])heads[1].textContent=d.others;
+ $('archivePrompt').textContent=d.archiveLead;const archive=$('archiveCta');archive.textContent=d.archive+' →';archive.href='/news/archive/'+escapeLang();
+ const archNav=$('navArchive');archNav.href='/news/archive/'+escapeLang();
+ const brand=document.querySelector('header .brand');if(brand)brand.href='/';
+ document.title=(new URLSearchParams(location.search).has('post')?d.news+' — ':'')+'RetroPhone Armenia · '+d.news;
+ try{sessionStorage.setItem('retrophoneLang',lang)}catch(e){}
+}
+function imgBlock(p,large){
+ const frame=el('div',large?'hero-visual':'card-media');
+ if(p.image_url){const img=el('img');img.src=p.image_url;img.alt=caption(p);img.loading=large?'eager':'lazy';img.decoding='async';img.onerror=()=>img.remove();frame.append(img)}
+ if(large&&p.image_source_url){const c=el('div','img-credit');c.append(document.createTextNode(caption(p)+' · '));const a=link(p.image_source_url,(p.image_author||t().author)+' / '+(p.image_license||t().license));a.target='_blank';a.rel='noopener noreferrer';c.append(a);frame.append(c)}
+ return frame;
+}
+function meta(p){const n=el('div','meta');n.append(el('span','',dateLabel(p.source_published_at)),el('span','','·'),el('span','',p.source_name));return n}
+function hero(p){const out=el('article','hero'),info=el('div','hero-info');info.append(el('span','pill','● '+t().last),el('h2','',title(p)),el('p','',excerpt(p)),meta(p),link(detailURL(p),t().read+' →','cta'));out.append(info,imgBlock(p,true));return out}
+function card(p){const out=el('article','card'),imageLink=link(detailURL(p),'');imageLink.append(imgBlock(p,false));out.append(imageLink);
+ if(p.image_source_url){const c=el('div','card-credit');c.append(document.createTextNode(t().illustration+': '));const a=link(p.image_source_url,(p.image_author||t().author)+' · '+p.image_license);a.target='_blank';a.rel='noopener noreferrer';c.append(a);out.append(c)}
+ const b=el('div','card-body');b.append(el('div','tag',category(p.category)),el('h3','',title(p)),el('p','',excerpt(p)),meta(p),link(detailURL(p),t().details+' →','read'));out.append(b);return out;
+}
+function render(){const q=term.toLocaleLowerCase();const filtered=items.filter(p=>(active==='all'||p.category===active)&&(!q||[p.title_ru,p.title_hy,p.title_en,p.excerpt_ru,p.excerpt_hy,p.excerpt_en,p.source_name].join(' ').toLocaleLowerCase().includes(q)));
+ const top=$('featured'),grid=$('cards');top.replaceChildren();grid.replaceChildren();
+ if(!filtered.length){top.append(el('div','status',t().empty));$('count').textContent='0 '+t().count;return}
+ top.append(hero(filtered[0]));filtered.slice(1).forEach(p=>grid.append(card(p)));$('count').textContent=filtered.length+' '+t().count;
+ if(filtered.length===1)grid.append(el('div','status',t().none));
+}
+function renderGallery(root,p){const photos=Array.isArray(p.extra_images)?p.extra_images:[];
+ if(!photos.length)return;
+ root.append(el('h2','gallery-header',t().photoGallery));
+ const grid=el('div','photo-gallery');
+ for(const f of photos){if(!f.image_url||!f.image_source_url)continue;
+  const figure=el('figure'),img=el('img');img.src=f.image_url;img.loading='lazy';img.alt=f['caption_'+lang]||f.caption_ru||t().photo;img.onerror=()=>figure.remove();
+  const cap=el('figcaption');cap.append(document.createTextNode((f['caption_'+lang]||f.caption_ru||t().illustration)+' · '));
+  const credit=link(f.image_source_url,(f.image_author||t().author)+' · '+(f.image_license||t().license));credit.target='_blank';credit.rel='noopener noreferrer';cap.append(credit);figure.append(img,cap);grid.append(figure)
+ }
+ root.append(grid);
+}
+function articlePage(p){
+ $('front').classList.add('hidden');const root=$('single');root.classList.remove('hidden');root.replaceChildren();
+ root.append(link('/news/'+escapeLang(),'← '+t().back,'back'),el('div','eyebrow',category(p.category)),el('h1','',title(p)),el('p','detail-summary',excerpt(p)),meta(p));
+ if(p.image_url){const figure=el('figure','detail-image'),img=el('img');img.src=p.image_url;img.alt=caption(p);img.onerror=()=>figure.remove();figure.append(img);
+  const c=el('figcaption');c.append(document.createTextNode(caption(p)+' · '));const credit=link(p.image_source_url,(p.image_author||t().author)+' / '+(p.image_license||t().license));credit.target='_blank';credit.rel='noopener noreferrer';c.append(credit);figure.append(c);root.append(figure)}
+ const text=el('div','article-body');body(p).split(/\n\s*\n/).filter(Boolean).forEach(line=>text.append(el('p','',line)));root.append(text);renderGallery(root,p);
+ const source=el('aside','detail-source');source.append(el('div','eyebrow',t().source));const a=link(p.source_url,p.source_name+' ↗');a.target='_blank';a.rel='noopener noreferrer nofollow';source.append(a,el('p','meta',t().original+': '+dateLabel(p.source_published_at)));root.append(source,link('/news/'+escapeLang(),'← '+t().backMore,'cta'));
+ document.title=title(p)+' — RetroPhone Armenia';document.documentElement.lang=lang;
+}
+function setLanguage(newLang){lang=newLang;applyLocale();const slug=new URLSearchParams(location.search).get('post');if(slug){const post=items.find(x=>x.slug===slug);if(post)articlePage(post)}else render()}
+document.querySelectorAll('.langbtn').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.cat;document.querySelectorAll('.filter').forEach(n=>n.classList.toggle('active',n===b));render()}));
+$('search').addEventListener('input',e=>{term=String(e.target.value||'').trim();render()});
+async function load(){applyLocale();const slug=new URLSearchParams(location.search).get('post');
+ try{const url=slug?api+'?slug='+encodeURIComponent(slug):api;
+  const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('status '+r.status);
+  const d=await r.json();if(!d.ok||!Array.isArray(d.items))throw Error('invalid_news');
+  items=d.items;
+  if(slug){if(items[0])articlePage(items[0]);else{$('front').classList.add('hidden');const x=$('single');x.classList.remove('hidden');x.append(el('div','status',t().notFound))}}else render();
+ }catch(e){const area=$('featured');area.replaceChildren(el('div','status',t().failed));console.error('news unavailable',e)}
+}
+load();
+})();
+</script>
+</body></html>

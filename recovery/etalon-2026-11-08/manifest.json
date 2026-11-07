@@ -1,0 +1,214 @@
+{
+  "title": "RetroPhone Armenia — immutable working site reference",
+  "reference_date": "2026-11-08",
+  "captured_at": "2026-11-07T21:30:03.757Z",
+  "production_url": "https://retrophone-armenia.vercel.app",
+  "source_deployment_id": "dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu",
+  "source_deployment_url": "https://retrophone-armenia-lo2dvzqz4-harutmusheghyan-4829.vercel.app",
+  "frozen_reference": true,
+  "files": [
+    {
+      "route": "/",
+      "file": "site/index.html",
+      "bytes": 330685,
+      "sha256": "9a66984679c8b44106a70dee38f62012c202b7e60178e0d56e5aba60599896b1",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/news/",
+      "file": "site/news/index.html",
+      "bytes": 27122,
+      "sha256": "2ee7d9a07da9ba31deb2acc72a7fdf99bf3a38d94eb53f95e62175d9d866c243",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/admin/",
+      "file": "site/admin/index.html",
+      "bytes": 28840,
+      "sha256": "17023521820614f81e853a737c0c64e9ea5b340fcb19466e5305e7fd337c308d",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/news/archive/",
+      "file": "site/news/archive/index.html",
+      "bytes": 24851,
+      "sha256": "f04a0e1852d8855c5fa78232f433719d9ff785170b39ee7b7dd1d51894011df6",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/sitemap/",
+      "file": "site/sitemap/index.html",
+      "bytes": 18990,
+      "sha256": "3f2e7de86eecdedf68d4750bb256b13fdf091db650fbb65639f347eddd7bc4b0",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/robots.txt",
+      "file": "site/robots.txt",
+      "bytes": 82,
+      "sha256": "bcd8ed0875874df60b2b7d3795d2438d8f6c25ca2d927ddf944c4e57bbb033d1",
+      "content_type": "text/plain; charset=utf-8"
+    },
+    {
+      "route": "/sitemap.xml",
+      "file": "site/sitemap.xml",
+      "bytes": 2066,
+      "sha256": "0ff7e301c2939001573ea4fb6651feb4bebc5dc38ad91f375b044cca9b14a8a3",
+      "content_type": "application/xml"
+    },
+    {
+      "route": "/assets/retrophone-logo.avif",
+      "file": "site/assets/retrophone-logo.avif",
+      "bytes": 28600,
+      "sha256": "371ba11e089a387dc6cfe72f4d4981c0c835a89abc36b87bb1b29076d6552b02",
+      "content_type": "image/avif"
+    },
+    {
+      "route": "/nokia-101.html",
+      "file": "site/nokia-101.html",
+      "bytes": 18850,
+      "sha256": "11899bfa175fe8a6266ddefaae444fbfd3d94f2e95b203f896abfeb5da8b09c3",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-1110.html",
+      "file": "site/nokia-1110.html",
+      "bytes": 22060,
+      "sha256": "8b37bc979a6ea5fb92c37da0a477cadd45daab5a23a1881fb8282f1a97f33f8b",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-1200.html",
+      "file": "site/nokia-1200.html",
+      "bytes": 23732,
+      "sha256": "461247af89321b385868792121ee6c54376eab5db2e5f857f242685a5d74f726",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-1600.html",
+      "file": "site/nokia-1600.html",
+      "bytes": 23495,
+      "sha256": "9700c6b6bd90f897327131d3bf248d36f17f5ee139cbbc93abd4a5060148345e",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-1610.html",
+      "file": "site/nokia-1610.html",
+      "bytes": 25182,
+      "sha256": "39e54e56f7124ef71ac075587a12015f1a03a80aa09728e234516b366426d03d",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2010.html",
+      "file": "site/nokia-2010.html",
+      "bytes": 24241,
+      "sha256": "2812127aa5cee415ebf6ab72cb97afad95c43dcafcba14bb928799bd5b217729",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2100.html",
+      "file": "site/nokia-2100.html",
+      "bytes": 24420,
+      "sha256": "aac559e108e127413c0328e4700da3dc655cf36b9c089aa495c7539633598cb9",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2110.html",
+      "file": "site/nokia-2110.html",
+      "bytes": 24710,
+      "sha256": "17ab028ef6535acd721cb145d34b272841a6b3faa1022fac64265ea9834e6c19",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2110i.html",
+      "file": "site/nokia-2110i.html",
+      "bytes": 22300,
+      "sha256": "116ca0d1ecbc7e269fdb8445475d9bf77649594e761d5c555d209a25691467c0",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2140.html",
+      "file": "site/nokia-2140.html",
+      "bytes": 19633,
+      "sha256": "052d2f6706c228ef8f846bfb82f3506ab9697741e3ff2ebac81b7295a2542f18",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2300.html",
+      "file": "site/nokia-2300.html",
+      "bytes": 20768,
+      "sha256": "f01d54e9866ddf47a3475098f5ee504d293831d767e942cbdf0d14ba4dfd0017",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2323-classic.html",
+      "file": "site/nokia-2323-classic.html",
+      "bytes": 20546,
+      "sha256": "696147399e9a4373df6bd9b50960de1ca75416a579e2e9482e349db06f370e9f",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2330-classic.html",
+      "file": "site/nokia-2330-classic.html",
+      "bytes": 20663,
+      "sha256": "ce1bf48ee2f0a3bff96cdd2bd9cfed7df08ca46677d74023e9d56ae452c0a781",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2600.html",
+      "file": "site/nokia-2600.html",
+      "bytes": 18276,
+      "sha256": "46a020f912922c5cd04aa459be99b7f8dea73cacbd65061cb8146131fcb9022e",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/nokia-2610.html",
+      "file": "site/nokia-2610.html",
+      "bytes": 18389,
+      "sha256": "992b9d526b692083fed09e26ad11088d0933aa96966d65e192425f6ad8701a8b",
+      "content_type": "text/html; charset=utf-8"
+    }
+  ],
+  "production_checks": [
+    {
+      "url": "https://retrophone-armenia.vercel.app/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 330685,
+      "matches_pinned_homepage": true
+    },
+    {
+      "url": "https://retrophone-armenia.vercel.app/news/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 27122
+    },
+    {
+      "url": "https://retrophone-armenia.vercel.app/admin/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 28840,
+      "admin_editor_loaded": true,
+      "matches_pinned_admin": true
+    },
+    {
+      "url": "https://retrophone-armenia.vercel.app/robots.txt",
+      "http_status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 82
+    },
+    {
+      "url": "https://retrophone-armenia.vercel.app/api/retro-news?limit=1",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 3609
+    }
+  ],
+  "warnings": [],
+  "scope": {
+    "included": "Rendered PUBLIC HTML pages, robots/sitemap and same-site logo as fetched from pinned deployment",
+    "excluded": "Original Vercel function source, logged-in admin data, authentication secrets, database dump, third-party images and hidden asset dependencies",
+    "safe_to_deploy_as_full_site": false
+  },
+  "restore_instructions": "First prefer Vercel rollback to source_deployment_id; do NOT deploy this static reference in place of dynamic production code."
+}
