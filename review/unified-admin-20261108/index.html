@@ -138,6 +138,19 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
  .cms-row>.btn{flex:1 1 100%}
  .cms-admin-preview{max-height:75vh}
 }
+
+/* Existing About data: readable, grouped, full RU/HY/EN fields on phone and PC. */
+.cms-about-fields{display:block}
+.cms-about-lang{display:block;margin:12px 0;border:1px solid #6b5a3e;border-radius:11px;overflow:hidden;background:#122232}
+.cms-about-lang>summary{cursor:pointer;list-style-position:inside;min-height:48px;padding:13px 15px;color:#f2d4a1;font-size:16px;font-weight:700}
+.cms-about-lang[open]>summary{border-bottom:1px solid #6b5a3e;background:#182d40}
+.cms-about-subsection{padding:12px 15px}
+.cms-about-subsection+.cms-about-subsection{border-top:1px solid #35485b}
+.cms-about-subsection h3{font-size:16px;color:#f1d9ac;margin:3px 0 13px}
+.cms-about-subsection .cms-fields{grid-template-columns:minmax(0,1fr);gap:12px}
+.cms-about-subsection label{font-size:14px}
+.cms-about-subsection textarea{font-size:16px;min-height:118px}
+@media(max-width:850px){.cms-about-lang>summary{font-size:16px;padding:14px 12px}.cms-about-subsection{padding:12px 11px}}
 </style></head><body>
 <header><a href="/" class="logo"><img src="/assets/retrophone-logo.avif" alt="">RETROPHONE<small>ARMENIA</small></a><div><a href="/news/">Читать новости</a>　<button type="button" class="btn ghost hidden" id="logout">Выйти</button></div></header>
 <main class="wrap"><section id="login" class="panel auth"><h1>Вход администратора</h1><p class="muted">Используйте свою существующую учётную запись RetroPhone Armenia.</p>
