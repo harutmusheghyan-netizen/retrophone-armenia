@@ -57,10 +57,10 @@ try{
  const body=(await res.text()).slice(0,100000);
  const result={url:previewUrl,http_status:res.status,
    has_demo_banner:body.includes('Демонстрация мобильного оформления'),
-   has_mobile_css:body.includes('RetroPhone admin mobile-only usability patch')};
+   has_mobile_css:body.includes('RetroPhone admin mobile-only usability patch'),html_title:(body.match(/<title>([^<]{0,100})<\/title>/i)||[])[1]||null,content_type:res.headers.get('content-type'),response_bytes:body.length};
  console.log('PREVIEW_HTTP '+JSON.stringify(result));
  if(res.status===200){
-  assert(result.has_demo_banner && result.has_mobile_css, 'preview content mismatch');
+  if(!result.has_demo_banner||!result.has_mobile_css){console.log('PREVIEW_CONTENT_INCORRECT_OR_PROTECTED: '+JSON.stringify({body_start:body.slice(0,160).replace(/\s+/g,' ')}));throw Error('preview content mismatch');}
   console.log('MOBILE_ADMIN_PREVIEW_HTTP_OK');
  }else if(res.status===401||res.status===403){
   console.log('MOBILE_ADMIN_PREVIEW_AUTH_PROTECTED: login to Vercel may be required');
