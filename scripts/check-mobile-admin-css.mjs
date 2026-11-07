@@ -48,3 +48,21 @@ try{
  }
  console.log('MOBILE_ADMIN_CHROMIUM_LAYOUT_OK');
 } finally {fs.rmSync(dir,{recursive:true,force:true});}
+
+const previewUrl='https://retrophone-armenia-admin-7uo3i0zgx-harutmusheghyan-4829.vercel.app/';
+const ctrl=new AbortController();
+const timeout=setTimeout(()=>ctrl.abort(),12000);
+try{
+ const res=await fetch(previewUrl,{redirect:'follow',signal:ctrl.signal});
+ const body=(await res.text()).slice(0,100000);
+ const result={url:previewUrl,http_status:res.status,
+   has_demo_banner:body.includes('Демонстрация мобильного оформления'),
+   has_mobile_css:body.includes('RetroPhone admin mobile-only usability patch')};
+ console.log('PREVIEW_HTTP '+JSON.stringify(result));
+ if(res.status===200){
+  assert(result.has_demo_banner && result.has_mobile_css, 'preview content mismatch');
+  console.log('MOBILE_ADMIN_PREVIEW_HTTP_OK');
+ }else if(res.status===401||res.status===403){
+  console.log('MOBILE_ADMIN_PREVIEW_AUTH_PROTECTED: login to Vercel may be required');
+ }else throw Error('unexpected_preview_http_'+res.status);
+}finally{clearTimeout(timeout)}
