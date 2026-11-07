@@ -185,7 +185,7 @@ BEGIN
    v_license:=nullif(btrim(coalesce(doc->>'image_license','')),'');
    IF length(btrim(coalesce(doc->>'image_credit','')))<2
      OR nullif(btrim(coalesce(doc->>'image_source_url','')),'') IS NULL
-     OR v_license NOT IN ('CC BY 2.0','CC BY 3.0','CC BY 4.0',
+     OR v_license IS NULL OR v_license NOT IN ('CC BY 2.0','CC BY 3.0','CC BY 4.0',
        'CC BY-SA 3.0','CC BY-SA 4.0','CC0','Public domain',
        'Owned by RetroPhone Armenia')
    THEN RAISE EXCEPTION 'cms_photo_license_and_credit_required'; END IF;
