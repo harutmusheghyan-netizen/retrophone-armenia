@@ -1,0 +1,43 @@
+name: Verify RetroPhone live news publication
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+  push:
+    branches:
+      - fix/news-publication-smoke-20261107
+    paths:
+      - scripts/check-news-publication.mjs
+      - .github/workflows/news-publication-smoke.yml
+  pull_request:
+    paths:
+      - scripts/check-news-publication.mjs
+      - .github/workflows/news-publication-smoke.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: news-publication-smoke-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Check live news and publication API
+        run: node scripts/check-news-publication.mjs
+        env:
+          RETROPHONE_BASE_URL: https://retrophone-armenia.vercel.app
+          RETROPHONE_EXPECT_SLUG: google-gemini-omni-1-2-flash-video-2026
+          RETROPHONE_TIMEOUT_MS: '15000'
