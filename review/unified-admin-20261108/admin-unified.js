@@ -67,6 +67,221 @@
       ]
     }
   };
+  // Source-accurate About fields: 29 per language, from the pinned homepage.
+  const aboutInfo=[
+  [
+    "eyebrow",
+    "Надпись над заголовком",
+    "text",
+    "intro"
+  ],
+  [
+    "title",
+    "Заголовок раздела",
+    "text",
+    "intro"
+  ],
+  [
+    "lead",
+    "Вступительный текст",
+    "long",
+    "intro"
+  ],
+  [
+    "since",
+    "Стаж коллекции",
+    "text",
+    "intro"
+  ],
+  [
+    "sinceLabel",
+    "Подпись к стажу",
+    "text",
+    "intro"
+  ],
+  [
+    "founderLabel",
+    "Подпись над именем основателя",
+    "text",
+    "founder"
+  ],
+  [
+    "founder",
+    "Имя и фамилия основателя",
+    "text",
+    "founder"
+  ],
+  [
+    "storyTitle",
+    "Название истории коллекции",
+    "text",
+    "founder"
+  ],
+  [
+    "p1",
+    "История коллекции — абзац 1",
+    "long",
+    "founder"
+  ],
+  [
+    "p2",
+    "История коллекции — абзац 2",
+    "long",
+    "founder"
+  ],
+  [
+    "p3",
+    "История коллекции — абзац 3",
+    "long",
+    "founder"
+  ],
+  [
+    "whyTitle",
+    "Почему создан сайт — заголовок",
+    "text",
+    "purpose"
+  ],
+  [
+    "whyText",
+    "Почему создан сайт — описание",
+    "long",
+    "purpose"
+  ],
+  [
+    "brandsTitle",
+    "История брендов — заголовок",
+    "text",
+    "purpose"
+  ],
+  [
+    "brandsText",
+    "История брендов — текст",
+    "long",
+    "purpose"
+  ],
+  [
+    "companyTitle",
+    "О компании — заголовок",
+    "text",
+    "purpose"
+  ],
+  [
+    "companyText",
+    "О компании — описание",
+    "long",
+    "purpose"
+  ],
+  [
+    "socialTitle",
+    "Социальные сети — заголовок",
+    "text",
+    "social"
+  ],
+  [
+    "socialText",
+    "Социальные сети — описание",
+    "long",
+    "social"
+  ],
+  [
+    "socialBtn",
+    "Соцсети — текст кнопки",
+    "text",
+    "social"
+  ],
+  [
+    "bottom",
+    "Заключительная строка",
+    "long",
+    "social"
+  ],
+  [
+    "catalogBtn",
+    "Кнопка каталога — подпись",
+    "text",
+    "social"
+  ],
+  [
+    "historyBtn",
+    "Кнопка истории — подпись",
+    "text",
+    "social"
+  ],
+  [
+    "subtle",
+    "Пояснение о наличии телефонов",
+    "long",
+    "social"
+  ],
+  [
+    "footerSocial",
+    "Нижний блок — социальная сеть",
+    "text",
+    "footer"
+  ],
+  [
+    "footerProject",
+    "Нижний блок — описание проекта",
+    "text",
+    "footer"
+  ],
+  [
+    "footerCatalog",
+    "Нижний блок — каталог",
+    "text",
+    "footer"
+  ],
+  [
+    "footerHistory",
+    "Нижний блок — истории брендов",
+    "text",
+    "footer"
+  ],
+  [
+    "footerSale",
+    "Нижний блок — наличие",
+    "long",
+    "footer"
+  ]
+];
+  const aboutLanguages=[['ru','Русский'],['hy','Հայերեն'],['en','English']];
+  const aboutGroups={
+    intro:'Заголовок и вступление',founder:'Основатель и история коллекции',
+    purpose:'Миссия проекта и бренды',social:'Кнопки, ссылки и заключение',
+    footer:'Нижний блок страницы'
+  };
+  panels.about.fields=[
+    ...aboutLanguages.flatMap(([lang,language])=>aboutInfo.map(([key,label,kind])=>
+      ['about_'+key+'_'+lang,label+' — '+language,kind])),
+    ['image_url','Новая лицензированная фотография','url'],
+    ['image_source_url','Источник новой фотографии','url'],
+    ['image_credit','Автор новой фотографии','text'],
+    ['image_license','Лицензия новой фотографии','license']
+  ];
+  let cachedAboutBaseline=null;
+  async function getOriginalAbout() {
+    if(!cachedAboutBaseline){
+      const response=await fetch('/about-etalon-data.json',{cache:'no-store'});
+      if(!response.ok)throw new Error('Не удалось загрузить сохранённые тексты «О нас» ('+response.status+'). Не редактируйте пустую форму.');
+      const data=await response.json();
+      const keys=aboutInfo.map(entry=>entry[0]);
+      if(data.schema_version!==1 ||
+         data.source?.deployment_id!=='dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu' ||
+         data.keys?.length!==keys.length ||
+         keys.some(key=>!data.keys.includes(key)) ||
+         aboutLanguages.some(([lang])=>keys.some(key=>typeof data[lang]?.[key]!=='string'||!data[lang][key].trim()))) {
+        throw new Error('Сохранённые тексты «О нас» не прошли проверку полноты. Запись отключена.');
+      }
+      cachedAboutBaseline=data;
+    }
+    const doc={};
+    for(const [lang] of aboutLanguages) {
+      for(const [key] of aboutInfo)
+        doc['about_'+key+'_'+lang]=cachedAboutBaseline[lang][key];
+    }
+    return doc;
+  }
+
   const blockLabels = [
     {key:'hero',label:'Главный заголовок / приветствие'},
     {key:'about_excerpt',label:'Краткий блок «О нас»'},
@@ -191,8 +406,51 @@
     return wrap;
   }
   function showForm(doc) {
-    $('cmsFields').replaceChildren();
-    for(const cfg of panels[section].fields)$('cmsFields').appendChild(fieldNode(cfg,doc));
+    const fieldsRoot=$('cmsFields');
+    fieldsRoot.replaceChildren();
+    fieldsRoot.classList.toggle('cms-about-fields',section==='about');
+    if(section==='about'){
+      for(const [lang,language] of aboutLanguages){
+        const details=document.createElement('details');
+        details.className='cms-about-lang';
+        details.open=lang==='ru';
+        const summary=document.createElement('summary');
+        const total=aboutInfo.filter(([key])=>String(doc['about_'+key+'_'+lang]||'').trim()).length;
+        summary.textContent=language+' — заполнено '+total+' из '+aboutInfo.length+' полей';
+        details.appendChild(summary);
+        for(const [groupName,groupTitle] of Object.entries(aboutGroups)){
+          const group=document.createElement('section');
+          group.className='cms-about-subsection';
+          const heading=document.createElement('h3');
+          heading.textContent=groupTitle;
+          group.appendChild(heading);
+          const grid=document.createElement('div');
+          grid.className='cms-fields';
+          for(const [key,label,kind,groupCode] of aboutInfo){
+            if(groupCode!==groupName)continue;
+            grid.appendChild(fieldNode(['about_'+key+'_'+lang,label,kind],doc));
+          }
+          group.appendChild(grid);
+          details.appendChild(group);
+        }
+        fieldsRoot.appendChild(details);
+      }
+      const photo=document.createElement('details');
+      photo.className='cms-about-lang';
+      const photoSummary=document.createElement('summary');
+      photoSummary.textContent='Фотография — существующая сохраняется без изменения';
+      photo.appendChild(photoSummary);
+      const photoInfo=document.createElement('p');
+      photoInfo.className='cms-hint';
+      photoInfo.textContent='В утверждённой странице уже установлена фотография основателя. Если здесь не указывать новую, исходная фотография остаётся на сайте.';
+      photo.appendChild(photoInfo);
+      const grid=document.createElement('div');grid.className='cms-fields';
+      for(const cfg of panels.about.fields.filter(([key])=>key.startsWith('image_')))
+        grid.appendChild(fieldNode(cfg,doc));
+      photo.appendChild(grid);fieldsRoot.appendChild(photo);
+    }else{
+      for(const cfg of panels[section].fields)fieldsRoot.appendChild(fieldNode(cfg,doc));
+    }
     $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
     const hasValues=doc.price_amd!==undefined && doc.stock_quantity!==undefined;
     $('cmsChangeInventory').checked=hasValues;
@@ -243,9 +501,11 @@
       if(r.error)throw r.error;
       Object.assign(doc,r.data?.document||{});
     } else if(section==='about'||section==='homepage') {
+      if(section==='about')Object.assign(doc,await getOriginalAbout());
       const r=await client.from('cms_published_blocks').select('document')
         .eq('section',section).eq('record_key',item.key).maybeSingle();
       if(r.error)throw r.error;
+      // Published CMS edits always take precedence over the immutable original.
       Object.assign(doc,r.data?.document||{});
     }
     return doc;
@@ -287,6 +547,18 @@
     }
     if(!doc.image_url){
       delete doc.image_source_url;delete doc.image_credit;delete doc.image_license;
+    }
+    if(section==='about'){
+      for(const [lang] of aboutLanguages) {
+        for(const [key] of aboutInfo) {
+          if(!String(doc['about_'+key+'_'+lang]||'').trim())
+            throw new Error('Заполните исходный текст «О нас»: '+key+' ('+lang+').');
+        }
+        doc['title_'+lang]=doc['about_title_'+lang];
+        doc['body_'+lang]=[
+          'lead','p1','p2','p3','whyText','brandsText','companyText'
+        ].map(key=>doc['about_'+key+'_'+lang]).join('\n\n');
+      }
     }
     if(section==='catalog' && $('cmsChangeInventory').checked){
       const price=$('cmsPrice').value.trim();
