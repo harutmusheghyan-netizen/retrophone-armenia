@@ -1,0 +1,439 @@
+
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const client = window.__retroAdminClient;
+  if (!client) {
+    console.error('RetroPhone unified editor: existing authentication client missing');
+    return;
+  }
+
+  const panels = {
+    catalog: {
+      title: 'Каталог телефонов',
+      intro: 'Выберите модель. Описания на трёх языках обязательны для публикации. Фото, цены и наличие можно оставить без изменений.',
+      warning: 'Каталог использует действующую базу моделей. После публикации проверяйте карточку на сайте отдельно.',
+      fields: [
+        ['model_name','Название модели','text'],
+        ['release_year','Год выпуска / объявления','number'],
+        ['description_ru','Описание модели (Русский)','long'],
+        ['description_hy','Նկարագրություն (Հայերեն)','long'],
+        ['description_en','Description (English)','long'],
+        ['image_url','Новая фотография (ссылка Wikimedia Special:FilePath)','url'],
+        ['image_source_url','Страница файла на Wikimedia Commons','url'],
+        ['image_credit','Автор фотографии','text'],
+        ['image_license','Лицензия фотографии','license']
+      ]
+    },
+    brand: {
+      title: 'История брендов',
+      intro: 'Редактирование истории производителей на русском, армянском и английском языках.',
+      warning: 'Публикация обновляет редакционную базу, но отдельные статические страницы истории брендов ещё не подключены к ней.',
+      fields: [
+        ['history_ru','История бренда (Русский)','long'],
+        ['history_hy','Բրենդի պատմություն (Հայերեն)','long'],
+        ['history_en','Brand history (English)','long'],
+        ['image_url','Фотография или логотип (Wikimedia)','url'],
+        ['image_source_url','Страница источника фотографии','url'],
+        ['image_credit','Автор фотографии','text'],
+        ['image_license','Лицензия фотографии','license']
+      ]
+    },
+    about: {
+      title: 'О нас',
+      intro: 'Переводы, текст и иллюстрация страницы «О нас». Оформление главной страницы не изменяется.',
+      warning: 'Сохранение публикации в редакционной базе не меняет действующую статическую страницу. Показ на сайте подключается после отдельного теста.',
+      fields: [
+        ['title_ru','Заголовок (Русский)','text'],
+        ['title_hy','Վերնագիր (Հայերեն)','text'],
+        ['title_en','Title (English)','text'],
+        ['body_ru','О нас (Русский)','long'],
+        ['body_hy','Մեր մասին (Հայերեն)','long'],
+        ['body_en','About us (English)','long'],
+        ['image_url','Фото (Wikimedia или лицензированное)','url'],
+        ['image_source_url','Источник фотографии','url'],
+        ['image_credit','Автор фотографии','text'],
+        ['image_license','Лицензия фотографии','license']
+      ]
+    },
+    homepage: {
+      title: 'Главная страница — только текст',
+      intro: 'Редактируются только разрешённые текстовые блоки. CSS, HTML, расположение элементов и навигация защищены от изменения.',
+      warning: 'Эта панель пока готовит содержимое в редакционной базе. Главная страница остаётся неизменной, пока не будет подключён проверенный адаптер.',
+      fields: [
+        ['text_ru','Текст блока (Русский)','long'],
+        ['text_hy','Բլոկի տեքստ (Հայերեն)','long'],
+        ['text_en','Block text (English)','long']
+      ]
+    }
+  };
+  const blockLabels = [
+    {key:'hero',label:'Главный заголовок / приветствие'},
+    {key:'about_excerpt',label:'Краткий блок «О нас»'},
+    {key:'news_heading',label:'Заголовок блока новостей'},
+    {key:'catalog_heading',label:'Заголовок каталога'},
+    {key:'footer_note',label:'Подпись в нижней части'}
+  ];
+  const licenses=['','CC BY 2.0','CC BY 3.0','CC BY 4.0','CC BY-SA 3.0','CC BY-SA 4.0','CC0','Public domain','Owned by RetroPhone Armenia'];
+
+  let section = 'news';
+  let brands = null;
+  let catalogModels = null;
+  let targetList = [];
+  let current = null;
+  let busy = false;
+
+  function setStatus(message, isError=false) {
+    const node=$('cmsStatus');
+    node.classList.toggle('hidden', !message);
+    node.classList.toggle('bad',isError);
+    node.classList.toggle('good',!isError);
+    node.textContent=message||'';
+  }
+  function setBusy(active) {
+    busy=active;
+    $('cmsSave').disabled=active||!current;
+    $('cmsPreview').disabled=active||!current;
+    $('cmsPublish').disabled=active||!current||!current.previewed;
+    $('cmsPublishFromPreview').disabled=active||!current||!current.previewed;
+  }
+  async function checkAdmin() {
+    const {data,error}=await client.auth.getUser();
+    if(error||!data?.user)throw Error('Войдите в административную панель.');
+    const a=await client.from('admin_users').select('user_id').eq('user_id',data.user.id).maybeSingle();
+    if(a.error||!a.data)throw Error('Нет подтверждённых прав администратора.');
+    return data.user;
+  }
+  async function getBrands() {
+    if(brands)return brands;
+    const r=await client.from('brands').select('id,name,slug,short_history,history_url').order('sort_order',{ascending:true}).limit(50);
+    if(r.error)throw r.error;
+    brands=r.data||[];
+    return brands;
+  }
+  async function getModels() {
+    if(catalogModels)return catalogModels;
+    await getBrands();
+    const r=await client.from('phone_models')
+      .select('id,brand_id,model_name,release_year,description')
+      .order('brand_id',{ascending:true}).order('model_name',{ascending:true}).range(0,999);
+    if(r.error)throw r.error;
+    catalogModels=(r.data||[]).map(m => {
+      const brand=brands.find(b=>b.id===m.brand_id);
+      return {key:String(m.id),label:(brand?.name||'')+' '+m.model_name,model:m};
+    });
+    return catalogModels;
+  }
+  async function buildTargets(nextSection) {
+    if(nextSection==='catalog')return await getModels();
+    if(nextSection==='brand')return (await getBrands()).map(b=>({
+      key:String(b.id),label:b.name,brand:b
+    }));
+    if(nextSection==='about')return [{key:'main',label:'Страница «О нас»'}];
+    if(nextSection==='homepage')return blockLabels;
+    return [];
+  }
+  function renderTargets() {
+    const list=$('cmsList');list.replaceChildren();
+    const q=$('cmsFilter').value.toLocaleLowerCase().trim();
+    const visible=targetList.filter(t=>t.label.toLocaleLowerCase().includes(q));
+    for(const item of visible.slice(0,100)) {
+      const button=document.createElement('button');
+      button.type='button';button.className='cms-entry';
+      button.classList.toggle('selected',current?.key===item.key);
+      button.textContent=item.label;
+      button.addEventListener('click',()=>run(()=>openTarget(item)));
+      list.appendChild(button);
+    }
+    if(!visible.length) {
+      const p=document.createElement('p');p.className='muted';
+      p.textContent='Ничего не найдено.';list.appendChild(p);
+    } else if(visible.length>100) {
+      const p=document.createElement('p');p.className='muted';
+      p.textContent='Показаны первые 100 моделей. Уточните поиск.';list.appendChild(p);
+    }
+  }
+  function fieldNode(cfg, doc) {
+    const [key,label,kind]=cfg;
+    const wrap=document.createElement('div');
+    if(kind==='long'||kind==='url')wrap.classList.add('wide');
+    const lbl=document.createElement('label');
+    lbl.textContent=label;lbl.htmlFor='cms_'+key;wrap.appendChild(lbl);
+    let input;
+    if(kind==='long') {
+      input=document.createElement('textarea');
+      input.className='large';input.maxLength=12000;
+    } else if(kind==='license') {
+      input=document.createElement('select');
+      for(const name of licenses){
+        const opt=document.createElement('option');
+        opt.value=name;opt.textContent=name||'Не изменять фото / выбрать лицензию';
+        input.appendChild(opt);
+      }
+    } else {
+      input=document.createElement('input');
+      input.type=kind;
+      if(kind==='number') {
+        input.min='1970';input.max='2026';input.step='1';
+      }
+      input.maxLength=2000;
+    }
+    input.id='cms_'+key;input.dataset.cmsField=key;
+    const value=doc[key];
+    if(value!==null && value!==undefined)input.value=String(value);
+    input.addEventListener('input',invalidate);
+    wrap.appendChild(input);
+    if(key==='image_url') {
+      const hint=document.createElement('p');hint.className='cms-field-desc';
+      hint.textContent='Если оставить пустым, действующая фотография останется без изменений.';
+      wrap.appendChild(hint);
+    }
+    return wrap;
+  }
+  function showForm(doc) {
+    $('cmsFields').replaceChildren();
+    for(const cfg of panels[section].fields)$('cmsFields').appendChild(fieldNode(cfg,doc));
+    $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
+    const hasValues=doc.price_amd!==undefined && doc.stock_quantity!==undefined;
+    $('cmsChangeInventory').checked=hasValues;
+    $('cmsInventoryFields').classList.toggle('hidden',!hasValues);
+    $('cmsPrice').value=hasValues?String(doc.price_amd):'';
+    $('cmsStock').value=hasValues?String(doc.stock_quantity):'';
+    $('cmsCondition').value=String(doc.condition||'');
+    $('cmsProductPublished').checked=doc.is_published===true;
+    $('cmsPublish').textContent=section==='catalog'?
+      'Опубликовать карточку в базе':
+      'Зафиксировать содержимое в базе';
+    $('cmsPublishFromPreview').textContent=$('cmsPublish').textContent;
+    $('cmsSave').disabled=false;$('cmsPreview').disabled=false;
+    $('cmsPublish').disabled=true;
+  }
+  async function getExistingContent(item) {
+    const doc={};
+    if(section==='catalog') {
+      const id=Number(item.key);
+      const [base,trans,products]=await Promise.all([
+        client.from('phone_models')
+          .select('id,model_name,release_year,description,hero_image_url,image_source_url,image_credit,image_license')
+          .eq('id',id).single(),
+        client.from('phone_model_translations')
+          .select('language_code,description').eq('phone_model_id',id),
+        client.from('products')
+          .select('price_amd,stock_quantity,condition,is_published')
+          .eq('phone_model_id',id).order('id',{ascending:true}).limit(1)
+      ]);
+      if(base.error||trans.error||products.error)throw base.error||trans.error||products.error;
+      doc.model_name=base.data.model_name;
+      doc.release_year=base.data.release_year||'';
+      doc.description_ru=base.data.description||'';
+      for(const translation of trans.data||[])
+        doc['description_'+translation.language_code]=translation.description||'';
+      current.product=(products.data||[])[0]||null;
+      current.previousImage=base.data.hero_image_url||null;
+      // Media fields stay blank to preserve existing media on normal text edits.
+      $('cmsCurrentStock').textContent=current.product?
+       'Сейчас в базе: '+(current.product.price_amd??'цена не указана')+
+       ' AMD, количество '+current.product.stock_quantity+
+       '. Изменение возможно только после включения переключателя.':
+       'Цена и наличие для этой модели пока не указаны. Ничего не подставляется автоматически.';
+    } else if(section==='brand') {
+      doc.history_ru=item.brand.short_history||'';
+      const r=await client.from('cms_published_blocks')
+        .select('document').eq('section','brand').eq('record_key',item.key).maybeSingle();
+      if(r.error)throw r.error;
+      Object.assign(doc,r.data?.document||{});
+    } else if(section==='about'||section==='homepage') {
+      const r=await client.from('cms_published_blocks').select('document')
+        .eq('section',section).eq('record_key',item.key).maybeSingle();
+      if(r.error)throw r.error;
+      Object.assign(doc,r.data?.document||{});
+    }
+    return doc;
+  }
+  async function openTarget(item) {
+    if(busy)return;
+    await checkAdmin();
+    current={key:item.key,label:item.label,revision:0,previewed:false,product:null,previousImage:null};
+    $('cmsRecordTitle').textContent=item.label;
+    $('cmsRecordSubtitle').textContent='Загрузка данных...';
+    setStatus('');
+    const original=await getExistingContent(item);
+    const r=await client.from('cms_editor_drafts')
+      .select('id,document,revision,published_revision,updated_at')
+      .eq('section',section).eq('record_key',item.key).maybeSingle();
+    if(r.error)throw r.error;
+    if(r.data) {
+      current.id=r.data.id;current.revision=r.data.revision;
+      Object.assign(original,r.data.document||{});
+    }
+    showForm(original);
+    $('cmsRecordSubtitle').textContent=(r.data?'Сохранённый черновик':'Данные действующей базы')+
+      ' · редакция '+(current.revision||'новая');
+    renderTargets();
+  }
+  function collectDocument() {
+    const doc={};
+    for(const cfg of panels[section].fields){
+      const [key,,kind]=cfg;
+      const field=$('cms_'+key);let val=(field.value||'').trim();
+      if(!val && ['model_name','release_year','image_url','image_source_url','image_credit','image_license'].includes(key))
+        continue;
+      if(kind==='number'&&val){
+        const year=Number(val);
+        if(!Number.isInteger(year)||year<1970||year>2026)
+          throw Error('Проверьте год выпуска: 1970–2026.');
+      }
+      doc[key]=val;
+    }
+    if(!doc.image_url){
+      delete doc.image_source_url;delete doc.image_credit;delete doc.image_license;
+    }
+    if(section==='catalog' && $('cmsChangeInventory').checked){
+      const price=$('cmsPrice').value.trim();
+      const qty=$('cmsStock').value.trim();
+      if(!/^\d+(\.\d{1,2})?$/.test(price)||!/^\d+$/.test(qty))
+        throw Error('Укажите настоящую цену и неотрицательное целое количество.');
+      doc.price_amd=price;
+      doc.stock_quantity=qty;
+      doc.condition=$('cmsCondition').value.trim();
+      doc.is_published=$('cmsProductPublished').checked;
+    }
+    return doc;
+  }
+  function invalidate() {
+    if(!current)return;
+    current.previewed=false;
+    $('cmsPublish').disabled=true;
+    $('cmsPublishFromPreview').disabled=true;
+  }
+  async function saveDraft() {
+    if(!current)throw Error('Сначала выберите страницу или модель.');
+    await checkAdmin();
+    const payload=collectDocument();
+    const r=await client.rpc('cms_save_admin_draft',{
+      p_section:section,p_record_key:current.key,
+      p_document:payload,p_expected_revision:current.revision
+    });
+    if(r.error||!r.data?.ok)throw r.error||Error('Не удалось сохранить черновик.');
+    current.id=r.data.id;
+    current.revision=r.data.revision;
+    current.document=payload;
+    current.previewed=false;
+    $('cmsPublish').disabled=true;
+    $('cmsRecordSubtitle').textContent='Черновик сохранён · редакция '+current.revision;
+    setStatus('Черновик сохранён в защищённой редакционной базе. На действующем сайте ничего не изменилось.');
+    return current;
+  }
+  function previewDocument(doc) {
+    const root=$('cmsPreviewContent');root.replaceChildren();
+    const h=document.createElement('h2');h.textContent=current.label;root.appendChild(h);
+    const labels=new Map(panels[section].fields.map(f=>[f[0],f[1]]));
+    for(const [key,val] of Object.entries(doc)) {
+      const heading=document.createElement('h3');
+      heading.textContent=labels.get(key)||key;
+      const p=document.createElement('p');
+      p.textContent=String(val??'');
+      root.append(heading,p);
+    }
+    if(section==='catalog'){
+      const p=document.createElement('p');p.className='cms-hint';
+      p.textContent='Если фотография не изменялась, ранее опубликованное фото сохраняется. Цена и наличие меняются только при включённом переключателе.';
+      root.appendChild(p);
+    }
+    if(section!=='catalog'){
+      const p=document.createElement('p');p.className='cms-hint';
+      p.textContent='Эта страница пока статическая. После подтверждения текст будет в редакционной базе, но на сайте появится только после подключения блока.';
+      root.appendChild(p);
+    }
+    $('cmsModal').classList.remove('hidden');
+  }
+  async function previewDraft(){
+    const data=await saveDraft();
+    const r=await client.rpc('cms_preview_admin_draft',{
+      p_id:data.id,p_expected_revision:data.revision
+    });
+    if(r.error||!r.data?.ok)throw r.error||Error('Не удалось открыть предпросмотр.');
+    current.previewed=true;
+    previewDocument(r.data.document);
+    $('cmsPublish').disabled=false;
+    $('cmsPublishFromPreview').disabled=false;
+    setStatus('Предпросмотр зарегистрирован. Публикация доступна только для этой редакции.');
+  }
+  async function publishDraft(){
+    if(!current?.previewed)throw Error('Сначала проверьте текущую редакцию через «Предпросмотр».');
+    const warning=section==='catalog'?
+      'Опубликовать изменения карточки в рабочую базу? Изменения могут быть видны в каталоге.':
+      'Зафиксировать содержимое в базе? Статическая страница пока не обновится.';
+    if(!window.confirm(warning))return;
+    await checkAdmin();
+    const r=await client.rpc('cms_publish_admin_draft',{
+      p_id:current.id,p_expected_revision:current.revision
+    });
+    if(r.error||!r.data?.ok)throw r.error||Error('Сервер не подтвердил публикацию.');
+    $('cmsModal').classList.add('hidden');
+    current.previewed=false;
+    $('cmsPublish').disabled=true;
+    $('cmsPublishFromPreview').disabled=true;
+    setStatus(r.data.live_site_verified?
+       'Опубликовано и проверено на сайте.':
+       'Сохранено в редакционной базе. Статус синхронизации: '+
+       r.data.site_sync_status+
+       '. Отображение на действующей странице ещё не подтверждено.');
+  }
+  async function changeSection(next) {
+    if(busy)return;
+    if(next==='news'){
+      section=next;current=null;
+      $('newsArea').classList.remove('hidden');
+      $('cmsPanel').classList.add('hidden');
+    } else {
+      await checkAdmin();
+      section=next;current=null;
+      $('newsArea').classList.add('hidden');
+      $('cmsPanel').classList.remove('hidden');
+      $('cmsHeading').textContent=panels[next].title;
+      $('cmsIntro').textContent=panels[next].intro;
+      $('cmsWarning').textContent=panels[next].warning;
+      $('cmsRecordTitle').textContent='Выберите запись слева';
+      $('cmsRecordSubtitle').textContent='';
+      $('cmsFields').replaceChildren();
+      $('cmsInventoryBox').classList.add('hidden');
+      $('cmsSave').disabled=true;$('cmsPreview').disabled=true;$('cmsPublish').disabled=true;
+      $('cmsFilter').value='';
+      targetList=await buildTargets(next);
+      renderTargets();
+      if(targetList.length===1)await openTarget(targetList[0]);
+    }
+    document.querySelectorAll('[data-cms-tab]').forEach(button=>{
+      const active=button.dataset.cmsTab===next;
+      button.classList.toggle('active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+  }
+  function run(fn){
+    Promise.resolve().then(fn).catch(error=>{
+      console.error('RetroPhone unified admin:',error?.message||error);
+      setStatus(error?.message||String(error),true);
+    }).finally(()=>setBusy(false));
+  }
+  for(const button of document.querySelectorAll('[data-cms-tab]')){
+    button.addEventListener('click',()=>run(()=>changeSection(button.dataset.cmsTab)));
+  }
+  $('cmsFilter').addEventListener('input',renderTargets);
+  $('cmsChangeInventory').addEventListener('change',()=>{
+    $('cmsInventoryFields').classList.toggle('hidden',!$('cmsChangeInventory').checked);
+    if($('cmsChangeInventory').checked&&current?.product){
+      $('cmsPrice').value=String(current.product.price_amd??'');
+      $('cmsStock').value=String(current.product.stock_quantity??'');
+      $('cmsCondition').value=current.product.condition||'';
+      $('cmsProductPublished').checked=current.product.is_published===true;
+    }
+    invalidate();
+  });
+  $('cmsForm').addEventListener('input',invalidate);
+  $('cmsSave').addEventListener('click',()=>run(async()=>{setBusy(true);await saveDraft()}));
+  $('cmsPreview').addEventListener('click',()=>run(async()=>{setBusy(true);await previewDraft()}));
+  $('cmsPublish').addEventListener('click',()=>run(async()=>{setBusy(true);await publishDraft()}));
+  $('cmsPublishFromPreview').addEventListener('click',()=>run(async()=>{setBusy(true);await publishDraft()}));
+  $('cmsClosePreview').addEventListener('click',()=>$('cmsModal').classList.add('hidden'));
+})();
