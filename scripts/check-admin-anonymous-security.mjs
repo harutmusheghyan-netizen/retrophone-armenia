@@ -50,9 +50,9 @@ const legacyResponse=await fetch(legacyUrl,{headers:{Accept:'text/html'},redirec
 const legacyHtml=await legacyResponse.text();
 const recoveryAssessment={
   legacy_admin_http:legacyResponse.status,
-  admin_html:/(?:<html\\b|<!doctype\\s+html)/i.test(legacyHtml),
-  has_password_update_api:/\\.updateUser\\s*\\(/.test(legacyHtml),
-  has_password_recovery_handler:/PASSWORD_RECOVERY|type=['"]recovery|type\\s*===?\\s*['"]recovery/i.test(legacyHtml),
+  admin_html:/(?:<html\b|<!doctype\s+html)/i.test(legacyHtml),
+  has_password_update_api:/\.updateUser\s*\(/.test(legacyHtml),
+  has_password_recovery_handler:/PASSWORD_RECOVERY|type=['"]recovery|type\s*===?\s*['"]recovery/i.test(legacyHtml),
   has_recovery_form:/восстанов|парол|reset|recover|password/i.test(legacyHtml)
 };
 console.log('STANDALONE_ADMIN_RECOVERY_CHECK '+JSON.stringify(recoveryAssessment));
