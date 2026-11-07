@@ -13,6 +13,7 @@ const match=original.match(/const ABOUT_I18N = (\{[^\n]+\});/);
 assert(match,'Original approved About translations not found');
 const exact=JSON.parse(match[1]);
 assert.deepEqual({ru:baseline.ru,hy:baseline.hy,en:baseline.en},exact);
+assert.equal(baseline.founder_photo.data_url,(original.match(/<img class="about-founder-photo" src="(data:image\/webp;base64,[A-Za-z0-9+/=]+)"/)||[])[1], 'Original photo must match the approved page');
 for(const lang of ['ru','hy','en'])assert.equal(baseline.keys.filter(k=>exact[lang][k]?.trim()).length,29);
 const html=fs.readFileSync(root+'/index.html','utf8');
 const js=fs.readFileSync(root+'/admin-unified.js','utf8');
@@ -51,6 +52,9 @@ try {
   'const matches=document.getElementById("cms_about_title_ru")?.value===b.ru.title',
   ' &&document.getElementById("cms_about_p1_hy")?.value===b.hy.p1',
   ' &&document.getElementById("cms_about_founder_en")?.value===b.en.founder;',
+  'const pic=document.querySelector(".cms-about-original-photo");',
+  'const photoOk=pic?.getAttribute("src")===b.founder_photo.data_url;',
+  'document.documentElement.dataset.aboutPhoto=String(photoOk);',
   'document.documentElement.dataset.aboutLoaded=String(matches&&n===87);',
   'document.documentElement.dataset.aboutFields=String(n);',
   'if(matches){document.getElementById("cmsSave").click();',
@@ -72,9 +76,11 @@ try {
   {encoding:'utf8',timeout:25000,stdio:['ignore','pipe','ignore']});
  const loaded=result.match(/data-about-loaded="([^"]+)"/)?.[1],
   saved=result.match(/data-about-save="([^"]+)"/)?.[1],
-  count=result.match(/data-about-fields="([^"]+)"/)?.[1];
- console.log(JSON.stringify({loaded,saved,count}));
+  count=result.match(/data-about-fields="([^"]+)"/)?.[1],
+  photo=result.match(/data-about-photo="([^"]+)"/)?.[1];
+ console.log(JSON.stringify({loaded,saved,count,photo}));
  assert.equal(loaded,'true','Prior approved About text is not visible in editor');
  assert.equal(saved,'true','About draft did not include all prior text');
+ assert.equal(photo,'true','Original founder photo not visible in the editor preview');
  console.log('ABOUT_MOBILE_EDITOR_PREFILL_AND_DRAFT_OK');
 }finally{fs.rmSync(temp,{recursive:true,force:true});}
