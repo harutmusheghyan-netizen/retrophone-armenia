@@ -12,6 +12,7 @@ on:
   pull_request:
     branches:
       - backup/mobile-1-20261108
+      - feature/unified-admin-20261108
   workflow_dispatch:
 permissions:
   contents: read
