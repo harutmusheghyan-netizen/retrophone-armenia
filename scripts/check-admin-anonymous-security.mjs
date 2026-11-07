@@ -45,4 +45,17 @@ for(const test of checks) {
     throw Error('ANONYMOUS_ACCESS_NOT_CONCLUSIVELY_DENIED:'+test.name+':'+res.status);
  } finally {clearTimeout(timeout)}
 }
+const legacyUrl='https://retrophone-armenia-admin.vercel.app/';
+const legacyResponse=await fetch(legacyUrl,{headers:{Accept:'text/html'},redirect:'error'});
+const legacyHtml=await legacyResponse.text();
+const recoveryAssessment={
+  legacy_admin_http:legacyResponse.status,
+  admin_html:/(?:<html\\b|<!doctype\\s+html)/i.test(legacyHtml),
+  has_password_update_api:/\\.updateUser\\s*\\(/.test(legacyHtml),
+  has_password_recovery_handler:/PASSWORD_RECOVERY|type=['"]recovery|type\\s*===?\\s*['"]recovery/i.test(legacyHtml),
+  has_recovery_form:/восстанов|парол|reset|recover|password/i.test(legacyHtml)
+};
+console.log('STANDALONE_ADMIN_RECOVERY_CHECK '+JSON.stringify(recoveryAssessment));
+if(legacyResponse.status!==200||!recoveryAssessment.admin_html)
+ throw Error('legacy_admin_unavailable');
 console.log('ADMIN_ANONYMOUS_SECURITY_SMOKE_OK');
