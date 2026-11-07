@@ -16,6 +16,7 @@ const OUT='recovery/etalon-2026-11-08';
 const pages=[
  ['/', 'site/index.html','html',true],
  ['/news/','site/news/index.html','html',true],
+ ['/admin/','site/admin/index.html','html',true],
  ['/news/archive/','site/news/archive/index.html','html',false],
  ['/sitemap/','site/sitemap/index.html','html',false],
  ['/robots.txt','site/robots.txt','text',true],
@@ -61,6 +62,10 @@ for(const [route,file,kind,required] of pages){
   if(required)throw new Error('required_reference_not_html '+route);
   warnings.push({route,error:'unexpected_content_type'});continue;
  }
+ if(route==='/admin/'){
+  const html=reply.body.toString('utf8');
+  if(/(?:service_role|SUPABASE_SERVICE_ROLE_KEY|BEGIN PRIVATE KEY)/i.test(html))throw Error('admin_page_possible_secret_exposure');
+ }
  const dst=path.join(OUT,file);
  await fs.mkdir(path.dirname(dst),{recursive:true});
  await fs.writeFile(dst,reply.body);
@@ -70,9 +75,14 @@ for(const [route,file,kind,required] of pages){
  console.log('SAVED '+route+' '+entry.bytes+' bytes SHA256='+entry.sha256.slice(0,14));
 }
 if(!mainSourceHash)throw Error('fatal_reference_homepage_missing');
-for(const route of ['/','/news/','/robots.txt','/api/retro-news?limit=1']){
+for(const route of ['/','/news/','/admin/','/robots.txt','/api/retro-news?limit=1']){
  let r=await fetchRoute(PRODUCTION,route);
  const probe={url:PRODUCTION+route,http_status:r.status,content_type:r.content_type,bytes:r.body.length};
+ if(route==='/admin/'){
+  const body=r.body.toString('utf8');
+  probe.admin_editor_loaded=/(?:<html\\b|<!doctype\\s+html)/i.test(body)&&/retrophone/i.test(body)&&/noindex/i.test(body);
+  if(!probe.admin_editor_loaded)throw Error('admin_editor_not_detected');
+ }
  if(route==='/') {
   probe.matches_pinned_homepage=hash(r.body)===mainSourceHash;
   if(!probe.matches_pinned_homepage)throw Error('production_homepage_differs_from_pinned_etalon');
@@ -93,7 +103,7 @@ const report={
  warnings,
  scope:{
   included:'Rendered PUBLIC HTML pages, robots/sitemap and same-site logo as fetched from pinned deployment',
-  excluded:'Original Vercel function source, private admin data, environment secrets, database dump, third-party images and hidden asset dependencies',
+  excluded:'Original Vercel function source, logged-in admin data, authentication secrets, database dump, third-party images and hidden asset dependencies',
   safe_to_deploy_as_full_site:false
  },
  restore_instructions:'First prefer Vercel rollback to source_deployment_id; do NOT deploy this static reference in place of dynamic production code.'
