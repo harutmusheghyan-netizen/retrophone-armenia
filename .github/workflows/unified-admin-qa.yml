@@ -3,14 +3,17 @@ on:
   push:
     branches:
       - feature/unified-admin-20261108
+      - backup/admin-panel-etalon-20261108
     paths:
       - 'review/unified-admin-20261108/**'
       - 'scripts/check-unified-admin.mjs'
       - 'scripts/check-unified-admin-anonymous.mjs'
+      - 'scripts/check-admin-etalon-live.mjs'
       - '.github/workflows/unified-admin-qa.yml'
   pull_request:
     branches:
       - backup/mobile-1-20261108
+      - feature/unified-admin-20261108
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,3 +30,4 @@ jobs:
           node --check review/unified-admin-20261108/admin-unified.js
           node scripts/check-unified-admin.mjs
           node scripts/check-unified-admin-anonymous.mjs
+          node scripts/check-admin-etalon-live.mjs

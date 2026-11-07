@@ -27,6 +27,8 @@ assert(html.includes('id="video_caption_hy"'),'Armenian video caption missing');
 assert(js.includes('cms_preview_current_revision')===false,'client is not allowed to fake server validation');
 assert(!/sb_secret_|SUPABASE_SERVICE_ROLE_KEY|BEGIN PRIVATE KEY/i.test(html),'private secret in public HTML');
 assert(old.includes('RetroPhone admin mobile-only usability patch'),'mobile #1 baseline lost');
+assert(!html.includes('(pointer:coarse)'),'touch pointer must NOT force mobile in desktop browser mode');
+assert(html.includes('@media (max-width:850px)') && html.includes('@media(max-width:850px)'), 'mobile breakpoint missing');
 console.log('UNIFIED_ADMIN_SECURITY_STATIC_OK: five tabs, guarded RPC, video, original session login');
 
 const chrome=['/usr/bin/google-chrome','/usr/bin/google-chrome-stable','/usr/bin/chromium','/usr/bin/chromium-browser'].find(fs.existsSync);
@@ -47,7 +49,7 @@ try{
  'document.documentElement.dataset.cmsTabs=String(document.querySelectorAll("[data-cms-tab]").length);'+
  '});</script></body></html>');
  fs.writeFileSync(path.join(tmp,'index.html'),mock);
- for(const [width,expectedCols] of [[390,1],[980,1],[1300,2]]) {
+ for(const [width,expectedCols] of [[390,1],[850,1],[980,2],[1300,2]]) {
   const dom=execFileSync(chrome,['--headless=new','--no-sandbox','--disable-gpu',
     '--disable-dev-shm-usage','--allow-file-access-from-files','--no-first-run',
     '--virtual-time-budget=800','--window-size='+width+',900','--dump-dom',

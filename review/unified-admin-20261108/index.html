@@ -42,8 +42,8 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 
 /* RetroPhone admin mobile-only usability patch (2026-11-08).
    The public homepage, navigation and all production data remain unchanged.
-   Coarse-pointer fallback catches Android browsers requesting desktop sites. */
-@media (max-width:1100px), (hover:none) and (pointer:coarse) {
+   Desktop-site mode must remain full-width even on touch devices. */
+@media (max-width:850px) {
   .panels {grid-template-columns:minmax(0,1fr);gap:16px;}
   .panels > .panel {min-width:0;width:100%;}
   .left {position:static;top:auto;max-height:min(34vh,280px);overflow-y:auto;overscroll-behavior:contain;}
@@ -51,7 +51,7 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
   .grid2,.photo-chooser {grid-template-columns:minmax(0,1fr);}
   fieldset,.grid2 > div,.photo-chooser > div {min-width:0;}
 }
-@media (max-width:700px), (hover:none) and (pointer:coarse) {
+@media (max-width:700px) {
   html {-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   body {font-size:16px;line-height:1.5;}
   header {padding:12px 14px;gap:10px;}
@@ -124,11 +124,11 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 .cms-admin-preview{max-height:75vh;overflow:auto}
 .cms-admin-preview h3{color:var(--gold);font:400 22px Georgia;margin:14px 0 8px}
 .cms-admin-preview p{white-space:pre-wrap;overflow-wrap:anywhere}
-@media(max-width:1100px),(hover:none) and (pointer:coarse){
+@media(max-width:850px){
  .cms-grid{grid-template-columns:minmax(0,1fr)}
  .cms-entry-list{max-height:235px}
 }
-@media(max-width:700px),(hover:none) and (pointer:coarse){
+@media(max-width:700px){
  .cms-nav{padding:9px;gap:6px;margin-bottom:12px}
  .cms-nav .btn{flex:1 1 calc(50% - 8px);min-height:44px;padding:9px;font-size:14px}
  .cms-grid{grid-template-columns:minmax(0,1fr);gap:12px}
