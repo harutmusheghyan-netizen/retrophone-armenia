@@ -16,7 +16,7 @@ assert.equal(edited.slice(0,o),original.slice(0,o),'HTML/CSS before override dif
 assert.equal(edited.slice(n),original.slice(o),'HTML and JS after CSS override differ');
 assert(patch.includes('(pointer:coarse)'), 'desktop-site-mode touch fallback missing');
 assert(patch.includes('.panels {grid-template-columns:minmax(0,1fr)'), 'single column mobile layout missing');
-assert(patch.includes('.sticky #publish {grid-column:1/-1}'), 'publish button not full width');
+assert(patch.includes('.sticky #publish {grid-column:1/-1;}'), 'publish button not full width');
 assert(patch.includes('font-size:16px'), 'mobile font too small');
 assert(demo.includes('Демонстрация мобильного оформления'),'preview banner missing');
 assert(!demo.includes('createClient(') && !demo.includes('signInWithPassword('),'demo unexpectedly has live admin auth');
