@@ -18,8 +18,19 @@
 - `review/unified-admin-20261108/ALL_SECTIONS_RESTORE_REPORT.md` — подробный отчёт и матрица до/после.
 - `review/unified-admin-20261108/` — восемь файлов для отдельного проекта Vercel: `index.html`, `admin-unified.js`, `about-etalon-data.json`, `brand-etalon-part-1.json`, `brand-etalon-part-2.json`, `brand-original-logos.json`, `homepage-etalon-data.json`, `vercel.json`.
 
-## Состояние развёртывания
+## Состояние развёртывания — УСТАНОВЛЕНА И ПРОВЕРЕНА
 
-**Готова и сохранена в GitHub, но ещё НЕ развернута.** Vercel ответил 402 `api-deployments-free-per-day`, суточный лимит более 100 развёртываний. Не делать вид, что текущая `https://retrophone-admin-etalon.vercel.app/` содержит исправления №3: она пока показывает №2 (`dpl_3ZGY3cL4tfVBndMSF4Cvng2ce58c`).
+**Эталон №3 развёрнут на отдельном проекте:**
+- Адрес: https://retrophone-admin-etalon.vercel.app/
+- Vercel deployment: `dpl_H3hcMFHTKDDEJ6BGTmihcnPcY16b`, статус **READY** и alias подтверждён
+- Проект: `prj_SzQiZ6XijaFuDwuOQ0y0t0Z28Mtr`. **Основной сайт не заменён**
+- Проверено HTTP 200: `/`, `/admin-unified.js`, `/about-etalon-data.json`, `/brand-etalon-part-1.json`, `/brand-etalon-part-2.json`, `/brand-original-logos.json`, `/homepage-etalon-data.json`
+- Файл конфигурации `vercel.json` используется при развёртывании и **не является публичным маршрутом**: его HTTP 404 ожидаем
+- Основная главная и старые панели `/admin/` и `retrophone-armenia-admin.vercel.app` проверены HTTP 200
+- Предыдущий отдельный эталон для отката: `dpl_3ZGY3cL4tfVBndMSF4Cvng2ce58c`
 
-После восстановления лимита развернуть только отдельный проект эталона `prj_SzQiZ6XijaFuDwuOQ0y0t0Z28Mtr`; не трогать основную главную и прежнюю админку. Проверить реальный браузерный вход до рабочих редакционных публикаций. **Рабочий сайт:** `retrophone-armenia.vercel.app` → `dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu`.
+Первая попытка была блокирована 402 `api-deployments-free-per-day`, но последующий повтор Vercel принял и успешно развернул сборку. Не нужно менять тариф.
+
+**Что ещё требуется:** настоящий вход под вашей учётной записью, проверка отображения предварительно записанных материалов, черновика и предпросмотра; только затем разрешать реальную защищённую публикацию. Само сохранение в CMS статических разделов не означает их появления на публичных страницах без адаптера.
+
+**Рабочий сайт:** `retrophone-armenia.vercel.app` → `dpl_9ZhCYFqWg1nheVfU2yxm97ovMRTu`; не менялся.
