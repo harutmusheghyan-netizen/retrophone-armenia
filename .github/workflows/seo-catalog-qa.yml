@@ -1,0 +1,27 @@
+name: RetroPhone catalog SEO lang QA
+on:
+  push:
+    branches:
+      - fix/seo-catalog-canonical-hreflang-20261108
+    paths:
+      - 'catalog-proxy/api/proxy.js'
+      - 'scripts/test-catalog-seo-proxy.mjs'
+      - '.github/workflows/seo-catalog-qa.yml'
+  pull_request:
+    branches:
+      - feature/catalog-trilingual-sync-20261031
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-locales:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify proxy source and canonical/hreflang for all 3 locales
+        run: |
+          node --check catalog-proxy/api/proxy.js
+          node scripts/test-catalog-seo-proxy.mjs

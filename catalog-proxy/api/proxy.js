@@ -54,8 +54,27 @@ function localized(html,data,l){
  const base="https://retrophone-armenia-catalog.vercel.app/phones/"
    +encodeURIComponent(data.brand.toLowerCase())+"/"
    +encodeURIComponent(data.model_name.toLowerCase().replace(/\s+/g,"-"));
- const alternates=["ru","hy","en"].map(lang=>'<link rel="alternate" hreflang="'+lang+'" href="'+base+'?lang='+lang+'">').join("");
- return html.replace("</head>",alternates+"</head>");
+ // Locale pages need their OWN canonical URLs. A canonical pointing every
+ // translation to the Russian page can prevent Google indexing HY/EN content.
+ // RU without a query parameter remains the single canonical Russian URL.
+ const canonical=l==="ru"?base:base+"?lang="+l;
+ const canonicalTag='<link rel="canonical" href="'+esc(canonical)+'">';
+ const existingCanonical=/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i;
+ html=existingCanonical.test(html)
+  ?html.replace(existingCanonical,canonicalTag)
+  :html.replace(/<\/head>/i,canonicalTag+"</head>");
+ // Emit hreflang only if EVERY referenced translated article is complete.
+ // Otherwise publish the requested language's canonical without promising
+ // search engines a fully translated reciprocal page that may not exist.
+ const threeComplete=["ru","hy","en"].every(lang=>typeof data["description_"+lang]==="string"
+  &&data["description_"+lang].trim().length>=160);
+ if(!threeComplete)return html;
+ const variants=[["ru",base],["hy",base+"?lang=hy"],["en",base+"?lang=en"],["x-default",base]];
+ const alternates=variants.map(([lang,href])=>'<link rel="alternate" hreflang="'+lang
+  +'" href="'+esc(href)+'">').join("");
+ // Prevent duplicate/contradictory hreflang declarations from an upstream page.
+ html=html.replace(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=)[^>]*>/gi,"");
+ return html.replace(/<\/head>/i,alternates+"</head>");
 }
 export default async function handler(req,res){
  if(!["GET","HEAD"].includes(req.method)){res.status(405).end("Method Not Allowed");return}
