@@ -62,15 +62,20 @@ for(const r of results) {
   const name=r.state==='indexable'?'indexable':r.state==='noindex'?'noindex':'other';
   brands[r.brand][name]++;
 }
+const extraXml=await readFile(new URL('../catalog-proxy/sitemap-additions.xml',import.meta.url),'utf8');
+const extraUrls=[...extraXml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
+const confirmedIndexable=new Set(results.filter(r=>r.state==='indexable').map(r=>r.url));
+const extraInvalid=extraUrls.filter(u=>!confirmedIndexable.has(u));
 await mkdir('seo-audit/results',{recursive:true});
 const stamp=new Date().toISOString();
-await writeFile('seo-audit/results/live-url-audit.json',JSON.stringify({checked_at:stamp,total:results.length,totals,brands,results},null,2)+'\n');
+await writeFile('seo-audit/results/live-url-audit.json',JSON.stringify({checked_at:stamp,total:results.length,totals,brands,extra_urls:extraUrls,extra_invalid:extraInvalid,results},null,2)+'\n');
 const quote=s=>'"'+String(s??'').replaceAll('"','""')+'"';
 const rows=['id,brand,model,status,robots,canonical,state,url'];
 for(const r of results)rows.push([r.id,r.brand,quote(r.model),r.status??'',quote(r.robots),quote(r.canonical),r.state,r.url].join(','));
 await writeFile('seo-audit/results/live-url-audit.csv',rows.join('\n')+'\n');
 const lines=['# Read-only crawl of 155 missing RetroPhone catalog URLs','',`Checked: ${stamp}`,'',
   ...Object.entries(totals).map(([key,count])=>'- '+key+': '+count),'',
+  'Supplemental sitemap candidates no longer indexable: '+extraInvalid.length,'',
   'These results are a technical indexing-signal audit, NOT a Google index coverage report.',
   'Indexable means HTTP 200, no noindex, self canonical, nonempty title. Verify content quality before sitemap inclusion.'];
 await writeFile('seo-audit/results/live-url-summary.md',lines.join('\n')+'\n');
@@ -79,3 +84,5 @@ for(const r of results) console.log('SEO_ROW '+JSON.stringify({id:r.id,brand:r.b
 if(process.env.GITHUB_STEP_SUMMARY)
   await writeFile(process.env.GITHUB_STEP_SUMMARY,lines.join('\n')+'\n',{flag:'a'});
 if((totals.fetch_error||0)>0)console.warn('SEO_AUDIT_INCOMPLETE: fetch failures require retry before final decision');
+
+if(extraInvalid.length){console.error('SEO_EXTRA_SITEMAP_STALE '+JSON.stringify(extraInvalid));process.exitCode=1;}
