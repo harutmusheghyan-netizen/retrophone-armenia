@@ -7,6 +7,9 @@ on:
       - 'seo-audit/missing-155.json'
       - 'scripts/audit-155-catalog-urls.mjs'
       - '.github/workflows/seo-missing-155-audit.yml'
+  pull_request:
+    branches:
+      - fix/seo-catalog-canonical-hreflang-20261108
   workflow_dispatch:
 permissions:
   contents: read
