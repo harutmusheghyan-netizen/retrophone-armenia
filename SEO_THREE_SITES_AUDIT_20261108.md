@@ -51,3 +51,11 @@
 Справка Google:
 https://developers.google.com/search/docs/specialty/international/localized-versions
 https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+
+## Результат тестирования (подтверждено 8 ноября 2026)
+
+- **GitHub Actions: SUCCESS**, run https://github.com/harutmusheghyan-netizen/retrophone-armenia/actions/runs/42436214093.
+- Тестовый вывод: `CATALOG_SEO_LANG_CANONICAL_HREFLANG_OK: 3 locales, x-default, incomplete & fallback guards`.
+- Проверен реальный код обработчика на синтетических ответах upstream: self canonical ru/hy/en, взаимные `hreflang` + `x-default`, защита от неполных переводов и неизменённый fallback.
+- GitHub статус Vercel для этой ветки показывал ограничение build-rate-limit; **производственный каталог НЕ был обновлён**. Даже успешный CI не является доказательством исправления живых страниц.
+- Исправления находятся в draft PR https://github.com/harutmusheghyan-netizen/retrophone-armenia/pull/18 **на ветку каталожного прокси, а не main**.
