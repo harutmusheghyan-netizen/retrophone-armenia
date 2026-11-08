@@ -6,6 +6,9 @@ on:
     paths:
       - 'seo-audit/missing-155.json'
       - 'scripts/audit-155-catalog-urls.mjs'
+      - 'scripts/check-extra-sitemap.mjs'
+      - 'catalog-proxy/sitemap-additions.xml'
+      - 'catalog-proxy/robots.txt'
       - '.github/workflows/seo-missing-155-audit.yml'
   pull_request:
     branches:
@@ -23,9 +26,12 @@ jobs:
           persist-credentials: false
       - name: Check script syntax
         run: node --check scripts/audit-155-catalog-urls.mjs
+      - name: Validate additions sitemap and robots.txt
+        run: node scripts/check-extra-sitemap.mjs
       - name: Read-only check of 155 live model URLs
         run: node scripts/audit-155-catalog-urls.mjs
       - name: Save live SEO audit report
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: retrophone-155-urls-audit
