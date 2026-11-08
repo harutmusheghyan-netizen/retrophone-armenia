@@ -1,0 +1,43 @@
+name: RetroPhone 155 Missing Model SEO Audit
+on:
+  push:
+    branches:
+      - audit/seo-155-models-20261108
+    paths:
+      - 'seo-audit/missing-155.json'
+      - 'scripts/audit-155-catalog-urls.mjs'
+      - 'scripts/check-extra-sitemap.mjs'
+      - 'catalog-proxy/sitemap-additions.xml'
+      - 'catalog-proxy/robots.txt'
+      - '.github/workflows/seo-missing-155-audit.yml'
+  pull_request:
+    branches:
+      - fix/seo-catalog-canonical-hreflang-20261108
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-seo-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check script syntax
+        run: node --check scripts/audit-155-catalog-urls.mjs
+      - name: Validate additions sitemap and robots.txt
+        run: node scripts/check-extra-sitemap.mjs
+      - name: Read-only check of 155 live model URLs
+        run: node scripts/audit-155-catalog-urls.mjs
+      - name: Save live SEO audit report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: retrophone-155-urls-audit
+          path: |
+            seo-audit/results/live-url-audit.json
+            seo-audit/results/live-url-audit.csv
+            seo-audit/results/live-url-summary.md
+          if-no-files-found: error
+          retention-days: 30
