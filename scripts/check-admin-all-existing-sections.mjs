@@ -84,6 +84,13 @@ try{
  'const logoGood=document.querySelector("#cmsOriginalBox .cms-original-image")?.src===window.__existingFixtures.logos.logos["1"].logo_url;',
  'document.documentElement.dataset.brandPrefill=String(bGood&&logoGood);',
  'document.querySelector("[data-cms-tab=catalog]").click();await delay(550);',
+ 'const brandFirst=document.querySelectorAll("#cmsList .cms-brand-choice").length===1 &&',
+ ' document.querySelector("#cmsNavigatorTitle")?.textContent.includes("Все бренды");',
+ 'document.documentElement.dataset.brandFirst=String(brandFirst);',
+ 'document.querySelector("#cmsList .cms-brand-choice")?.click();await delay(250);',
+ 'const modelAfterBrand=document.querySelectorAll("#cmsList .cms-entry").length===1 &&',
+ ' document.querySelector("#cmsBackToBrands")&&!document.querySelector("#cmsBackToBrands").classList.contains("hidden");',
+ 'document.documentElement.dataset.modelAfterBrand=String(!!modelAfterBrand);',
  'document.querySelector("#cmsList .cms-entry")?.click();await delay(600);',
  'const ru=document.getElementById("cms_description_ru")?.value;',
  'const hy=document.getElementById("cms_description_hy")?.value;',
@@ -110,7 +117,7 @@ try{
   const dom=execFileSync(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage',
    '--allow-file-access-from-files','--no-first-run','--virtual-time-budget=4500','--window-size='+width+',860',
    '--dump-dom','file://'+path.join(temp,'index.html')],{encoding:'utf8',stdio:['ignore','pipe','ignore'],timeout:30000});
-  const values=Object.fromEntries(['brand-prefill','catalog-prefill','home-prefill','news-legacy'].map(k=>
+  const values=Object.fromEntries(['brand-prefill','brand-first','model-after-brand','catalog-prefill','home-prefill','news-legacy'].map(k=>
    [k,dom.match(new RegExp('data-'+k+'="([^"]+)"'))?.[1]||'missing']));
   console.log(JSON.stringify({width,expectedColumns,values}));
   for(const [key,value] of Object.entries(values))assert.equal(value,'true',key+' incorrect');
