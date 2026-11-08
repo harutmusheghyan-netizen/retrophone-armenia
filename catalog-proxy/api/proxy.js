@@ -59,10 +59,10 @@ function localized(html,data,l){
  // RU without a query parameter remains the single canonical Russian URL.
  const canonical=l==="ru"?base:base+"?lang="+l;
  const canonicalTag='<link rel="canonical" href="'+esc(canonical)+'">';
- const existingCanonical=/<link\\b(?=[^>]*\\brel=["']canonical["'])[^>]*>/i;
+ const existingCanonical=/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i;
  html=existingCanonical.test(html)
   ?html.replace(existingCanonical,canonicalTag)
-  :html.replace(/<\\/head>/i,canonicalTag+"</head>");
+  :html.replace(/<\/head>/i,canonicalTag+"</head>");
  // Emit hreflang only if EVERY referenced translated article is complete.
  // Otherwise publish the requested language's canonical without promising
  // search engines a fully translated reciprocal page that may not exist.
@@ -73,8 +73,8 @@ function localized(html,data,l){
  const alternates=variants.map(([lang,href])=>'<link rel="alternate" hreflang="'+lang
   +'" href="'+esc(href)+'">').join("");
  // Prevent duplicate/contradictory hreflang declarations from an upstream page.
- html=html.replace(/<link\\b(?=[^>]*\\brel=["']alternate["'])(?=[^>]*\\bhreflang=)[^>]*>/gi,"");
- return html.replace(/<\\/head>/i,alternates+"</head>");
+ html=html.replace(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=)[^>]*>/gi,"");
+ return html.replace(/<\/head>/i,alternates+"</head>");
 }
 export default async function handler(req,res){
  if(!["GET","HEAD"].includes(req.method)){res.status(405).end("Method Not Allowed");return}
