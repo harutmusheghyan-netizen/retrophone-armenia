@@ -9,8 +9,17 @@ if(input.missing_count!==155||input.models?.length!==155){
 }
 const allowedHost='retrophone-armenia-catalog.vercel.app';
 function attr(tag,key) {
-  const found=tag.match(new RegExp(key+"\\s*=\\s*(?:\\"([^\\"]*)\\"|'([^']*)')","i"));
-  return found?.[1] ?? found?.[2] ?? "";
+  // Only read attributes from fixed HTML link/meta tags; quote-safe parser.
+  const normalized=tag.replace(/\s*=\s*/g,'=');
+  const i=normalized.toLowerCase().indexOf(key.toLowerCase()+'=');
+  if(i<0)return '';
+  const raw=normalized.slice(i+key.length+1);
+  const quote=raw.charAt(0);
+  if(quote==='"'||quote==="'") {
+    const end=raw.indexOf(quote,1);
+    return end<0?'':raw.slice(1,end);
+  }
+  return raw.split(/[\s>]/)[0]||'';
 }
 function firstTag(html,tag,matcher) {
   return (html.match(new RegExp('<'+tag+'\\b[^>]*>','gi'))||[]).find(matcher)||'';
