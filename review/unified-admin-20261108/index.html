@@ -162,6 +162,36 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 .cms-original-image{width:160px;max-width:100%;max-height:210px;object-fit:contain;border:1px solid #8c7857;border-radius:8px;background:#0d1b29;padding:6px}
 .cms-original-data details{max-width:100%;width:100%}
 .cms-original-specifications{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;color:#e3d4bb;font:12px/1.5 monospace}
+
+/* Brand-first phone catalog: compact 2×5 grid, all 10 brands visible before models. */
+.cms-catalog-nav{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin:0 0 12px}
+.cms-catalog-nav.hidden,.cms-catalog-nav .hidden{display:none}
+.cms-catalog-nav strong{font-size:17px;color:#f2d4a1}
+.cms-catalog-nav .cms-help{margin:0 0 5px;font-size:12px;line-height:1.4}
+.cms-back-btn{font-size:13px;padding:8px 11px;min-height:42px;max-width:100%}
+.cms-entry-list.cms-brands-list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;
+  max-height:none;overflow:visible;align-items:stretch;
+}
+.cms-entry.cms-brand-choice{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;
+  margin:0;padding:10px 8px;min-height:64px;text-align:left;font-size:13px;
+  line-height:1.3;overflow-wrap:anywhere;
+}
+.cms-entry.cms-brand-choice:hover,.cms-entry.cms-brand-choice:focus-visible{
+  border-color:var(--gold);outline:1px solid var(--gold);outline-offset:1px;
+}
+.cms-brand-choice span{font-weight:750;color:var(--text)}
+.cms-brand-choice small{display:block;margin-top:6px;font-size:11px;line-height:1.2;color:var(--gold)}
+@media(max-width:850px){
+ .cms-brands-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cms-entry.cms-brand-choice{min-height:69px;padding:11px 10px;font-size:15px}
+ .cms-brand-choice small{font-size:12px}
+}
+@media(max-width:355px){
+ .cms-entry-list.cms-brands-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .cms-entry.cms-brand-choice{font-size:13px;padding:9px 7px}
+}
 </style></head><body>
 <header><a href="/" class="logo"><img src="/assets/retrophone-logo.avif" alt="">RETROPHONE<small>ARMENIA</small></a><div><a href="/news/">Читать новости</a>　<button type="button" class="btn ghost hidden" id="logout">Выйти</button></div></header>
 <main class="wrap"><section id="login" class="panel auth"><h1>Вход администратора</h1><p class="muted">Используйте свою существующую учётную запись RetroPhone Armenia.</p>
@@ -226,8 +256,13 @@ hr{border:0;border-top:1px solid var(--line);margin:22px 0}
  <p id="cmsIntro" class="muted"></p>
  <div class="cms-grid">
   <aside class="panel">
+   <div id="cmsCatalogNav" class="cms-catalog-nav hidden" aria-label="Выбор бренда и модели">
+     <button id="cmsBackToBrands" type="button" class="btn secondary cms-back-btn hidden">← Все бренды</button>
+     <strong id="cmsNavigatorTitle">Все бренды</strong>
+     <p id="cmsSelectionStatus" class="cms-help" role="status">Выберите бренд, затем модель</p>
+   </div>
    <label for="cmsFilter">Поиск по элементам</label>
-   <input id="cmsFilter" type="text" placeholder="Найти модель или раздел">
+   <input id="cmsFilter" type="text" placeholder="Найти бренд или модель" autocomplete="off">
    <div id="cmsList" class="cms-entry-list"></div>
   </aside>
   <section class="panel">

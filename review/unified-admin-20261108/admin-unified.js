@@ -363,6 +363,8 @@
   let brands = null;
   let catalogModels = null;
   let targetList = [];
+  let catalogBrandTargets = [];
+  let selectedCatalogBrand = null;
   let current = null;
   let busy = false;
 
@@ -408,7 +410,16 @@
     return catalogModels;
   }
   async function buildTargets(nextSection) {
-    if(nextSection==='catalog')return await getModels();
+    if(nextSection==='catalog') {
+      const models=await getModels();
+      const allBrands=await getBrands();
+      // All brands appear first, in the approved order. Counts come from actual model records.
+      catalogBrandTargets=allBrands.map(brand=>({
+        key:'brand:'+brand.id,label:brand.name,brand,
+        modelCount:models.filter(model=>Number(model.model.brand_id)===Number(brand.id)).length
+      }));
+      return catalogBrandTargets;
+    }
     if(nextSection==='brand')return (await getBrands()).map(b=>({
       key:String(b.id),label:b.name,brand:b
     }));
@@ -416,24 +427,96 @@
     if(nextSection==='homepage')return blockLabels;
     return [];
   }
+  function clearSelectedRecord(heading) {
+    current=null;
+    $('cmsRecordTitle').textContent=heading||'Выберите запись слева';
+    $('cmsRecordSubtitle').textContent='';
+    $('cmsFields').replaceChildren();
+    $('cmsOriginalBox').replaceChildren();
+    $('cmsOriginalBox').classList.add('hidden');
+    $('cmsInventoryBox').classList.add('hidden');
+    $('cmsSave').disabled=true;
+    $('cmsPreview').disabled=true;
+    $('cmsPublish').disabled=true;
+    $('cmsPublishFromPreview').disabled=true;
+    $('cmsModal').classList.add('hidden');
+    setStatus('');
+  }
+  function updateCatalogNavigator() {
+    const isCatalog=section==='catalog';
+    $('cmsCatalogNav').classList.toggle('hidden',!isCatalog);
+    if(!isCatalog)return;
+    const inBrand=!!selectedCatalogBrand;
+    $('cmsBackToBrands').classList.toggle('hidden',!inBrand);
+    $('cmsNavigatorTitle').textContent=inBrand
+      ? selectedCatalogBrand.name+' — модели'
+      : 'Все бренды ('+catalogBrandTargets.length+')';
+    $('cmsFilter').placeholder=inBrand
+      ? 'Найти модель '+selectedCatalogBrand.name+'…'
+      : 'Найти бренд…';
+    $('cmsSelectionStatus').textContent=inBrand
+      ? targetList.length+' моделей · сначала выберите модель'
+      : 'Выберите бренд, затем модель телефона';
+  }
+  function selectCatalogBrand(item) {
+    if(section!=='catalog'||busy||!item?.brand)return;
+    selectedCatalogBrand=item.brand;
+    const id=Number(item.brand.id);
+    targetList=(catalogModels||[]).filter(m=>Number(m.model.brand_id)===id);
+    $('cmsFilter').value='';
+    clearSelectedRecord('Выберите модель '+item.brand.name);
+    $('cmsWarning').textContent='Бренд: '+item.brand.name+
+      '. Выберите модель слева для редактирования её данных.';
+    updateCatalogNavigator();
+    renderTargets();
+  }
+  function returnToCatalogBrands() {
+    if(section!=='catalog'||busy)return;
+    selectedCatalogBrand=null;
+    targetList=catalogBrandTargets;
+    $('cmsFilter').value='';
+    clearSelectedRecord('Выберите бренд телефона');
+    $('cmsWarning').textContent='Сначала выберите бренд, затем модель для редактирования.';
+    updateCatalogNavigator();
+    renderTargets();
+  }
   function renderTargets() {
     const list=$('cmsList');list.replaceChildren();
+    const showingBrands=section==='catalog'&&!selectedCatalogBrand;
+    list.classList.toggle('cms-brands-list',showingBrands);
     const q=$('cmsFilter').value.toLocaleLowerCase().trim();
     const visible=targetList.filter(t=>t.label.toLocaleLowerCase().includes(q));
     for(const item of visible.slice(0,100)) {
       const button=document.createElement('button');
-      button.type='button';button.className='cms-entry';
-      button.classList.toggle('selected',current?.key===item.key);
-      button.textContent=item.label;
-      button.addEventListener('click',()=>run(()=>openTarget(item)));
+      button.type='button';
+      button.className='cms-entry';
+      if(showingBrands) {
+        button.classList.add('cms-brand-choice');
+        const name=document.createElement('span');name.textContent=item.label;
+        const count=document.createElement('small');
+        count.textContent=item.modelCount+' моделей';
+        button.append(name,count);
+        button.setAttribute('aria-label',item.label+', '+item.modelCount+' моделей');
+        button.addEventListener('click',()=>selectCatalogBrand(item));
+      } else {
+        button.classList.toggle('selected',current?.key===item.key);
+        button.textContent=item.label;
+        button.addEventListener('click',()=>run(()=>openTarget(item)));
+      }
       list.appendChild(button);
     }
     if(!visible.length) {
       const p=document.createElement('p');p.className='muted';
-      p.textContent='Ничего не найдено.';list.appendChild(p);
+      p.textContent=showingBrands?'Бренд не найден.':'Ничего не найдено.';
+      list.appendChild(p);
     } else if(visible.length>100) {
       const p=document.createElement('p');p.className='muted';
       p.textContent='Показаны первые 100 моделей. Уточните поиск.';list.appendChild(p);
+    }
+    if(section==='catalog') {
+      const level=selectedCatalogBrand?'моделей':'брендов';
+      $('cmsSelectionStatus').textContent=(showingBrands?visible.length:targetList.length)
+        +' '+level+(selectedCatalogBrand?' · '+selectedCatalogBrand.name:'');
     }
   }
   function fieldNode(cfg, doc) {
@@ -821,28 +904,30 @@
   }
   async function changeSection(next) {
     if(busy)return;
+    // Clear content from the previously selected tab to avoid stale brand logos
+    // or previous phone details appearing before a model is selected.
+    if(next!=='news')await checkAdmin();
+    section=next;
+    selectedCatalogBrand=null;
+    clearSelectedRecord(next==='catalog'?'Выберите бренд телефона':'Выберите запись слева');
     if(next==='news'){
-      section=next;current=null;
       $('newsArea').classList.remove('hidden');
       $('cmsPanel').classList.add('hidden');
     } else {
-      await checkAdmin();
-      section=next;current=null;
       $('newsArea').classList.add('hidden');
       $('cmsPanel').classList.remove('hidden');
       $('cmsHeading').textContent=panels[next].title;
       $('cmsIntro').textContent=panels[next].intro;
-      $('cmsWarning').textContent=panels[next].warning;
-      $('cmsRecordTitle').textContent='Выберите запись слева';
-      $('cmsRecordSubtitle').textContent='';
-      $('cmsFields').replaceChildren();
-      $('cmsInventoryBox').classList.add('hidden');
-      $('cmsSave').disabled=true;$('cmsPreview').disabled=true;$('cmsPublish').disabled=true;
+      $('cmsWarning').textContent=next==='catalog'
+        ? 'Все бренды показаны слева. Сначала выберите бренд, затем модель.'
+        : panels[next].warning;
       $('cmsFilter').value='';
       targetList=await buildTargets(next);
+      updateCatalogNavigator();
       renderTargets();
-      if(targetList.length===1)await openTarget(targetList[0]);
+      if(targetList.length===1&&next!=='catalog')await openTarget(targetList[0]);
     }
+    updateCatalogNavigator();
     document.querySelectorAll('[data-cms-tab]').forEach(button=>{
       const active=button.dataset.cmsTab===next;
       button.classList.toggle('active',active);
@@ -859,6 +944,7 @@
     button.addEventListener('click',()=>run(()=>changeSection(button.dataset.cmsTab)));
   }
   $('cmsFilter').addEventListener('input',renderTargets);
+  $('cmsBackToBrands').addEventListener('click',returnToCatalogBrands);
   $('cmsChangeInventory').addEventListener('change',()=>{
     $('cmsInventoryFields').classList.toggle('hidden',!$('cmsChangeInventory').checked);
     if($('cmsChangeInventory').checked&&current?.product){

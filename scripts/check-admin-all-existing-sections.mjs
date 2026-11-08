@@ -36,7 +36,7 @@ try{
  const stub=[
  'window.__existingFixtures=__FIXTURE__;',
  'window.__fakeCalls=[];',
- 'const mockBrands=[{id:1,name:"Nokia",slug:"nokia",short_history:"Old short history",history_url:"https://retrophone-armenia-history.vercel.app/Nokia.html"}];',
+ 'const mockBrands=[{"id":1,"name":"Nokia","slug":"nokia","short_history":"Old short history","history_url":"https://retrophone-armenia-history.vercel.app/Nokia.html"},{"id":2,"name":"Samsung","slug":"samsung","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Samsung.html"},{"id":3,"name":"Sony Ericsson","slug":"sony-ericsson","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Sony%20Ericsson.html"},{"id":4,"name":"Motorola","slug":"motorola","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Motorola.html"},{"id":5,"name":"LG","slug":"lg","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/LG.html"},{"id":6,"name":"Siemens","slug":"siemens","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Siemens.html"},{"id":7,"name":"Alcatel","slug":"alcatel","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Alcatel.html"},{"id":8,"name":"Philips","slug":"philips","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Philips.html"},{"id":9,"name":"Ericsson","slug":"ericsson","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Ericsson.html"},{"id":10,"name":"Sony","slug":"sony","short_history":"","history_url":"https://retrophone-armenia-history.vercel.app/Sony.html"}];',
  'const catalogRow={id:381,brand_id:1,model_name:"Test Nokia",release_year:2007,',
  ' description:"Existing RU source description",hero_image_url:"https://upload.wikimedia.org/wikipedia/commons/a/a0/example.jpg",',
  ' image_source_url:"https://commons.wikimedia.org/wiki/File:Example.jpg",',
@@ -84,6 +84,21 @@ try{
  'const logoGood=document.querySelector("#cmsOriginalBox .cms-original-image")?.src===window.__existingFixtures.logos.logos["1"].logo_url;',
  'document.documentElement.dataset.brandPrefill=String(bGood&&logoGood);',
  'document.querySelector("[data-cms-tab=catalog]").click();await delay(550);',
+ 'const brandFirst=document.querySelectorAll("#cmsList .cms-brand-choice").length===10 &&',
+ ' document.querySelector("#cmsNavigatorTitle")?.textContent.includes("Все бренды");',
+ 'document.documentElement.dataset.brandFirst=String(brandFirst);',
+ 'const noSharp=![...document.querySelectorAll("#cmsList .cms-brand-choice")].some(b=>b.textContent.includes("Sharp"));',
+ 'const countsMatch=document.querySelector("#cmsList .cms-brand-choice small")?.textContent==="1 моделей";',
+ 'document.documentElement.dataset.brandOrder=String(noSharp&&countsMatch);',
+ 'document.getElementById("cmsFilter").value="Sony";',
+ 'document.getElementById("cmsFilter").dispatchEvent(new Event("input",{bubbles:true}));',
+ 'document.documentElement.dataset.brandSearch=String(document.querySelectorAll("#cmsList .cms-brand-choice").length===2);',
+ 'document.getElementById("cmsFilter").value="";',
+ 'document.getElementById("cmsFilter").dispatchEvent(new Event("input",{bubbles:true}));',
+ 'document.querySelector("#cmsList .cms-brand-choice")?.click();await delay(250);',
+ 'const modelAfterBrand=document.querySelectorAll("#cmsList .cms-entry").length===1 &&',
+ ' document.querySelector("#cmsBackToBrands")&&!document.querySelector("#cmsBackToBrands").classList.contains("hidden");',
+ 'document.documentElement.dataset.modelAfterBrand=String(!!modelAfterBrand);',
  'document.querySelector("#cmsList .cms-entry")?.click();await delay(600);',
  'const ru=document.getElementById("cms_description_ru")?.value;',
  'const hy=document.getElementById("cms_description_hy")?.value;',
@@ -110,7 +125,7 @@ try{
   const dom=execFileSync(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage',
    '--allow-file-access-from-files','--no-first-run','--virtual-time-budget=4500','--window-size='+width+',860',
    '--dump-dom','file://'+path.join(temp,'index.html')],{encoding:'utf8',stdio:['ignore','pipe','ignore'],timeout:30000});
-  const values=Object.fromEntries(['brand-prefill','catalog-prefill','home-prefill','news-legacy'].map(k=>
+  const values=Object.fromEntries(['brand-prefill','brand-first','brand-order','brand-search','model-after-brand','catalog-prefill','home-prefill','news-legacy'].map(k=>
    [k,dom.match(new RegExp('data-'+k+'="([^"]+)"'))?.[1]||'missing']));
   console.log(JSON.stringify({width,expectedColumns,values}));
   for(const [key,value] of Object.entries(values))assert.equal(value,'true',key+' incorrect');

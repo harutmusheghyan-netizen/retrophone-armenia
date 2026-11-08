@@ -1,0 +1,30 @@
+name: RetroPhone Admin Catalog Brand-First QA
+on:
+  push:
+    branches:
+      - fix/admin-brand-first-catalog-20261108
+    paths:
+      - 'review/unified-admin-20261108/index.html'
+      - 'review/unified-admin-20261108/admin-unified.js'
+      - 'scripts/check-admin-all-existing-sections.mjs'
+      - '.github/workflows/admin-brand-first-qa.yml'
+  pull_request:
+    branches:
+      - backup/admin-panel-etalon-v3-pending-deploy-20261108
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-catalog-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check original administration JavaScript and brand-first UI
+        run: |
+          node --check review/unified-admin-20261108/admin-unified.js
+          node scripts/check-admin-all-existing-sections.mjs
+          node scripts/check-unified-admin.mjs
+          node scripts/check-about-original-prefill.mjs
