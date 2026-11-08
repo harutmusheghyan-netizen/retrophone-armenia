@@ -1,0 +1,940 @@
+{
+  "checked_at": "2026-11-08",
+  "catalog_host": "https://retrophone-armenia-catalog.vercel.app",
+  "models_in_supabase": 870,
+  "model_urls_in_sitemap": 715,
+  "missing_count": 155,
+  "note": "missing from sitemap does NOT imply indexable; live robots/canonical response must be audited before including",
+  "models": [
+    {
+      "id": 36,
+      "brand": "nokia",
+      "model": "5700 XpressMusic",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/5700-xpressmusic"
+    },
+    {
+      "id": 42,
+      "brand": "nokia",
+      "model": "5300 XpressMusic",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/5300-xpressmusic"
+    },
+    {
+      "id": 85,
+      "brand": "nokia",
+      "model": "2140",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/2140"
+    },
+    {
+      "id": 86,
+      "brand": "nokia",
+      "model": "2110i",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/2110i"
+    },
+    {
+      "id": 89,
+      "brand": "nokia",
+      "model": "2010",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/2010"
+    },
+    {
+      "id": 90,
+      "brand": "nokia",
+      "model": "1610",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/1610"
+    },
+    {
+      "id": 118,
+      "brand": "nokia",
+      "model": "E90 Communicator",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/e90-communicator"
+    },
+    {
+      "id": 132,
+      "brand": "nokia",
+      "model": "9500 Communicator",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/9500-communicator"
+    },
+    {
+      "id": 159,
+      "brand": "nokia",
+      "model": "7110",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/nokia/7110"
+    },
+    {
+      "id": 189,
+      "brand": "samsung",
+      "model": "GT-S5230 Star",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/gt-s5230-star"
+    },
+    {
+      "id": 190,
+      "brand": "samsung",
+      "model": "GT-S3650 Corby",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/gt-s3650-corby"
+    },
+    {
+      "id": 195,
+      "brand": "samsung",
+      "model": "SGH-U900",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-u900"
+    },
+    {
+      "id": 196,
+      "brand": "samsung",
+      "model": "SGH-U800",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-u800"
+    },
+    {
+      "id": 202,
+      "brand": "samsung",
+      "model": "SGH-P520",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-p520"
+    },
+    {
+      "id": 233,
+      "brand": "samsung",
+      "model": "SGH-E820",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-e820"
+    },
+    {
+      "id": 243,
+      "brand": "samsung",
+      "model": "SGH-E650",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-e650"
+    },
+    {
+      "id": 270,
+      "brand": "samsung",
+      "model": "SGH-D880",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/samsung/sgh-d880"
+    },
+    {
+      "id": 336,
+      "brand": "sony-ericsson",
+      "model": "Satio",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony-ericsson/satio"
+    },
+    {
+      "id": 337,
+      "brand": "sony-ericsson",
+      "model": "S710a",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony-ericsson/s710a"
+    },
+    {
+      "id": 346,
+      "brand": "sony-ericsson",
+      "model": "P1i",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony-ericsson/p1i"
+    },
+    {
+      "id": 347,
+      "brand": "sony-ericsson",
+      "model": "Naite",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony-ericsson/naite"
+    },
+    {
+      "id": 423,
+      "brand": "sony-ericsson",
+      "model": "W518a",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony-ericsson/w518a"
+    },
+    {
+      "id": 427,
+      "brand": "motorola",
+      "model": "RAZR V3x",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/razr-v3x"
+    },
+    {
+      "id": 431,
+      "brand": "motorola",
+      "model": "MicroTAC",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/microtac"
+    },
+    {
+      "id": 432,
+      "brand": "motorola",
+      "model": "L9",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/l9"
+    },
+    {
+      "id": 433,
+      "brand": "motorola",
+      "model": "L7i",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/l7i"
+    },
+    {
+      "id": 434,
+      "brand": "motorola",
+      "model": "L6i",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/l6i"
+    },
+    {
+      "id": 436,
+      "brand": "motorola",
+      "model": "K3 KRZR",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/k3-krzr"
+    },
+    {
+      "id": 437,
+      "brand": "motorola",
+      "model": "K1 KRZR",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/k1-krzr"
+    },
+    {
+      "id": 438,
+      "brand": "motorola",
+      "model": "EM325",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/em325"
+    },
+    {
+      "id": 444,
+      "brand": "motorola",
+      "model": "E815",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/e815"
+    },
+    {
+      "id": 445,
+      "brand": "motorola",
+      "model": "E770v",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/e770v"
+    },
+    {
+      "id": 448,
+      "brand": "motorola",
+      "model": "E550",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/e550"
+    },
+    {
+      "id": 452,
+      "brand": "motorola",
+      "model": "DynaTAC 8000X",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/dynatac-8000x"
+    },
+    {
+      "id": 454,
+      "brand": "motorola",
+      "model": "C651",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/c651"
+    },
+    {
+      "id": 459,
+      "brand": "motorola",
+      "model": "C385",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/c385"
+    },
+    {
+      "id": 460,
+      "brand": "motorola",
+      "model": "C380",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/c380"
+    },
+    {
+      "id": 477,
+      "brand": "motorola",
+      "model": "Z8",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/z8"
+    },
+    {
+      "id": 478,
+      "brand": "motorola",
+      "model": "Z6",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/z6"
+    },
+    {
+      "id": 479,
+      "brand": "motorola",
+      "model": "W755",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/w755"
+    },
+    {
+      "id": 480,
+      "brand": "motorola",
+      "model": "W530",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/w530"
+    },
+    {
+      "id": 491,
+      "brand": "motorola",
+      "model": "V710",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v710"
+    },
+    {
+      "id": 498,
+      "brand": "motorola",
+      "model": "V551",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v551"
+    },
+    {
+      "id": 501,
+      "brand": "motorola",
+      "model": "V505",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v505"
+    },
+    {
+      "id": 503,
+      "brand": "motorola",
+      "model": "V400",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v400"
+    },
+    {
+      "id": 505,
+      "brand": "motorola",
+      "model": "V330",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v330"
+    },
+    {
+      "id": 507,
+      "brand": "motorola",
+      "model": "V265",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v265"
+    },
+    {
+      "id": 511,
+      "brand": "motorola",
+      "model": "V190",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v190"
+    },
+    {
+      "id": 515,
+      "brand": "motorola",
+      "model": "V120",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v120"
+    },
+    {
+      "id": 516,
+      "brand": "motorola",
+      "model": "V100",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/v100"
+    },
+    {
+      "id": 522,
+      "brand": "motorola",
+      "model": "U9 PEBL",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/u9-pebl"
+    },
+    {
+      "id": 523,
+      "brand": "motorola",
+      "model": "StarTAC",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/startac"
+    },
+    {
+      "id": 525,
+      "brand": "motorola",
+      "model": "SLVR L6",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/motorola/slvr-l6"
+    },
+    {
+      "id": 534,
+      "brand": "lg",
+      "model": "G5600",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g5600"
+    },
+    {
+      "id": 538,
+      "brand": "lg",
+      "model": "G4010",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g4010"
+    },
+    {
+      "id": 542,
+      "brand": "lg",
+      "model": "G920",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g920"
+    },
+    {
+      "id": 543,
+      "brand": "lg",
+      "model": "G910",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g910"
+    },
+    {
+      "id": 547,
+      "brand": "lg",
+      "model": "F2200",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/f2200"
+    },
+    {
+      "id": 549,
+      "brand": "lg",
+      "model": "F600",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/f600"
+    },
+    {
+      "id": 550,
+      "brand": "lg",
+      "model": "C3600",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c3600"
+    },
+    {
+      "id": 558,
+      "brand": "lg",
+      "model": "C2000",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c2000"
+    },
+    {
+      "id": 559,
+      "brand": "lg",
+      "model": "C1500",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c1500"
+    },
+    {
+      "id": 560,
+      "brand": "lg",
+      "model": "C1300",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c1300"
+    },
+    {
+      "id": 563,
+      "brand": "lg",
+      "model": "C660",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c660"
+    },
+    {
+      "id": 564,
+      "brand": "lg",
+      "model": "C550",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/c550"
+    },
+    {
+      "id": 569,
+      "brand": "lg",
+      "model": "B1300",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/b1300"
+    },
+    {
+      "id": 574,
+      "brand": "lg",
+      "model": "KU970",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/ku970"
+    },
+    {
+      "id": 575,
+      "brand": "lg",
+      "model": "KU830",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/ku830"
+    },
+    {
+      "id": 577,
+      "brand": "lg",
+      "model": "KP502",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kp502"
+    },
+    {
+      "id": 578,
+      "brand": "lg",
+      "model": "KP501",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kp501"
+    },
+    {
+      "id": 580,
+      "brand": "lg",
+      "model": "KP330",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kp330"
+    },
+    {
+      "id": 585,
+      "brand": "lg",
+      "model": "KP230",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kp230"
+    },
+    {
+      "id": 600,
+      "brand": "lg",
+      "model": "KG800 Chocolate",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kg800-chocolate"
+    },
+    {
+      "id": 615,
+      "brand": "lg",
+      "model": "KF750",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/kf750"
+    },
+    {
+      "id": 625,
+      "brand": "lg",
+      "model": "KE770",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/ke770"
+    },
+    {
+      "id": 628,
+      "brand": "lg",
+      "model": "G8500",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g8500"
+    },
+    {
+      "id": 629,
+      "brand": "lg",
+      "model": "G8100",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/lg/g8100"
+    },
+    {
+      "id": 632,
+      "brand": "siemens",
+      "model": "C81",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/c81"
+    },
+    {
+      "id": 635,
+      "brand": "siemens",
+      "model": "C70",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/c70"
+    },
+    {
+      "id": 640,
+      "brand": "siemens",
+      "model": "C50",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/c50"
+    },
+    {
+      "id": 643,
+      "brand": "siemens",
+      "model": "C30",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/c30"
+    },
+    {
+      "id": 650,
+      "brand": "siemens",
+      "model": "A72",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/a72"
+    },
+    {
+      "id": 651,
+      "brand": "siemens",
+      "model": "A71",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/a71"
+    },
+    {
+      "id": 657,
+      "brand": "siemens",
+      "model": "A56",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/a56"
+    },
+    {
+      "id": 662,
+      "brand": "siemens",
+      "model": "A45",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/a45"
+    },
+    {
+      "id": 680,
+      "brand": "siemens",
+      "model": "S68",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/s68"
+    },
+    {
+      "id": 683,
+      "brand": "siemens",
+      "model": "S50",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/s50"
+    },
+    {
+      "id": 685,
+      "brand": "siemens",
+      "model": "S42",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/s42"
+    },
+    {
+      "id": 687,
+      "brand": "siemens",
+      "model": "S35",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/s35"
+    },
+    {
+      "id": 698,
+      "brand": "siemens",
+      "model": "M45",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/m45"
+    },
+    {
+      "id": 699,
+      "brand": "siemens",
+      "model": "M35",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/siemens/m35"
+    },
+    {
+      "id": 720,
+      "brand": "alcatel",
+      "model": "One Touch Club",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-club"
+    },
+    {
+      "id": 724,
+      "brand": "alcatel",
+      "model": "One Touch 901",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-901"
+    },
+    {
+      "id": 726,
+      "brand": "alcatel",
+      "model": "One Touch 856",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-856"
+    },
+    {
+      "id": 727,
+      "brand": "alcatel",
+      "model": "One Touch 853",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-853"
+    },
+    {
+      "id": 734,
+      "brand": "alcatel",
+      "model": "One Touch 701",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-701"
+    },
+    {
+      "id": 736,
+      "brand": "alcatel",
+      "model": "One Touch 651",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-651"
+    },
+    {
+      "id": 737,
+      "brand": "alcatel",
+      "model": "One Touch 565",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-565"
+    },
+    {
+      "id": 744,
+      "brand": "alcatel",
+      "model": "One Touch 521",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-521"
+    },
+    {
+      "id": 747,
+      "brand": "alcatel",
+      "model": "One Touch 502",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-502"
+    },
+    {
+      "id": 748,
+      "brand": "alcatel",
+      "model": "One Touch 501",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-501"
+    },
+    {
+      "id": 750,
+      "brand": "alcatel",
+      "model": "One Touch 333",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-333"
+    },
+    {
+      "id": 754,
+      "brand": "alcatel",
+      "model": "One Touch 315",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-315"
+    },
+    {
+      "id": 758,
+      "brand": "alcatel",
+      "model": "One Touch 302",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-302"
+    },
+    {
+      "id": 760,
+      "brand": "alcatel",
+      "model": "One Touch 300",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/alcatel/one-touch-300"
+    },
+    {
+      "id": 762,
+      "brand": "philips",
+      "model": "Xenium X810",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x810"
+    },
+    {
+      "id": 764,
+      "brand": "philips",
+      "model": "Xenium X800",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x800"
+    },
+    {
+      "id": 765,
+      "brand": "philips",
+      "model": "Xenium X710",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x710"
+    },
+    {
+      "id": 766,
+      "brand": "philips",
+      "model": "Xenium X630",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x630"
+    },
+    {
+      "id": 767,
+      "brand": "philips",
+      "model": "Xenium X620",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x620"
+    },
+    {
+      "id": 769,
+      "brand": "philips",
+      "model": "Xenium X550",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x550"
+    },
+    {
+      "id": 772,
+      "brand": "philips",
+      "model": "Xenium X510",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x510"
+    },
+    {
+      "id": 773,
+      "brand": "philips",
+      "model": "Xenium X500",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x500"
+    },
+    {
+      "id": 774,
+      "brand": "philips",
+      "model": "Xenium X333",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x333"
+    },
+    {
+      "id": 775,
+      "brand": "philips",
+      "model": "Xenium X325",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x325"
+    },
+    {
+      "id": 776,
+      "brand": "philips",
+      "model": "Xenium X312",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x312"
+    },
+    {
+      "id": 777,
+      "brand": "philips",
+      "model": "Xenium X230",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x230"
+    },
+    {
+      "id": 778,
+      "brand": "philips",
+      "model": "Xenium X216",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x216"
+    },
+    {
+      "id": 779,
+      "brand": "philips",
+      "model": "Xenium X128",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x128"
+    },
+    {
+      "id": 780,
+      "brand": "philips",
+      "model": "Xenium X116",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x116"
+    },
+    {
+      "id": 781,
+      "brand": "philips",
+      "model": "Xenium X100",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-x100"
+    },
+    {
+      "id": 788,
+      "brand": "philips",
+      "model": "Xenium 9@9c",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/xenium-9-at-9c"
+    },
+    {
+      "id": 795,
+      "brand": "philips",
+      "model": "Fisio 860",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-860"
+    },
+    {
+      "id": 796,
+      "brand": "philips",
+      "model": "Fisio 856",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-856"
+    },
+    {
+      "id": 797,
+      "brand": "philips",
+      "model": "Fisio 826",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-826"
+    },
+    {
+      "id": 800,
+      "brand": "philips",
+      "model": "Fisio 810",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-810"
+    },
+    {
+      "id": 804,
+      "brand": "philips",
+      "model": "Fisio 316",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-316"
+    },
+    {
+      "id": 805,
+      "brand": "philips",
+      "model": "Fisio 312",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-312"
+    },
+    {
+      "id": 806,
+      "brand": "philips",
+      "model": "Fisio 311",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-311"
+    },
+    {
+      "id": 807,
+      "brand": "philips",
+      "model": "Fisio 310",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/philips/fisio-310"
+    },
+    {
+      "id": 814,
+      "brand": "ericsson",
+      "model": "T60d",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t60d"
+    },
+    {
+      "id": 815,
+      "brand": "ericsson",
+      "model": "T39m",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t39m"
+    },
+    {
+      "id": 818,
+      "brand": "ericsson",
+      "model": "T29",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t29"
+    },
+    {
+      "id": 820,
+      "brand": "ericsson",
+      "model": "T28",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t28"
+    },
+    {
+      "id": 822,
+      "brand": "ericsson",
+      "model": "T20",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t20"
+    },
+    {
+      "id": 824,
+      "brand": "ericsson",
+      "model": "T18",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t18"
+    },
+    {
+      "id": 825,
+      "brand": "ericsson",
+      "model": "T10",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t10"
+    },
+    {
+      "id": 830,
+      "brand": "ericsson",
+      "model": "R520",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r520"
+    },
+    {
+      "id": 831,
+      "brand": "ericsson",
+      "model": "R380s",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r380s"
+    },
+    {
+      "id": 833,
+      "brand": "ericsson",
+      "model": "R320s",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r320s"
+    },
+    {
+      "id": 836,
+      "brand": "ericsson",
+      "model": "R310",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r310"
+    },
+    {
+      "id": 837,
+      "brand": "ericsson",
+      "model": "R250s",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r250s"
+    },
+    {
+      "id": 838,
+      "brand": "ericsson",
+      "model": "R250",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/r250"
+    },
+    {
+      "id": 841,
+      "brand": "ericsson",
+      "model": "GH198",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/gh198"
+    },
+    {
+      "id": 842,
+      "brand": "ericsson",
+      "model": "GH174",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/gh174"
+    },
+    {
+      "id": 843,
+      "brand": "ericsson",
+      "model": "GH172",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/gh172"
+    },
+    {
+      "id": 849,
+      "brand": "ericsson",
+      "model": "A2628s",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/a2628s"
+    },
+    {
+      "id": 851,
+      "brand": "ericsson",
+      "model": "A2618s",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/a2618s"
+    },
+    {
+      "id": 854,
+      "brand": "ericsson",
+      "model": "A1018",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/a1018"
+    },
+    {
+      "id": 855,
+      "brand": "ericsson",
+      "model": "A388",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/a388"
+    },
+    {
+      "id": 856,
+      "brand": "ericsson",
+      "model": "T68m",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/ericsson/t68m"
+    },
+    {
+      "id": 857,
+      "brand": "sony",
+      "model": "CMD-Z28",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony/cmd-z28"
+    },
+    {
+      "id": 858,
+      "brand": "sony",
+      "model": "CMD-Z18",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony/cmd-z18"
+    },
+    {
+      "id": 868,
+      "brand": "sony",
+      "model": "CMD-C8",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony/cmd-c8"
+    },
+    {
+      "id": 869,
+      "brand": "sony",
+      "model": "CMD-C5",
+      "url": "https://retrophone-armenia-catalog.vercel.app/phones/sony/cmd-c5"
+    }
+  ]
+}
