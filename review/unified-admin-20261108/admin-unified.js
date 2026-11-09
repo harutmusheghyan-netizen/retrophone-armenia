@@ -675,22 +675,64 @@
         }catch(error){uploadStatus.textContent='Загрузка не выполнена: '+(error?.message||String(error))}
         finally{uploadButton.disabled=false}
       });
-      const galleryTitle=document.createElement('h3');galleryTitle.textContent='Дополнительные фотографии — тестовая галерея';photoBox.appendChild(galleryTitle);
+      const galleryTitle=document.createElement('h3');galleryTitle.textContent='Дополнительные фотографии модели';photoBox.appendChild(galleryTitle);
       const galleryInfo=document.createElement('p');galleryInfo.className='cms-hint';
-      galleryInfo.textContent='Дополнительные изображения пока доступны только для локального предпросмотра в этой форме. Их сохранение и публикация будут включены после проверки серверной схемы и прав доступа.';
+      galleryInfo.textContent='Отдельное серверное хранилище галереи: изображения не заменяют главную фотографию и не публикуются на сайте автоматически.';
       photoBox.appendChild(galleryInfo);
       const extraInput=document.createElement('input');extraInput.type='file';extraInput.accept='image/jpeg,image/png,image/webp';extraInput.multiple=true;photoBox.appendChild(extraInput);
+      const extraRightsLabel=document.createElement('label'),extraRights=document.createElement('input');extraRights.type='checkbox';
+      extraRightsLabel.append(extraRights,document.createTextNode(' Подтверждаю права на дополнительные фотографии'));photoBox.appendChild(extraRightsLabel);
+      const extraAuthor=document.createElement('input');extraAuthor.type='text';extraAuthor.placeholder='Автор дополнительных фотографий';extraAuthor.maxLength=200;photoBox.appendChild(extraAuthor);
+      const extraUpload=document.createElement('button');extraUpload.type='button';extraUpload.className='btn secondary';extraUpload.textContent='Загрузить в галерею';photoBox.appendChild(extraUpload);
+      const extraStatus=document.createElement('p');extraStatus.setAttribute('role','status');extraStatus.className='cms-hint';photoBox.appendChild(extraStatus);
       const gallery=document.createElement('div');gallery.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin-top:8px';photoBox.appendChild(gallery);
-      let objectUrls=[];
-      extraInput.addEventListener('change',()=>{
-        objectUrls.forEach(url=>URL.revokeObjectURL(url));objectUrls=[];gallery.replaceChildren();
-        for(const file of Array.from(extraInput.files||[]).slice(0,8)){
-          if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024)continue;
-          const url=URL.createObjectURL(file);objectUrls.push(url);
-          const image=document.createElement('img');image.src=url;image.alt='Локальный предпросмотр дополнительного фото';
-          image.style.cssText='width:100px;height:110px;object-fit:contain;border:1px solid #79613e;border-radius:6px';gallery.appendChild(image);
+      const modelKey=String(current?.key||'').replace(/[^0-9]/g,'');
+      const galleryPrefix='cms-gallery/'+modelKey+'/';
+      async function refreshGallery(){
+        if(!modelKey)return;
+        await checkAdmin();
+        const result=await client.storage.from('phone-images').list(galleryPrefix,{limit:100,sortBy:{column:'name',order:'asc'}});
+        if(result.error)throw result.error;
+        gallery.replaceChildren();
+        const images=(result.data||[]).filter(x=>/\\.(jpg|png|webp)$/i.test(x.name));
+        for(const file of images){
+          const path=galleryPrefix+file.name;
+          const url=client.storage.from('phone-images').getPublicUrl(path).data.publicUrl;
+          const figure=document.createElement('figure');figure.style.cssText='margin:0;max-width:115px';
+          const image=document.createElement('img');image.src=url;image.alt='Дополнительное фото модели';
+          image.style.cssText='width:110px;height:120px;object-fit:contain;border:1px solid #79613e;border-radius:6px';
+          const label=document.createElement('figcaption');label.textContent=file.name.slice(0,12);label.style.fontSize='10px';
+          figure.append(image,label);gallery.appendChild(figure);
         }
+        extraStatus.textContent='Сохранено в галерее: '+images.length+'. Эти фото не опубликованы в карточке модели.';
+      }
+      extraUpload.addEventListener('click',async()=>{
+        const files=Array.from(extraInput.files||[]);
+        if(!current?.ready||section!=='catalog'||!modelKey)return;
+        if(!files.length){extraStatus.textContent='Выберите фотографии.';return}
+        if(files.length>8){extraStatus.textContent='За один раз допускается до 8 фотографий.';return}
+        if(!extraRights.checked||extraAuthor.value.trim().length<2){extraStatus.textContent='Подтвердите права и укажите автора.';return}
+        if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size===0||f.size>5*1024*1024)){
+          extraStatus.textContent='Допустимы только JPG, PNG, WebP до 5 МБ.';return;
+        }
+        extraUpload.disabled=true;
+        try{
+          await checkAdmin();
+          for(const file of files){
+            const suffix={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
+            const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
+            const random=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
+            const result=await client.storage.from('phone-images').upload(galleryPrefix+random+'.'+suffix,file,{
+              contentType:file.type,upsert:false,cacheControl:'3600',
+              metadata:{author:extraAuthor.value.trim(),rights_confirmed:'true',model_id:modelKey}
+            });
+            if(result.error)throw result.error;
+          }
+          await refreshGallery();extraInput.value='';
+        }catch(error){extraStatus.textContent='Ошибка сохранения галереи: '+(error?.message||String(error))}
+        finally{extraUpload.disabled=false}
       });
+      refreshGallery().catch(error=>{extraStatus.textContent='Галерея пока недоступна: '+(error?.message||String(error))});
       fieldsRoot.prepend(photoBox);
     }
     $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
