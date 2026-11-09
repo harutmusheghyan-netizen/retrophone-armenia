@@ -683,6 +683,12 @@
       const extraRightsLabel=document.createElement('label'),extraRights=document.createElement('input');extraRights.type='checkbox';
       extraRightsLabel.append(extraRights,document.createTextNode(' Подтверждаю права на дополнительные фотографии'));photoBox.appendChild(extraRightsLabel);
       const extraAuthor=document.createElement('input');extraAuthor.type='text';extraAuthor.placeholder='Автор дополнительных фотографий';extraAuthor.maxLength=200;photoBox.appendChild(extraAuthor);
+      const captionFields={};
+      for(const [code,label] of [['ru','Подпись на русском'],['hy','Նկարագրություն հայերեն'],['en','Caption in English']]){
+        const labelNode=document.createElement('label');labelNode.textContent=label;
+        const input=document.createElement('input');input.type='text';input.maxLength=300;
+        input.placeholder=label;labelNode.appendChild(input);photoBox.appendChild(labelNode);captionFields[code]=input;
+      }
       const extraUpload=document.createElement('button');extraUpload.type='button';extraUpload.className='btn secondary';extraUpload.textContent='Загрузить в галерею';photoBox.appendChild(extraUpload);
       const extraStatus=document.createElement('p');extraStatus.setAttribute('role','status');extraStatus.className='cms-hint';photoBox.appendChild(extraStatus);
       const gallery=document.createElement('div');gallery.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin-top:8px';photoBox.appendChild(gallery);
@@ -701,7 +707,7 @@
           const figure=document.createElement('figure');figure.style.cssText='margin:0;max-width:115px';
           const image=document.createElement('img');image.src=url;image.alt='Дополнительное фото модели';
           image.style.cssText='width:110px;height:120px;object-fit:contain;border:1px solid #79613e;border-radius:6px';
-          const label=document.createElement('figcaption');label.textContent=file.name.slice(0,12);label.style.fontSize='10px';
+          const label=document.createElement('figcaption');label.textContent=file.metadata?.caption_ru||file.name.slice(0,12);label.title=[file.metadata?.caption_hy,file.metadata?.caption_en].filter(Boolean).join(' / ');label.style.fontSize='10px';
           figure.append(image,label);gallery.appendChild(figure);
         }
         extraStatus.textContent='Сохранено в галерее: '+images.length+'. Эти фото не опубликованы в карточке модели.';
@@ -712,6 +718,7 @@
         if(!files.length){extraStatus.textContent='Выберите фотографии.';return}
         if(files.length>8){extraStatus.textContent='За один раз допускается до 8 фотографий.';return}
         if(!extraRights.checked||extraAuthor.value.trim().length<2){extraStatus.textContent='Подтвердите права и укажите автора.';return}
+        if(Object.values(captionFields).some(input=>!input.value.trim())){extraStatus.textContent='Заполните подписи RU / HY / EN.';return}
         if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size===0||f.size>5*1024*1024)){
           extraStatus.textContent='Допустимы только JPG, PNG, WebP до 5 МБ.';return;
         }
@@ -724,7 +731,7 @@
             const random=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
             const result=await client.storage.from('phone-images').upload(galleryPrefix+random+'.'+suffix,file,{
               contentType:file.type,upsert:false,cacheControl:'3600',
-              metadata:{author:extraAuthor.value.trim(),rights_confirmed:'true',model_id:modelKey}
+              metadata:{author:extraAuthor.value.trim(),rights_confirmed:'true',model_id:modelKey,caption_ru:captionFields.ru.value.trim(),caption_hy:captionFields.hy.value.trim(),caption_en:captionFields.en.value.trim()}
             });
             if(result.error)throw result.error;
           }
