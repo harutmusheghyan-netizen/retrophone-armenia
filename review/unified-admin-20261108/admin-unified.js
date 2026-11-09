@@ -699,7 +699,7 @@
         const result=await client.storage.from('retrophone-catalog-drafts').list(galleryPrefix,{limit:100,sortBy:{column:'name',order:'asc'}});
         if(result.error)throw result.error;
         gallery.replaceChildren();
-        const images=(result.data||[]).filter(x=>/\\.(jpg|png|webp)$/i.test(x.name));
+        const images=(result.data||[]).filter(x=>x.name.toLowerCase().endsWith('.jpg')||x.name.toLowerCase().endsWith('.png')||x.name.toLowerCase().endsWith('.webp'));
         for(const file of images){
           const path=galleryPrefix+file.name;
           const signed=await client.storage.from('retrophone-catalog-drafts').createSignedUrl(path,300);
