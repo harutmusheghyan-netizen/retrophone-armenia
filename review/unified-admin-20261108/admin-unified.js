@@ -638,6 +638,59 @@
       preview.addEventListener('error',()=>{preview.style.display='none'});
       $('cms_image_url')?.addEventListener('input',refresh);
       refresh();
+      const uploadLabel=document.createElement('label');uploadLabel.textContent='Загрузить собственное фото (JPG / PNG / WebP, до 5 МБ)';photoBox.appendChild(uploadLabel);
+      const upload=document.createElement('input');upload.type='file';upload.accept='image/jpeg,image/png,image/webp';upload.setAttribute('aria-label','Выбрать фотографию модели');photoBox.appendChild(upload);
+      const rightsLabel=document.createElement('label');const rights=document.createElement('input');rights.type='checkbox';
+      rightsLabel.append(rights,document.createTextNode(' Подтверждаю право публиковать эту фотографию'));photoBox.appendChild(rightsLabel);
+      const author=document.createElement('input');author.type='text';author.placeholder='Автор собственной фотографии';author.maxLength=200;photoBox.appendChild(author);
+      const uploadButton=document.createElement('button');uploadButton.type='button';uploadButton.className='btn secondary';
+      uploadButton.textContent='Защищённая загрузка фото';photoBox.appendChild(uploadButton);
+      const uploadStatus=document.createElement('p');uploadStatus.className='cms-hint';uploadStatus.setAttribute('role','status');photoBox.appendChild(uploadStatus);
+      uploadButton.addEventListener('click',async()=>{
+        if(!current?.ready||section!=='catalog')return;
+        const file=upload.files?.[0];
+        if(!file){uploadStatus.textContent='Выберите файл.';return}
+        if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024||file.size===0){
+          uploadStatus.textContent='Допустимы JPG, PNG, WebP до 5 МБ.';return;
+        }
+        if(!rights.checked||author.value.trim().length<2){uploadStatus.textContent='Подтвердите права и укажите автора.';return}
+        uploadButton.disabled=true;
+        try{
+          await checkAdmin();
+          const suffix={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
+          const modelId=String(current.key||'').replace(/[^a-zA-Z0-9_-]/g,'_');
+          const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
+          const random=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
+          const objectPath='cms-models/'+modelId+'/'+random+'.'+suffix;
+          const result=await client.storage.from('phone-images').upload(objectPath,file,{contentType:file.type,upsert:false,cacheControl:'3600'});
+          if(result.error)throw result.error;
+          const url=client.storage.from('phone-images').getPublicUrl(objectPath).data.publicUrl;
+          $('cms_image_url').value=url;
+          $('cms_image_source_url').value=url;
+          $('cms_image_credit').value=author.value.trim();
+          $('cms_image_license').value='Owned by RetroPhone Armenia';
+          $('cms_image_url').dispatchEvent(new Event('input',{bubbles:true}));
+          invalidate();
+          uploadStatus.textContent='Фото загружено в защищённое хранилище. Оно ещё не опубликовано в карточке. Сохраните черновик и проверьте предпросмотр.';
+        }catch(error){uploadStatus.textContent='Загрузка не выполнена: '+(error?.message||String(error))}
+        finally{uploadButton.disabled=false}
+      });
+      const galleryTitle=document.createElement('h3');galleryTitle.textContent='Дополнительные фотографии — тестовая галерея';photoBox.appendChild(galleryTitle);
+      const galleryInfo=document.createElement('p');galleryInfo.className='cms-hint';
+      galleryInfo.textContent='Дополнительные изображения пока доступны только для локального предпросмотра в этой форме. Их сохранение и публикация будут включены после проверки серверной схемы и прав доступа.';
+      photoBox.appendChild(galleryInfo);
+      const extraInput=document.createElement('input');extraInput.type='file';extraInput.accept='image/jpeg,image/png,image/webp';extraInput.multiple=true;photoBox.appendChild(extraInput);
+      const gallery=document.createElement('div');gallery.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin-top:8px';photoBox.appendChild(gallery);
+      let objectUrls=[];
+      extraInput.addEventListener('change',()=>{
+        objectUrls.forEach(url=>URL.revokeObjectURL(url));objectUrls=[];gallery.replaceChildren();
+        for(const file of Array.from(extraInput.files||[]).slice(0,8)){
+          if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024)continue;
+          const url=URL.createObjectURL(file);objectUrls.push(url);
+          const image=document.createElement('img');image.src=url;image.alt='Локальный предпросмотр дополнительного фото';
+          image.style.cssText='width:100px;height:110px;object-fit:contain;border:1px solid #79613e;border-radius:6px';gallery.appendChild(image);
+        }
+      });
       fieldsRoot.prepend(photoBox);
     }
     $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
