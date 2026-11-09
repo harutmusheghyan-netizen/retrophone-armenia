@@ -551,7 +551,7 @@
     wrap.appendChild(input);
     if(key==='image_url') {
       const hint=document.createElement('p');hint.className='cms-field-desc';
-      hint.textContent='Если оставить пустым, действующая фотография останется без изменений.';
+      hint.textContent='Оставьте поле пустым, чтобы сохранить опубликованную фотографию. Новое фото требует подтверждённого источника, автора и лицензии.';
       wrap.appendChild(hint);
     }
     return wrap;
@@ -611,6 +611,34 @@
       photo.appendChild(grid);fieldsRoot.appendChild(photo);
     }else{
       for(const cfg of editableFields())fieldsRoot.appendChild(fieldNode(cfg,doc));
+    }
+    if(section==='catalog'){
+      const photoBox=document.createElement('fieldset');
+      photoBox.className='cms-catalog-photo-editor';
+      const legend=document.createElement('legend');legend.textContent='Фотографии модели — редактор';photoBox.appendChild(legend);
+      const note=document.createElement('p');note.className='cms-hint';
+      note.textContent='Работает с выбранной моделью. Существующее фото сохраняется, пока вы не укажете новую ссылку. Загрузка файла и галерея появятся после подключения защищённого хранилища; пока доступна безопасная замена главного фото.';
+      photoBox.appendChild(note);
+      const preview=document.createElement('img');preview.alt='Предпросмотр главной фотографии модели';
+      preview.style.cssText='display:none;max-width:180px;max-height:220px;object-fit:contain;border:1px solid #79613e;border-radius:8px;margin:8px 0';
+      photoBox.appendChild(preview);
+      const existing=doc.image_url||current?.previousImage||current?.product?.hero_image_url||'';
+      const link=document.createElement('a');link.textContent='Открыть Wikimedia Commons для поиска лицензированной фотографии';
+      link.href='https://commons.wikimedia.org/wiki/Special:MediaSearch?type=image';link.target='_blank';link.rel='noopener noreferrer';
+      photoBox.appendChild(link);
+      const help=document.createElement('p');help.className='cms-hint';
+      help.textContent='Вставьте прямую HTTPS-ссылку на изображение в поле «Новая фотография», затем укажите страницу источника, автора и лицензию в полях ниже. Перед публикацией обязательно проверьте, что изображена правильная модель.';
+      photoBox.appendChild(help);
+      const refresh=()=>{
+        const entered=String($('cms_image_url')?.value||'').trim();
+        const src=entered||existing;
+        if(src && /^https:\/\//i.test(src)){preview.src=src;preview.style.display='block'}
+        else {preview.removeAttribute('src');preview.style.display='none'}
+      };
+      preview.addEventListener('error',()=>{preview.style.display='none'});
+      $('cms_image_url')?.addEventListener('input',refresh);
+      refresh();
+      fieldsRoot.prepend(photoBox);
     }
     $('cmsInventoryBox').classList.toggle('hidden',section!=='catalog');
     const hasValues=doc.price_amd!==undefined && doc.stock_quantity!==undefined;
