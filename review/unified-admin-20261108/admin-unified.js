@@ -662,22 +662,21 @@
           const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
           const random=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
           const objectPath='cms-models/'+modelId+'/'+random+'.'+suffix;
-          const result=await client.storage.from('phone-images').upload(objectPath,file,{contentType:file.type,upsert:false,cacheControl:'3600'});
+          const result=await client.storage.from('retrophone-catalog-drafts').upload(objectPath,file,{contentType:file.type,upsert:false,cacheControl:'3600'});
           if(result.error)throw result.error;
-          const url=client.storage.from('phone-images').getPublicUrl(objectPath).data.publicUrl;
-          $('cms_image_url').value=url;
-          $('cms_image_source_url').value=url;
-          $('cms_image_credit').value=author.value.trim();
-          $('cms_image_license').value='Owned by RetroPhone Armenia';
-          $('cms_image_url').dispatchEvent(new Event('input',{bubbles:true}));
+          const url=objectPath;
+          // Private drafts must never be assigned to public model fields.
+          const signed=await client.storage.from('retrophone-catalog-drafts').createSignedUrl(objectPath,300);
+          if(signed.error)throw signed.error;
+          preview.src=signed.data.signedUrl;preview.style.display='block';
           invalidate();
-          uploadStatus.textContent='Фото загружено в защищённое хранилище. Оно ещё не опубликовано в карточке. Сохраните черновик и проверьте предпросмотр.';
+          uploadStatus.textContent='Фото сохранено в приватном хранилище. Публикация отключена до отдельной проверенной процедуры переноса.';
         }catch(error){uploadStatus.textContent='Загрузка не выполнена: '+(error?.message||String(error))}
         finally{uploadButton.disabled=false}
       });
-      const galleryTitle=document.createElement('h3');galleryTitle.textContent='Дополнительные фотографии модели';photoBox.appendChild(galleryTitle);
+      const galleryTitle=document.createElement('h3');galleryTitle.textContent='Приватная галерея черновиков модели';photoBox.appendChild(galleryTitle);
       const galleryInfo=document.createElement('p');galleryInfo.className='cms-hint';
-      galleryInfo.textContent='Отдельное серверное хранилище галереи: изображения не заменяют главную фотографию и не публикуются на сайте автоматически.';
+      galleryInfo.textContent='Приватное хранилище: ссылки на просмотр действуют 5 минут. Эти изображения не публикуются на сайте автоматически.';
       photoBox.appendChild(galleryInfo);
       const extraInput=document.createElement('input');extraInput.type='file';extraInput.accept='image/jpeg,image/png,image/webp';extraInput.multiple=true;photoBox.appendChild(extraInput);
       const extraRightsLabel=document.createElement('label'),extraRights=document.createElement('input');extraRights.type='checkbox';
@@ -697,13 +696,15 @@
       async function refreshGallery(){
         if(!modelKey)return;
         await checkAdmin();
-        const result=await client.storage.from('phone-images').list(galleryPrefix,{limit:100,sortBy:{column:'name',order:'asc'}});
+        const result=await client.storage.from('retrophone-catalog-drafts').list(galleryPrefix,{limit:100,sortBy:{column:'name',order:'asc'}});
         if(result.error)throw result.error;
         gallery.replaceChildren();
         const images=(result.data||[]).filter(x=>/\\.(jpg|png|webp)$/i.test(x.name));
         for(const file of images){
           const path=galleryPrefix+file.name;
-          const url=client.storage.from('phone-images').getPublicUrl(path).data.publicUrl;
+          const signed=await client.storage.from('retrophone-catalog-drafts').createSignedUrl(path,300);
+          if(signed.error)throw signed.error;
+          const url=signed.data.signedUrl;
           const figure=document.createElement('figure');figure.style.cssText='margin:0;max-width:115px';
           const image=document.createElement('img');image.src=url;image.alt='Дополнительное фото модели';
           image.style.cssText='width:110px;height:120px;object-fit:contain;border:1px solid #79613e;border-radius:6px';
@@ -729,7 +730,7 @@
             const suffix={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
             const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
             const random=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
-            const result=await client.storage.from('phone-images').upload(galleryPrefix+random+'.'+suffix,file,{
+            const result=await client.storage.from('retrophone-catalog-drafts').upload(galleryPrefix+random+'.'+suffix,file,{
               contentType:file.type,upsert:false,cacheControl:'3600',
               metadata:{author:extraAuthor.value.trim(),rights_confirmed:'true',model_id:modelKey,caption_ru:captionFields.ru.value.trim(),caption_hy:captionFields.hy.value.trim(),caption_en:captionFields.en.value.trim()}
             });
