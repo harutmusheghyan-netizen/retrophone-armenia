@@ -263,18 +263,26 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
    }
    // Isolated, explicitly reviewed pilot: Samsung SGH-P520 (model ID 202).
    // Read only its three existing descriptions; never change other models or publish drafts.
-   if(brand==='Samsung' && model==='SGH-P520'){
+   const pilotModelIds={
+     'Samsung|SGH-P520':202,
+     'Samsung|SGH-E820':233,'Samsung|SGH-E650':243,
+     'Sony Ericsson|S710a':337,'Sony Ericsson|W518a':423,
+     'Motorola|L9':432,'Motorola|L7i':433,'Motorola|L6i':434,
+     'Motorola|K3 KRZR':436,'Motorola|EM325':438,'Motorola|E815':444
+   };
+   const pilotId=pilotModelIds[brand+'|'+model];
+   if(pilotId){
      try{
        const endpoint=new URL(api+'phone_model_translations');
        endpoint.searchParams.set('select','phone_model_id,language_code,description');
-       endpoint.searchParams.set('phone_model_id','eq.202');
+       endpoint.searchParams.set('phone_model_id','eq.'+pilotId);
        endpoint.searchParams.set('language_code','in.(ru,hy,en)');
        const response=await fetch(endpoint,{headers,cache:'no-store'});
        if(response.ok){
          const rows=await response.json();
          const selected={};
          for(const row of rows){
-           if(row.phone_model_id===202 && ['ru','hy','en'].includes(row.language_code) && typeof row.description==='string' && row.description.trim())selected[row.language_code]=row.description;
+           if(Number(row.phone_model_id)===pilotId && ['ru','hy','en'].includes(row.language_code) && typeof row.description==='string' && row.description.trim())selected[row.language_code]=row.description;
          }
          if(['ru','hy','en'].every(lang=>selected[lang]))pilotDescriptions=selected;
        }
