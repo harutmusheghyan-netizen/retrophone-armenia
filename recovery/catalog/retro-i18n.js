@@ -232,6 +232,24 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
     get('agent_catalog_verified_media',photoFields),
     Promise.resolve(null)
    ]);
+   // Preview: use main-table translations only when the published editorial approves identical text.
+   // The existing editorial remains the safe fallback for unmatched/unavailable translations.
+   if(editorial && editorial.published_at && editorial.phone_model_id && window.RetroPhoneApprovedTranslations){
+     try {
+       const endpoint=new URL(api+'phone_model_translations');
+       endpoint.searchParams.set('select','phone_model_id,language_code,description');
+       endpoint.searchParams.set('phone_model_id','eq.'+editorial.phone_model_id);
+       endpoint.searchParams.set('language_code','in.(ru,hy,en)');
+       const response=await fetch(endpoint,{headers,cache:'no-store'});
+       if(response.ok){
+         const rows=await response.json();
+         for(const language of ['ru','hy','en']){
+           const approved=window.RetroPhoneApprovedTranslations.pickApprovedTranslation(editorial,rows,language,editorial.phone_model_id);
+           if(approved!==null)editorial['description_'+language]=approved;
+         }
+       }
+     } catch (_) { /* Retain published editorial if translation endpoint is unavailable. */ }
+   }
    finished=true;paint();
  }catch(e){/* Leave original catalog unmodified if the enrichment source is unavailable. */}};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load,{once:true});else load();
