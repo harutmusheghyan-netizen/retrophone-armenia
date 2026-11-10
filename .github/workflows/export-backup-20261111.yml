@@ -1,0 +1,38 @@
+name: Export source snapshot (11 Nov 2026)
+
+on:
+  push:
+    branches:
+      - archive/full-backup-baseline-20261111
+    paths:
+      - '.github/workflows/export-backup-20261111.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact backup branch without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Package only tracked repository files (no secrets fetched)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p backup
+          git archive --format=tar.gz --output=backup/retrophone-source-20261111.tar.gz HEAD
+          git rev-parse HEAD > backup/git-commit.txt
+          sha256sum backup/retrophone-source-20261111.tar.gz > backup/SHA256SUMS.txt
+          tar -tzf backup/retrophone-source-20261111.tar.gz >/dev/null
+      - name: Upload restorable repository archive (temporary GitHub artifact)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: retrophone-20261111-tracked-source
+          path: backup/
+          if-no-files-found: error
+          retention-days: 7
