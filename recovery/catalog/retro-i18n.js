@@ -176,6 +176,17 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if(!box){box=create('section',undefined,'rp-agent-enrichment');box.id='rp-agent-enrichment';root.appendChild(box)}
   box.replaceChildren();
   const l=getLanguage(),w=labels[l];
+  // Keep the two existing description locations synchronized with the approved language.
+  // This changes text only: never touch images, price, design or model facts.
+  if(editorial && editorial.published_at){
+    const approvedText=editorial['description_'+l];
+    if(typeof approvedText==='string' && approvedText.trim()){
+      for(const selector of ['#app .rp-detail .rp-intro','#app .rp-detail #rp-history > p']){
+        const node=document.querySelector(selector);
+        if(node && node.textContent!==approvedText)node.textContent=approvedText;
+      }
+    }
+  }
   const photoUrl=safeURL(editorial?.photo_url||media?.image_url);
   const gallery=document.querySelector('#app .rp-gallery #rp-photo');
   if(photoUrl&&gallery&&!gallery.querySelector('img[src]')){
