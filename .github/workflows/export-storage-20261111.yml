@@ -1,0 +1,43 @@
+name: Export Supabase public Storage objects (11 Nov 2026)
+
+on:
+  push:
+    branches:
+      - archive/full-backup-baseline-20261111
+    paths:
+      - '.github/workflows/export-storage-20261111.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-public-storage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Download two verified public Storage objects (no credentials)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p backup/storage/phone-images/catalog/94
+          base='https://aikxbgixitaaatkmcols.supabase.co/storage/v1/object/public/phone-images/catalog/94'
+          curl --fail --silent --show-error --location --max-time 50 "$base/1794342800252-dcy9f5en.webp" -o 'backup/storage/phone-images/catalog/94/1794342800252-dcy9f5en.webp'
+          curl --fail --silent --show-error --location --max-time 50 "$base/1794344725882-rlj67f8o.webp" -o 'backup/storage/phone-images/catalog/94/1794344725882-rlj67f8o.webp'
+          python3 - <<'PY'
+          from pathlib import Path
+          base = Path('backup/storage/phone-images/catalog/94')
+          for name, size in [('1794342800252-dcy9f5en.webp',45656),('1794344725882-rlj67f8o.webp',41728)]:
+              data=(base/name).read_bytes()
+              assert len(data)==size, f'Unexpected size for {name}: {len(data)}'
+              assert data[0:4]==b'RIFF' and data[8:12]==b'WEBP', f'Unexpected image format: {name}'
+          print('Storage file count, byte lengths and WebP headers verified.')
+          PY
+          (cd backup && find storage -type f -print0 | sort -z | xargs -0 sha256sum) > backup/STORAGE_SHA256SUMS.txt
+      - name: Upload as artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: retrophone-20261111-storage-originals
+          path: backup/
+          if-no-files-found: error
+          retention-days: 7
