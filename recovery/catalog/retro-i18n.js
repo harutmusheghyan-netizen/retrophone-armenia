@@ -161,7 +161,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
    if(content!==undefined)node.textContent=String(content);
    return node;
  };
- let editorial=null,media=null,archival=null,finished=false,scheduled=false;
+ let editorial=null,media=null,archival=null,finished=false,scheduled=false,pilotDescriptions=null;
  const css=document.createElement('style');
  css.id='rp-agent-integrated-style';
  css.textContent='.rp-agent-enrichment{margin:24px 0;padding:22px;border:1px solid #b99a65a8;border-radius:12px;background:linear-gradient(120deg,#172331,#0b1721);color:#f6ede1;line-height:1.7}.rp-agent-enrichment h2{color:#edc486;margin:0 0 12px;font:normal clamp(22px,2.6vw,30px) Georgia,serif}.rp-agent-enrichment p{white-space:pre-line}.rp-agent-media img{display:block;max-width:100%;width:auto;max-height:320px;object-fit:contain;border-radius:8px;background:#050b11}.rp-agent-media small{display:block;color:#cebfa9;font-size:12px;margin:8px 0}.rp-agent-media a,.rp-agent-enrichment a{color:#f0c784}.rp-agent-enrichment ul{padding-left:20px}.rp-agent-enrichment li{margin:6px 0}.rp-agent-enrichment .rp-agent-hint{font-size:13px;color:#ccb999;margin-top:15px}@media(max-width:600px){.rp-agent-enrichment{padding:15px}}';
@@ -172,14 +172,14 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   const root=document.querySelector('#app .rp-detail')||document.querySelector('main');
   if(!root)return;
   let box=root.querySelector('#rp-agent-enrichment');
-  if(!editorial&&!media&&!archival){if(box)box.remove();return}
+  if(!editorial&&!media&&!archival&&!pilotDescriptions){if(box)box.remove();return}
   if(!box){box=create('section',undefined,'rp-agent-enrichment');box.id='rp-agent-enrichment';root.appendChild(box)}
   box.replaceChildren();
   const l=getLanguage(),w=labels[l];
   // Keep the two existing description locations synchronized with the approved language.
   // This changes text only: never touch images, price, design or model facts.
-  if(editorial && editorial.published_at){
-    const approvedText=editorial['description_'+l];
+  if((editorial && editorial.published_at)||pilotDescriptions){
+    const approvedText=pilotDescriptions?.[l] || (editorial && editorial.published_at ? editorial['description_'+l] : null);
     if(typeof approvedText==='string' && approvedText.trim()){
       for(const selector of ['#app .rp-detail .rp-intro','#app .rp-detail #rp-history > p']){
         const node=document.querySelector(selector);
@@ -260,6 +260,25 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
          }
        }
      } catch (_) { /* Retain published editorial if translation endpoint is unavailable. */ }
+   }
+   // Isolated, explicitly reviewed pilot: Samsung SGH-P520 (model ID 202).
+   // Read only its three existing descriptions; never change other models or publish drafts.
+   if(brand==='Samsung' && model==='SGH-P520'){
+     try{
+       const endpoint=new URL(api+'phone_model_translations');
+       endpoint.searchParams.set('select','phone_model_id,language_code,description');
+       endpoint.searchParams.set('phone_model_id','eq.202');
+       endpoint.searchParams.set('language_code','in.(ru,hy,en)');
+       const response=await fetch(endpoint,{headers,cache:'no-store'});
+       if(response.ok){
+         const rows=await response.json();
+         const selected={};
+         for(const row of rows){
+           if(row.phone_model_id===202 && ['ru','hy','en'].includes(row.language_code) && typeof row.description==='string' && row.description.trim())selected[row.language_code]=row.description;
+         }
+         if(['ru','hy','en'].every(lang=>selected[lang]))pilotDescriptions=selected;
+       }
+     }catch(_){/* Leave original text if pilot translations are unavailable. */}
    }
    finished=true;paint();
  }catch(e){/* Leave original catalog unmodified if the enrichment source is unavailable. */}};
