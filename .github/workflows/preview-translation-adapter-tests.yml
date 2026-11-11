@@ -1,0 +1,25 @@
+name: Preview translation adapter regression tests
+on:
+  push:
+    branches:
+      - fix/source-recovery-audit-20261111
+    paths:
+      - 'recovery/catalog/approved-translations.js'
+      - 'recovery/catalog/approved-history-adapter.js'
+      - 'recovery/catalog/tests/**'
+      - '.github/workflows/preview-translation-adapter-tests.yml'
+  workflow_dispatch:
+jobs:
+  adapter-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Node version
+        run: node --version
+      - name: Run approved translation and adapter regression tests
+        run: |
+          node recovery/catalog/tests/approved-translations.test.js
+          node recovery/catalog/tests/approved-history-adapter.test.js
