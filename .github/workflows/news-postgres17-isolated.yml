@@ -1,0 +1,97 @@
+name: Isolated news PostgreSQL 17 concurrency
+on:
+  push:
+    branches:
+      - test/news-postgres17-concurrency-20261112
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  postgres17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: test-only-password
+          POSTGRES_DB: retrophone_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d retrophone_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: test-only-password
+      PGDATABASE: retrophone_test
+    steps:
+      - name: Verify PostgreSQL 17 and create isolated schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql -v ON_ERROR_STOP=1 <<'SQL'
+          DO $$ BEGIN IF current_setting('server_version_num')::int / 10000 <> 17 THEN RAISE EXCEPTION 'Expected PostgreSQL 17'; END IF; END $$;
+          CREATE SCHEMA isolated_news;
+          CREATE TABLE isolated_news.posts (
+            id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            source_url text NOT NULL UNIQUE,
+            title_ru text NOT NULL CHECK(length(trim(title_ru)) > 0),
+            title_hy text NOT NULL CHECK(length(trim(title_hy)) > 0),
+            title_en text NOT NULL CHECK(length(trim(title_en)) > 0),
+            image_url text NOT NULL CHECK(length(trim(image_url)) > 0),
+            image_author text NOT NULL CHECK(length(trim(image_author)) > 0),
+            image_license text NOT NULL CHECK(image_license IN ('CC BY 4.0','CC BY-SA 4.0','CC0 1.0')),
+            image_source_url text NOT NULL CHECK(length(trim(image_source_url)) > 0),
+            published_at timestamptz NOT NULL
+          );
+          CREATE FUNCTION isolated_news.publish(
+            p_source text, p_when timestamptz
+          ) RETURNS bigint LANGUAGE plpgsql AS $$
+          DECLARE new_id bigint;
+          BEGIN
+            -- Serialize ALL writers for the relevant Yerevan calendar date.
+            PERFORM pg_advisory_xact_lock(hashtextextended('retrophone-news:' || (p_when AT TIME ZONE 'Asia/Yerevan')::date::text, 0));
+            IF (SELECT count(*) FROM isolated_news.posts
+                WHERE (published_at AT TIME ZONE 'Asia/Yerevan')::date =
+                      (p_when AT TIME ZONE 'Asia/Yerevan')::date) >= 3
+            THEN RAISE EXCEPTION 'daily_limit_reached'; END IF;
+            INSERT INTO isolated_news.posts
+              (source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at)
+            VALUES
+              (p_source,'Тестовая новость','Փորձնական լուր','Test news',
+               'https://upload.wikimedia.org/test.jpg','Test author','CC BY-SA 4.0',
+               'https://commons.wikimedia.org/wiki/File:Test.jpg',p_when)
+            RETURNING id INTO new_id;
+            RETURN new_id;
+          END $$;
+          SQL
+      - name: Eight concurrent transactions, duplicate, midnight, validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/results
+          for i in $(seq 1 8); do
+            (psql -v ON_ERROR_STOP=1 -Atqc "SELECT isolated_news.publish('https://example.org/news/$i','2026-11-12 10:00:00+04')" >"/tmp/results/$i.out" 2>"/tmp/results/$i.err" && echo ok >"/tmp/results/$i.status" || echo rejected >"/tmp/results/$i.status") &
+          done
+          wait
+          success=$(grep -l '^ok$' /tmp/results/*.status | wc -l)
+          rejected=$(grep -l '^rejected$' /tmp/results/*.status | wc -l)
+          echo "concurrent accepted=$success rejected=$rejected"
+          test "$success" -eq 3
+          test "$rejected" -eq 5
+          test "$(psql -Atqc "SELECT count(*) FROM isolated_news.posts")" -eq 3
+          # Repeated submission of an existing URL must not create a fourth row.
+          if psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/news/1','2026-11-12 10:00:00+04')"; then exit 1; fi
+          # One minute before midnight and one minute after: distinct Yerevan days.
+          psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/before','2026-11-13 23:59:00+04')"
+          psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/after','2026-11-14 00:01:00+04')"
+          test "$(psql -Atqc "SELECT count(distinct (published_at AT TIME ZONE 'Asia/Yerevan')::date) FROM isolated_news.posts")" -eq 3
+          # Reject missing Armenian title and missing photo attribution.
+          if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad','RU','','EN','img','author','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
+          if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad2','RU','HY','EN','img','','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
+          echo "PASS: concurrency=3/8; midnight boundary; mandatory trilingual/image metadata checks"
