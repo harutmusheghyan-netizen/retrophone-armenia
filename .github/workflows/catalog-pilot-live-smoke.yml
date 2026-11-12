@@ -1,0 +1,29 @@
+name: Nokia 2010 trilingual catalog live smoke check
+on:
+  push:
+    branches:
+      - fix/catalog-verified-pilot-20261107
+    paths:
+      - 'scripts/check-nokia-2010-live.mjs'
+      - '.github/workflows/catalog-pilot-live-smoke.yml'
+  pull_request:
+    branches:
+      - recovery/vercel-agent-source-20261107
+    paths:
+      - 'scripts/check-nokia-2010-live.mjs'
+      - '.github/workflows/catalog-pilot-live-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-public-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Check recovered handoff JavaScript syntax
+        run: node --check recovery/2026-11-08/agent/src/api/handoff.js
+      - name: Check live localized catalog routes (read only)
+        env:
+          CATALOG_BASE_URL: https://retrophone-armenia-catalog.vercel.app
+        run: node scripts/check-nokia-2010-live.mjs

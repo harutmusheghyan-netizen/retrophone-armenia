@@ -1,0 +1,10 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {test}=require('node:test');
+const {pickApprovedTranslation:pick}=require('./approved-translations.js');
+const editorial={phone_model_id:89,published_at:'2026-11-01T00:00:00Z',description_ru:'Пример',description_hy:'Օրինակ',description_en:'Example'};
+const rows=[{phone_model_id:89,language_code:'ru',description:'Пример'},{phone_model_id:89,language_code:'hy',description:'Օրինակ'},{phone_model_id:89,language_code:'en',description:'Example'}];
+test('all three approved translations',()=>{for(const lang of ['ru','hy','en'])assert.equal(pick(editorial,rows,lang,89),rows.find(r=>r.language_code===lang).description)});
+test('rejects unapproved revision',()=>assert.equal(pick({...editorial,description_ru:'Older'},rows,'ru',89),null));
+test('rejects unpublished or missing editorial',()=>{assert.equal(pick({...editorial,published_at:null},rows,'ru',89),null);assert.equal(pick(null,rows,'ru',89),null)});
+test('rejects mismatched model and unsupported language',()=>{assert.equal(pick(editorial,rows,'ru',84),null);assert.equal(pick(editorial,rows,'de',89),null)});
