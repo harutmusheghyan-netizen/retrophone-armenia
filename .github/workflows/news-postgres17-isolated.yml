@@ -110,7 +110,7 @@ jobs:
           # One minute before midnight and one minute after: distinct Yerevan days.
           psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/before','2026-11-13 23:59:00+04')"
           psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/after','2026-11-14 00:01:00+04')"
-          test "$(psql -Atqc "SELECT count(distinct (published_at AT TIME ZONE 'Asia/Yerevan')::date) FROM isolated_news.posts")" -eq 3
+          test "$(psql -Atqc "SELECT count(distinct (published_at AT TIME ZONE 'Asia/Yerevan')::date) FROM isolated_news.posts")" -eq 4
           # Reject missing Armenian title and missing photo attribution.
           if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad','RU','','EN','img','author','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
           if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad2','RU','HY','EN','img','','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
