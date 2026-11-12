@@ -50,7 +50,7 @@ jobs:
             published_at timestamptz NOT NULL
           );
           CREATE FUNCTION isolated_news.enforce_daily_limit() RETURNS trigger
-          LANGUAGE plpgsql AS $
+          LANGUAGE plpgsql AS $$
           DECLARE local_day date;
           BEGIN
             local_day := (NEW.published_at AT TIME ZONE 'Asia/Yerevan')::date;
@@ -60,7 +60,7 @@ jobs:
                 AND (TG_OP <> 'UPDATE' OR p.id <> NEW.id)) >= 3
             THEN RAISE EXCEPTION 'daily_limit_reached'; END IF;
             RETURN NEW;
-          END $;
+          END $$;
           CREATE TRIGGER enforce_daily_limit
             BEFORE INSERT OR UPDATE OF published_at ON isolated_news.posts
             FOR EACH ROW EXECUTE FUNCTION isolated_news.enforce_daily_limit();
