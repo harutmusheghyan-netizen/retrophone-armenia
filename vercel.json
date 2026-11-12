@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/recovery/catalog/index.html"
+    },
+    {
+      "source": "/approved-translations.js",
+      "destination": "/recovery/catalog/approved-translations.js"
+    },
+    {
+      "source": "/approved-history-adapter.js",
+      "destination": "/recovery/catalog/approved-history-adapter.js"
+    },
+    {
+      "source": "/approved-editorial-preview-data.js",
+      "destination": "/recovery/catalog/approved-editorial-preview-data.js"
+    },
+    {
+      "source": "/retro-i18n.js",
+      "destination": "/recovery/catalog/retro-i18n.js"
+    },
+    {
+      "source": "/retro-live.js",
+      "destination": "/recovery/catalog/retro-live.js"
+    },
+    {
+      "source": "/catalog-data.js",
+      "destination": "/recovery/catalog/catalog-data.js"
+    }
+  ]
+}
