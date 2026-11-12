@@ -49,6 +49,21 @@ jobs:
             image_source_url text NOT NULL CHECK(length(trim(image_source_url)) > 0),
             published_at timestamptz NOT NULL
           );
+          CREATE FUNCTION isolated_news.enforce_daily_limit() RETURNS trigger
+          LANGUAGE plpgsql AS $
+          DECLARE local_day date;
+          BEGIN
+            local_day := (NEW.published_at AT TIME ZONE 'Asia/Yerevan')::date;
+            PERFORM pg_advisory_xact_lock(hashtextextended('retrophone-news:' || local_day::text, 0));
+            IF (SELECT count(*) FROM isolated_news.posts p
+                WHERE (p.published_at AT TIME ZONE 'Asia/Yerevan')::date = local_day
+                AND (TG_OP <> 'UPDATE' OR p.id <> NEW.id)) >= 3
+            THEN RAISE EXCEPTION 'daily_limit_reached'; END IF;
+            RETURN NEW;
+          END $;
+          CREATE TRIGGER enforce_daily_limit
+            BEFORE INSERT OR UPDATE OF published_at ON isolated_news.posts
+            FOR EACH ROW EXECUTE FUNCTION isolated_news.enforce_daily_limit();
           CREATE FUNCTION isolated_news.publish(
             p_source text, p_when timestamptz
           ) RETURNS bigint LANGUAGE plpgsql AS $$
@@ -87,6 +102,11 @@ jobs:
           test "$(psql -Atqc "SELECT count(*) FROM isolated_news.posts")" -eq 3
           # Repeated submission of an existing URL must not create a fourth row.
           if psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/news/1','2026-11-12 10:00:00+04')"; then exit 1; fi
+          # Explicit unique source URL check on a different, non-full day.
+          psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/unique','2026-11-16 10:00:00+04')"
+          if psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/unique','2026-11-17 10:00:00+04')"; then echo 'FAIL: duplicate source URL accepted'; exit 1; fi
+          # Direct INSERT must not bypass the three-per-day limit.
+          if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bypass','RU','HY','EN','img','author','CC BY-SA 4.0','source','2026-11-12 12:00:00+04')"; then echo 'FAIL: direct INSERT bypassed daily limit'; exit 1; fi
           # One minute before midnight and one minute after: distinct Yerevan days.
           psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/before','2026-11-13 23:59:00+04')"
           psql -v ON_ERROR_STOP=1 -c "SELECT isolated_news.publish('https://example.org/after','2026-11-14 00:01:00+04')"
