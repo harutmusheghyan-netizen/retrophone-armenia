@@ -115,3 +115,11 @@ jobs:
           if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad','RU','','EN','img','author','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
           if psql -v ON_ERROR_STOP=1 -c "INSERT INTO isolated_news.posts(source_url,title_ru,title_hy,title_en,image_url,image_author,image_license,image_source_url,published_at) VALUES ('https://example.org/bad2','RU','HY','EN','img','','CC BY-SA 4.0','source','2026-11-15 00:00:00+04')"; then exit 1; fi
           echo "PASS: concurrency=3/8; midnight boundary; mandatory trilingual/image metadata checks"
+- name: Checkout isolated production-shaped fixture
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify status-aware daily guard against production-shaped fixture
+        shell: bash
+        run: bash tests/news-guard-production-shape/verify.sh
+
