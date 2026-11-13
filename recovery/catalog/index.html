@@ -84,7 +84,7 @@ const n=b+' '+m,year=item.year||'Нет подтверждённых данны�
 const v=(key)=>trValue(item[key]||'Нет подтверждённых данных');
 const row=(name,key)=>'<tr><td>'+safe(localize(name))+'</td><td>'+safe(v(key))+'</td></tr>';
 const searchCommons='https://commons.wikimedia.org/w/index.php?search='+encodeURIComponent(n)+'&title=Special:MediaSearch&type=image';
-const src=item.source?'<a class="rp-source-link" href="'+safe(item.source)+'" target="_blank" rel="noopener">'+tr("Открыть проверенный источник")+'</a>':'<span class="rp-muted">'+tr("'+tr("Источники")+' для этой модели ещё проверяются")+'</span>';
+const src=item.source?'<a class="rp-source-link" href="'+safe(item.source)+'" target="_blank" rel="noopener">'+tr("Открыть проверенный источник")+'</a>':'<span class="rp-muted">'+tr("Источники для этой модели ещё проверяются")+'</span>';
 const pos=db[b].indexOf(m),related=db[b].slice(Math.max(0,pos-2),Math.min(db[b].length,pos+3)).filter(x=>x!==m).slice(0,4);
 document.title=n+(item.year?' ('+item.year+')':'')+' — история и характеристики | RetroPhone Armenia';
 app.innerHTML='<article class="rp-detail">'+
