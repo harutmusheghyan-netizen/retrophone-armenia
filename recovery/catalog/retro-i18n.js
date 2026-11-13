@@ -149,7 +149,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if(!r.ok)throw Error('source '+table+' HTTP '+r.status);
   const items=await r.json();return Array.isArray(items)?items[0]||null:null;
  };
- const approvedFields='brand,model_name,announced_year,release_year,description_ru,description_hy,description_en,photo_url,photo_credit,photo_license,verified_sources,published_at';
+ const approvedFields='phone_model_id,brand,model_name,announced_year,release_year,description_ru,description_hy,description_en,photo_url,photo_credit,photo_license,verified_sources,published_at';
  const photoFields='brand,model_name,file_page_url,image_url,author,license,verified_at';
  const safeURL=s=>{try{const u=new URL(String(s));return u.protocol==='https:'?u.href:null}catch(e){return null}};
  const labels={
