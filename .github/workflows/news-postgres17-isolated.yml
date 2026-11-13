@@ -122,4 +122,6 @@ jobs:
       - name: Verify status-aware daily guard against production-shaped fixture
         shell: bash
         run: bash tests/news-guard-production-shape/verify.sh
-
+      - name: Verify protected news ingestion input
+        shell: bash
+        run: node --test tests/news-ingest-validation.test.mjs
