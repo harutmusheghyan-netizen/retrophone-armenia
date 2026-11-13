@@ -1,0 +1,26 @@
+name: RetroPhone photo pipeline inventory (Preview only)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Count models and missing four-angle sets (read-only)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python3 photo-pipeline/inventory.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: photo-pipeline-inventory
+          path: photo-pipeline/output/status.json
+          if-no-files-found: ignore
