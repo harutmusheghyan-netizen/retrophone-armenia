@@ -125,3 +125,6 @@ jobs:
       - name: Verify protected news ingestion input
         shell: bash
         run: node --test tests/news-ingest-validation.test.mjs
+      - name: Verify guarded news publication RPC
+        shell: bash
+        run: bash tests/news-guard-production-shape/verify-guarded-publisher.sh
