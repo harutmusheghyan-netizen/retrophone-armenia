@@ -70,6 +70,8 @@ Deno.serve(async req=>{
     }
     const value=await reply.json();
     const result=Array.isArray(value)?value[0]:value;
+    if(result?.status==="daily_limit_reached")return respond({error:"daily_limit_reached"},409);
+    if(result?.status==="conflict")return respond({error:"duplicate_source_or_slug"},409);
     if(!result || !["published","already_exists"].includes(result.status)
        || !Number.isSafeInteger(Number(result.id)) || Number(result.id)<=0)
       return respond({error:"invalid_database_response"},502);
