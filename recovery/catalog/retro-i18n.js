@@ -216,7 +216,11 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if(editorial){
    box.append(create('h2',w.heading));
    if(editorial.release_year)box.append(create('p',w.date+': '+editorial.release_year));
-   box.append(create('p',editorial['description_'+l]||editorial.description_ru||''));
+   // Avoid a duplicate model history when the existing detail already displays it.
+   const existingHistory=document.querySelector('#app .rp-detail #rp-history > p')||document.querySelector('#app .rp-detail .rp-intro');
+   if(!existingHistory || !existingHistory.textContent.trim()){
+     box.append(create('p',editorial['description_'+l]||editorial.description_ru||''));
+   }
    const evidence=Array.isArray(editorial.verified_sources)?editorial.verified_sources:[];
    if(evidence.length){
      const details=create('details'),summary=create('summary',w.sources),ul=create('ul');
