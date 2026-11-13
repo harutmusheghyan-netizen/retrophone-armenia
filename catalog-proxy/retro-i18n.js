@@ -1,4 +1,4 @@
-document.addEventListener('click',function(e){const b=e.target.closest&&e.target.closest('#rp-languages button[data-lang]');if(!b||!document.documentElement.hasAttribute('data-rp-verified'))return;const l=b.dataset.lang;if(!['ru','hy','en'].includes(l))return;e.preventDefault();e.stopImmediatePropagation();const u=new URL(location.href);u.searchParams.set('lang',l);location.assign(u.toString())},true);
+document.addEventListener('click',function(e){const b=e.target.closest&&e.target.closest('#rp-languages button[data-lang]');if(!b||!new URLSearchParams(location.search).has('model'))return;const l=b.dataset.lang;if(!['ru','hy','en'].includes(l))return;e.preventDefault();e.stopImmediatePropagation();const u=new URL(location.href);u.searchParams.set('lang',l);location.assign(u.toString())},true);
 (function(){
 "use strict";
 const ru="ru", codes=["ru","hy","en"];
@@ -57,7 +57,7 @@ function translate(base,language) {
 }
 function translateNode(node){
  const parent=node.parentElement;
- if(!parent||["SCRIPT","STYLE","NOSCRIPT","TEXTAREA","CODE","PRE"].includes(parent.tagName)||parent.closest("#rp-languages"))return;
+ if(!parent||["SCRIPT","STYLE","NOSCRIPT","TEXTAREA","CODE","PRE"].includes(parent.tagName)||parent.closest("#rp-languages")||parent.closest("#app .rp-detail"))return;
  const value=node.nodeValue||"";
  if(!value.trim())return;
  let rec=tracked.get(node);
