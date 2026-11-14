@@ -301,7 +301,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
                    for(const row of rows){
                      if(Number(row.phone_model_id)===id&&['ru','hy','en'].includes(row.language_code)&&typeof row.description==='string'&&row.description.trim())selected[row.language_code]=row.description;
                    }
-                   if(['ru','hy','en'].every(lang=>selected[lang]))pilotDescriptions=selected;
+                   if(Object.keys(selected).length>0)pilotDescriptions=selected;
                  }
                }
              }
