@@ -1,0 +1,17 @@
+{
+  "name": "retrophone-nano-banana-preview",
+  "private": true,
+  "type": "module",
+  "description": "Isolated local pilot for unverified AI-generated RetroPhone model illustrations",
+  "scripts": {
+    "check": "node --check generate.mjs",
+    "dry-run": "node generate.mjs --dry-run",
+    "generate-pilot": "node generate.mjs --run"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "sharp": "^0.34.0"
+  }
+}
