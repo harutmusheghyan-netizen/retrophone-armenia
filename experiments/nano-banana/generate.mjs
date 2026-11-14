@@ -96,7 +96,10 @@ async function referencePart(ref) {
   return { inlineData: { mimeType, data: bytes.toString("base64") } };
 }
 
-const photoParts = await Promise.all(references.map(referencePart));
+const photoParts = (await Promise.all(references.map(async (ref) => [
+  { text: "REFERENCE PHOTOGRAPH — " + ref.view.toUpperCase() + " VIEW of authentic " + PHONE + "." },
+  await referencePart(ref)
+]))).flat();
 await mkdir(outputDir, { recursive: true });
 const review = {
   phone: PHONE,
