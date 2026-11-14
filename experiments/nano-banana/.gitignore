@@ -1,0 +1,6 @@
+node_modules/
+.env
+.env.*
+references/
+preview-output/
+*.log
