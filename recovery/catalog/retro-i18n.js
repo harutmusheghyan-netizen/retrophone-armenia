@@ -267,33 +267,49 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
        }
      } catch (_) { /* Retain published editorial if translation endpoint is unavailable. */ }
    }
-   // Isolated, explicitly reviewed pilot: Samsung SGH-P520 (model ID 202).
-   // Read only its three existing descriptions; never change other models or publish drafts.
-   const pilotModelIds={
-     'Samsung|SGH-P520':202,
-     'Samsung|SGH-E820':233,'Samsung|SGH-E650':243,
-     'Sony Ericsson|S710a':337,'Sony Ericsson|W518a':423,
-     'Motorola|L9':432,'Motorola|L7i':433,'Motorola|L6i':434,
-     'Motorola|K3 KRZR':436,'Motorola|EM325':438,'Motorola|E815':444
-   };
-   const pilotId=pilotModelIds[brand+'|'+model];
-   if(pilotId){
-     try{
-       const endpoint=new URL(api+'phone_model_translations');
-       endpoint.searchParams.set('select','phone_model_id,language_code,description');
-       endpoint.searchParams.set('phone_model_id','eq.'+pilotId);
-       endpoint.searchParams.set('language_code','in.(ru,hy,en)');
-       const response=await fetch(endpoint,{headers,cache:'no-store'});
-       if(response.ok){
-         const rows=await response.json();
-         const selected={};
-         for(const row of rows){
-           if(Number(row.phone_model_id)===pilotId && ['ru','hy','en'].includes(row.language_code) && typeof row.description==='string' && row.description.trim())selected[row.language_code]=row.description;
+   // Resolve the exact published model and its existing translations for all brands.
+   // Read-only, fail closed: never expose drafts or use a fuzzy model match.
+   try {
+     const brandsUrl=new URL(api+'brands');
+     brandsUrl.searchParams.set('select','id,name');
+     brandsUrl.searchParams.set('name','eq.'+brand);
+     brandsUrl.searchParams.set('limit','2');
+     const brandResponse=await fetch(brandsUrl,{headers,cache:'no-store'});
+     if(brandResponse.ok){
+       const brandRows=await brandResponse.json();
+       if(Array.isArray(brandRows)&&brandRows.length===1&&brandRows[0].name===brand){
+         const modelsUrl=new URL(api+'phone_models');
+         modelsUrl.searchParams.set('select','id,model_name,is_published');
+         modelsUrl.searchParams.set('brand_id','eq.'+brandRows[0].id);
+         modelsUrl.searchParams.set('model_name','eq.'+model);
+         modelsUrl.searchParams.set('is_published','eq.true');
+         modelsUrl.searchParams.set('limit','2');
+         const modelsResponse=await fetch(modelsUrl,{headers,cache:'no-store'});
+         if(modelsResponse.ok){
+           const models=await modelsResponse.json();
+           if(Array.isArray(models)&&models.length===1&&models[0].model_name===model&&models[0].is_published===true){
+             const id=Number(models[0].id);
+             if(Number.isSafeInteger(id)&&id>0&&id!==243){
+               const translationsUrl=new URL(api+'phone_model_translations');
+               translationsUrl.searchParams.set('select','phone_model_id,language_code,description');
+               translationsUrl.searchParams.set('phone_model_id','eq.'+id);
+               translationsUrl.searchParams.set('language_code','in.(ru,hy,en)');
+               const translationsResponse=await fetch(translationsUrl,{headers,cache:'no-store'});
+               if(translationsResponse.ok){
+                 const rows=await translationsResponse.json(),selected={};
+                 if(Array.isArray(rows)){
+                   for(const row of rows){
+                     if(Number(row.phone_model_id)===id&&['ru','hy','en'].includes(row.language_code)&&typeof row.description==='string'&&row.description.trim())selected[row.language_code]=row.description;
+                   }
+                   if(['ru','hy','en'].every(lang=>selected[lang]))pilotDescriptions=selected;
+                 }
+               }
+             }
+           }
          }
-         if(['ru','hy','en'].every(lang=>selected[lang]))pilotDescriptions=selected;
        }
-     }catch(_){/* Leave original text if pilot translations are unavailable. */}
-   }
+     }
+   }catch(_){/* Keep the original page unchanged when any lookup fails. */}
    finished=true;paint();
  }catch(e){/* Leave original catalog unmodified if the enrichment source is unavailable. */}};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load,{once:true});else load();
