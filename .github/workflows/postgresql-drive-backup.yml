@@ -1,0 +1,73 @@
+name: PostgreSQL encrypted backup to Google Drive (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PG_BACKUP_URL: ${{ secrets.PG_BACKUP_URL }}
+      BACKUP_GPG_PASSPHRASE: ${{ secrets.BACKUP_GPG_PASSPHRASE }}
+      RCLONE_DRIVE_TOKEN_B64: ${{ secrets.RCLONE_DRIVE_TOKEN_B64 }}
+      DRIVE_FOLDER_ID: ${{ vars.PG_BACKUP_DRIVE_FOLDER_ID }}
+    services:
+      restore:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: local_test_only
+          POSTGRES_DB: restore_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d restore_test"
+          --health-interval 10s --health-timeout 5s --health-retries 10
+    steps:
+      - name: Check required configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          for key in PG_BACKUP_URL BACKUP_GPG_PASSPHRASE RCLONE_DRIVE_TOKEN_B64 DRIVE_FOLDER_ID; do
+            if [ -z "${!key:-}" ]; then echo "::error::Missing configuration: $key"; exit 1; fi
+          done
+      - name: Install PostgreSQL 17 client and rclone
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17 rclone gnupg
+      - name: Dump, encrypt, restore-test, verify and upload
+        shell: bash
+        env:
+          PGPASSWORD: local_test_only
+        run: |
+          set -euo pipefail
+          umask 077
+          work="$(mktemp -d)"
+          trap 'rm -rf "$work"' EXIT
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          file="retrophone-postgresql-$stamp.dump.gpg"
+          pg_dump --dbname="$PG_BACKUP_URL" --format=custom --no-owner --no-acl --file="$work/database.dump"
+          test -s "$work/database.dump"
+          pg_restore --list "$work/database.dump" > "$work/contents.txt"
+          # Isolated restore is a required gate. A failed restore stops upload.
+          pg_restore --host=localhost --port=5432 --username=postgres --dbname=restore_test --no-owner --no-acl --exit-on-error "$work/database.dump"
+          psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_models;" > "$work/model_count.txt"
+          psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_model_translations;" > "$work/translation_count.txt"
+          test "$(cat "$work/model_count.txt")" -ge 870
+          test "$(cat "$work/translation_count.txt")" -ge 2378
+          printf '%s' "$BACKUP_GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 --output "$work/$file" "$work/database.dump"
+          sha256sum "$work/$file" | sed "s|$work/||" > "$work/$file.sha256"
+          printf '%s' "$RCLONE_DRIVE_TOKEN_B64" | base64 -d > "$work/drive-token.json"
+          export RCLONE_CONFIG_BACKUP_TYPE=drive
+          export RCLONE_CONFIG_BACKUP_SCOPE=drive
+          export RCLONE_CONFIG_BACKUP_ROOT_FOLDER_ID="$DRIVE_FOLDER_ID"
+          export RCLONE_CONFIG_BACKUP_TOKEN="$(cat "$work/drive-token.json")"
+          rclone copyto "$work/$file" "backup:$file" --checkers 2 --transfers 1
+          rclone copyto "$work/$file.sha256" "backup:$file.sha256"
+          rclone check "$work" "backup:" --include "$file" --include "$file.sha256" --one-way
+          echo "Restore test succeeded: models=$(cat "$work/model_count.txt"), translations=$(cat "$work/translation_count.txt")"
+          echo "Encrypted backup and SHA-256 uploaded: $file"
