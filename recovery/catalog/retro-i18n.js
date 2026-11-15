@@ -183,9 +183,15 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if((editorial && editorial.published_at)||pilotDescriptions){
     const approvedText=pilotDescriptions?.[l] || (editorial && editorial.published_at ? editorial['description_'+l] : null);
     if(typeof approvedText==='string' && approvedText.trim()){
-      for(const selector of ['#app .rp-detail .rp-intro','#app .rp-detail #rp-history > p']){
-        const node=document.querySelector(selector);
-        if(node && node.textContent!==approvedText)node.textContent=approvedText;
+      // The history owns the complete approved description; the intro is a brief lead.
+      // Never repeat the complete description in both locations.
+      const historyNode=document.querySelector('#app .rp-detail #rp-history > p');
+      if(historyNode && historyNode.textContent!==approvedText)historyNode.textContent=approvedText;
+      const introNode=document.querySelector('#app .rp-detail .rp-intro');
+      const firstSentence=approvedText.trim().match(/^[\\s\\S]*?[.!?։](?=\\s|$)/);
+      if(introNode && firstSentence && firstSentence[0].trim()!==approvedText.trim()){
+        const lead=firstSentence[0].trim();
+        if(introNode.textContent!==lead)introNode.textContent=lead;
       }
     }
   }
