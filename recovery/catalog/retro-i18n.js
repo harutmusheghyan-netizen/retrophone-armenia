@@ -188,7 +188,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
       const historyNode=document.querySelector('#app .rp-detail #rp-history > p');
       if(historyNode && historyNode.textContent!==approvedText)historyNode.textContent=approvedText;
       const introNode=document.querySelector('#app .rp-detail .rp-intro');
-      const firstSentence=approvedText.trim().match(/^[\\s\\S]*?[.!?։](?=\\s|$)/);
+      const firstSentence=approvedText.trim().match(/^[\s\S]*?[.!?։](?=\s|$)/);
       if(introNode && firstSentence && firstSentence[0].trim()!==approvedText.trim()){
         const lead=firstSentence[0].trim();
         if(introNode.textContent!==lead)introNode.textContent=lead;
