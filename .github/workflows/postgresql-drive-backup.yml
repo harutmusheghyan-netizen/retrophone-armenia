@@ -1,0 +1,79 @@
+name: PostgreSQL encrypted backup and restore test (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PG_BACKUP_URL: ${{ secrets.PG_BACKUP_URL }}
+      BACKUP_GPG_PASSPHRASE: ${{ secrets.BACKUP_GPG_PASSPHRASE }}
+    services:
+      restore:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: local_test_only
+          POSTGRES_DB: restore_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d restore_test"
+          --health-interval 10s --health-timeout 5s --health-retries 10
+    steps:
+      - name: Check required configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          for key in PG_BACKUP_URL BACKUP_GPG_PASSPHRASE; do
+            if [ -z "${!key:-}" ]; then echo "::error::Missing configuration: $key"; exit 1; fi
+          done
+      - name: Install PostgreSQL 17 client and encryption tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17 gnupg
+      - name: Dump, restore-test, encrypt and checksum
+        shell: bash
+        env:
+          PGPASSWORD: local_test_only
+        run: |
+          set -euo pipefail
+          umask 077
+          work="$RUNNER_TEMP/retrophone-backup"
+          mkdir -p "$work"
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          file="retrophone-postgresql-$stamp.dump.gpg"
+          pg_dump --dbname="$PG_BACKUP_URL" --format=custom --no-owner --no-acl --file="$work/database.dump"
+          test -s "$work/database.dump"
+          pg_restore --list "$work/database.dump" > "$work/contents.txt"
+          # Isolated restore is a required gate. A failed restore stops upload.
+          pg_restore --host=localhost --port=5432 --username=postgres --dbname=restore_test --no-owner --no-acl --exit-on-error "$work/database.dump"
+          psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_models;" > "$work/model_count.txt"
+          psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_model_translations;" > "$work/translation_count.txt"
+          test "$(cat "$work/model_count.txt")" -ge 870
+          test "$(cat "$work/translation_count.txt")" -ge 2378
+          printf '%s' "$BACKUP_GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 --output "$work/$file" "$work/database.dump"
+          sha256sum "$work/$file" | sed "s|$work/||" > "$work/$file.sha256"
+          echo "Restore test succeeded: models=$(cat "$work/model_count.txt"), translations=$(cat "$work/translation_count.txt")"
+          echo "Encrypted artifact: $file"
+          echo "backup_filename=$file" >> "$GITHUB_OUTPUT"
+        id: dump
+      - name: Upload encrypted backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.dump.outputs.backup_filename }}
+          path: |
+            ${{ runner.temp }}/retrophone-backup/*.dump.gpg
+            ${{ runner.temp }}/retrophone-backup/*.sha256
+          if-no-files-found: error
+          retention-days: 7
+      - name: Delete plaintext and temporary token-free files
+        if: always()
+        shell: bash
+        run: |
+          rm -rf "$RUNNER_TEMP/retrophone-backup"
