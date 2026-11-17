@@ -4,6 +4,7 @@
 // can replace historical copy; archive drafts remain unverified and are never promoted.
 const ORIGIN=process.env.RETRO_ORIGIN||"https://retrophone-armenia-catalog-2ww1duy3s-harutmusheghyan-4829.vercel.app";
 const API="https://aikxbgixitaaatkmcols.supabase.co/rest/v1/agent_published_model_editorials";
+const TRANSLATIONS_API="https://aikxbgixitaaatkmcols.supabase.co/rest/v1/phone_model_translations";
 const KEY="sb_publishable_PvxphKmdiZKPMGD0BbPBuw_nS2cKRJt"; // public/anon, NOT service_role
 const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 const labels={
@@ -14,7 +15,7 @@ const labels={
 async function getEditorial(brand,model){
  try{
   const q=new URL(API);
-  q.searchParams.set("select","brand,model_name,release_year,description_ru,description_hy,description_en,verified_sources,published_at");
+  q.searchParams.set("select","phone_model_id,brand,model_name,release_year,description_ru,description_hy,description_en,verified_sources,published_at");
   q.searchParams.set("brand","ilike."+brand);
   q.searchParams.set("model_name","ilike."+model);
   q.searchParams.set("published_at","not.is.null");
@@ -26,6 +27,25 @@ async function getEditorial(brand,model){
     &&a.brand.toLowerCase()===brand.toLowerCase()?a:null;
  }catch{return null}
 }
+
+// Read only the translation attached to an already published, source-verified editorial.
+// If RLS denies public access, retain the existing editorial rather than exposing drafts.
+async function getVerifiedTranslation(editorial,language){
+ if(!editorial?.published_at||!editorial?.phone_model_id)return null;
+ try{
+  const q=new URL(TRANSLATIONS_API);
+  q.searchParams.set("select","description");
+  q.searchParams.set("phone_model_id","eq."+editorial.phone_model_id);
+  q.searchParams.set("language_code","eq."+language);
+  q.searchParams.set("limit","1");
+  const r=await fetch(q,{headers:{apikey:KEY,Accept:"application/json"},
+   signal:AbortSignal.timeout(6000),cache:"no-store"});
+  if(!r.ok)return null;
+  const rows=await r.json(),description=rows?.[0]?.description;
+  return typeof description==="string"&&description.trim()?description:null;
+ }catch{return null}
+}
+
 function localized(html,data,l){
  const text=data["description_"+l],L=labels[l];
  if(typeof text!=="string"||text.trim().length<160)return html;
@@ -75,7 +95,12 @@ export default async function handler(req,res){
   const match=upstream.ok&&path.match(/^phones\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/i);
   if(match){
    const data=await getEditorial(match[1],match[2].replace(/-/g," "));
-   if(data)html=localized(html,data,labels[incoming.searchParams.get("lang")]?incoming.searchParams.get("lang"):"ru");
+   if(data){
+    const language=labels[incoming.searchParams.get("lang")]?incoming.searchParams.get("lang"):"ru";
+    const translation=await getVerifiedTranslation(data,language);
+    const enriched=translation?{...data,["description_"+language]:translation}:data;
+    html=localized(html,enriched,language);
+   }
   }
   const inject='<script src="/retro-i18n.js" defer></script>';
   if(!html.includes('src="/retro-i18n.js"'))html=html.includes("</head>")?html.replace("</head>",inject+"</head>"):html+inject;
