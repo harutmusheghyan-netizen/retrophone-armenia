@@ -48,7 +48,8 @@ async function getVerifiedTranslation(editorial,language){
 
 function localized(html,data,l){
  const text=data["description_"+l],L=labels[l];
- if(typeof text!=="string"||text.trim().length<160)return html;
+ // Short but nonempty descriptions are valid for already published, source-verified editorials.
+ if(typeof text!=="string"||!text.trim())return html;
  const old=/<section><h2>История модели<\/h2>[\s\S]*?<\/section>/i;
  if(!old.test(html))return html;
  let links="";
