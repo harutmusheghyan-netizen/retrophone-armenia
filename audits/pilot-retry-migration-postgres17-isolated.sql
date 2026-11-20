@@ -1,7 +1,7 @@
 \set ON_ERROR_STOP on
 -- Disposable PostgreSQL 17 only. Never run against production.
 -- Requires audits/pilot-claim-postgres17-isolated.sql fixtures.
-DO $ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='anon') THEN CREATE ROLE anon NOLOGIN; END IF; IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='authenticated') THEN CREATE ROLE authenticated NOLOGIN; END IF; END $;
+DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='anon') THEN CREATE ROLE anon NOLOGIN; END IF; IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='authenticated') THEN CREATE ROLE authenticated NOLOGIN; END IF; END $$;
 \i audits/pilot-retry-migration-DRAFT-DO-NOT-APPLY.sql
 DO $$
 BEGIN
