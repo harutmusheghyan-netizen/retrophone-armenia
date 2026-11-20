@@ -1,0 +1,13 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { decideNewsImage, validateNewsImageForPublication, AI_CAPTIONS } from "./news-image-fallback.mjs";
+const licensed = {url:"https://example.org/photo.jpg",author:"Original photographer",license:"CC BY 4.0",rightsVerified:true,matchesArticle:true};
+const ai = {generated:true,reviewed:true,depictsRealEvent:false,misleading:false,storageUrl:"https://aikxbgixitaaatkmcols.supabase.co/storage/v1/object/public/retrophone-news-images/news/test.png"};
+test("verified licensed photo takes priority",()=>{const r=decideNewsImage({licensedPhoto:licensed});assert.equal(r.kind,"licensed_photo");assert.equal(r.requiresAiGeneration,false);assert.equal(validateNewsImageForPublication(r),true)});
+test("missing photo requests AI generation without publishing",()=>{const r=decideNewsImage({});assert.equal(r.state,"needs_ai");assert.equal(validateNewsImageForPublication(r),false)});
+test("unlicensed photo cannot bypass fallback",()=>{const r=decideNewsImage({licensedPhoto:{...licensed,rightsVerified:false}});assert.equal(r.state,"needs_ai")});
+test("verified AI image requires three localized captions",()=>{const r=decideNewsImage({aiResult:ai});assert.deepEqual(r.captions,AI_CAPTIONS);assert.equal(validateNewsImageForPublication(r),true)});
+test("unreviewed AI is blocked",()=>assert.equal(decideNewsImage({aiResult:{...ai,reviewed:false}}).state,"blocked"));
+test("misleading AI is blocked",()=>assert.equal(decideNewsImage({aiResult:{...ai,misleading:true}}).state,"blocked"));
+test("wrong bucket is blocked",()=>assert.equal(decideNewsImage({aiResult:{...ai,storageUrl:"https://example.org/image.png"}}).state,"blocked"));
+test("missing AI label prevents publication",()=>{const r=decideNewsImage({aiResult:ai});delete r.captions.hy;assert.equal(validateNewsImageForPublication(r),false)});
