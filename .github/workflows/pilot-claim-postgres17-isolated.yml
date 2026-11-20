@@ -1,0 +1,37 @@
+name: Isolated PostgreSQL 17 pilot queue
+on:
+  push:
+    branches: [safe/catalog-i18n-audit-20261115]
+    paths:
+      - audits/pilot-claim-postgres17-isolated.sql
+      - .github/workflows/pilot-claim-postgres17-isolated.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  postgres17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: isolated-only
+          POSTGRES_DB: isolated_queue
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d isolated_queue"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PostgreSQL client
+        run: sudo apt-get update -qq && sudo apt-get install -y postgresql-client
+      - name: Test actual function in disposable PostgreSQL 17
+        env:
+          PGPASSWORD: isolated-only
+        run: |
+          sed '/^CREATE SCHEMA public;$/d' audits/pilot-claim-postgres17-isolated.sql > /tmp/isolated.sql
+          psql -h localhost -U postgres -d isolated_queue -v ON_ERROR_STOP=1 -f /tmp/isolated.sql
