@@ -1,0 +1,22 @@
+name: Isolated pilot retry policy tests
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - safe/catalog-i18n-audit-20261115
+    paths:
+      - audits/pilot-retry-policy-isolated.test.mjs
+      - .github/workflows/pilot-retry-isolated.yml
+permissions:
+  contents: read
+jobs:
+  retry-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run eight isolated tests (no secrets or production DB)
+        run: node --test audits/pilot-retry-policy-isolated.test.mjs
