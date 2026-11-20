@@ -1,0 +1,16 @@
+name: Isolated news AI image fallback tests
+on:
+  push:
+    branches: [experiment/news-ai-fallback-tests-20261120]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/news-image-fallback.test.mjs
