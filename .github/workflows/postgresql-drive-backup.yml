@@ -60,7 +60,7 @@ jobs:
           # Isolated restore is a required gate. A failed restore stops upload.
           PGPASSWORD=local_test_only pg_restore --host=localhost --port=5432 --username=postgres --dbname=restore_test --no-owner --no-acl --exit-on-error "$work/database.dump"
           PGPASSWORD=local_test_only psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_models;" > "$work/model_count.txt"
-          psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_model_translations;" > "$work/translation_count.txt"
+          PGPASSWORD=local_test_only psql --host=localhost --port=5432 --username=postgres --dbname=restore_test -v ON_ERROR_STOP=1 -Atc "select count(*) from public.phone_model_translations;" > "$work/translation_count.txt"
           test "$(cat "$work/model_count.txt")" -ge 870
           test "$(cat "$work/translation_count.txt")" -ge 2378
           printf '%s' "$BACKUP_GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 --output "$work/$file" "$work/database.dump"
